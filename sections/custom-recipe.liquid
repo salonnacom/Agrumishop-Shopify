@@ -1,0 +1,1399 @@
+{{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+
+<article class="article-template">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when '@app' -%}
+        <div class="page-width page-width--narrow">
+          {% render block %}
+        </div>
+      {%- when 'featured_image' -%}
+        {%- if article.image -%}
+          <div
+            class="article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <div
+              class="article-template__hero-{{ block.settings.image_height }} media"
+              {% if block.settings.image_height == 'adapt' and article.image %}
+                style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
+              {% endif %}
+            >
+              <img
+                srcset="
+                  {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
+                  {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
+                  {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
+                  {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
+                  {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
+                  {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
+                  {{ article.image | image_url }} {{ article.image.width }}w
+                "
+                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+                src="{{ article.image | image_url: width: 1100 }}"
+                loading="eager"
+                fetchpriority="high"
+                width="{{ article.image.width }}"
+                height="{{ article.image.height }}"
+                alt="{{ article.image.alt | escape }}"
+              >
+            </div>
+          </div>
+          <style>
+            @media (max-width: 749px) {
+              .article-template__hero-container {
+                margin-left: calc(-1 * var(--page-margin, 1.5rem));
+                margin-right: calc(-1 * var(--page-margin, 1.5rem));
+              }
+              .article-template__hero-container .media {
+                padding-bottom: 100% !important;
+                height: 0 !important;
+              }
+            }
+          </style>
+        {%- endif -%}
+
+      {%- when 'title' -%}
+        <header
+          class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          <h1
+            class="article-template__title"
+          >
+            {{ article.title | escape }}
+          </h1>
+          {%- if block.settings.blog_show_date -%}
+            <span class="circle-divider caption-with-letter-spacing">
+              {{- article.published_at | time_tag: format: 'date' -}}
+            </span>
+          {%- endif -%}
+          {%- if block.settings.blog_show_author -%}
+            <span class="caption-with-letter-spacing">
+              <span>{{ article.author }}</span>
+            </span>
+          {%- endif -%}
+        </header>
+
+      {%- when 'intro' -%}
+        {%- comment -%} Blocco intro ricetta {%- endcomment -%}
+        {%- assign recipe_intro_metafield = article.metafields.custom.recipe_intro -%}
+        {%- if recipe_intro_metafield != blank -%}
+          <div
+            class="article-template__intro page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            {{ recipe_intro_metafield | metafield_tag }}
+          </div>
+        {%- elsif article == blank -%}
+          {%- comment -%} Mostra nell'anteprima editor anche se vuoto {%- endcomment -%}
+          <div
+            class="article-template__intro page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <p>Introduzione della ricetta (rich text)</p>
+          </div>
+        {%- endif -%}
+
+      {%- when 'informazioni' -%}
+        {%- comment -%} Blocco informazioni ricetta con metafield {%- endcomment -%}
+        
+        {%- comment -%} Leggi i metafield direttamente dall'articolo {%- endcomment -%}
+        {%- if article != blank -%}
+          {%- comment -%} Leggi i metafield custom dell'articolo {%- endcomment -%}
+          {%- assign prep_metafield = article.metafields.custom.prep_time -%}
+          {%- assign cook_metafield = article.metafields.custom.cook_time -%}
+          {%- assign total_metafield = article.metafields.custom.total_time -%}
+          {%- assign servings_metafield = article.metafields.custom.servings -%}
+          {%- assign difficulty_metafield = article.metafields.custom.difficulty -%}
+          {%- assign calories_metafield = article.metafields.custom.calories -%}
+          {%- assign main_citrus_metafield = article.metafields.custom.main_citrus -%}
+          
+          {%- comment -%} Estrai i valori dai metafield {%- endcomment -%}
+          {%- if prep_metafield != blank -%}
+            {%- if prep_metafield.value != blank -%}
+              {%- assign prep_raw = prep_metafield.value | strip -%}
+            {%- elsif prep_metafield != blank -%}
+              {%- assign prep_raw = prep_metafield | strip -%}
+            {%- endif -%}
+          {%- endif -%}
+          
+          {%- if cook_metafield != blank -%}
+            {%- if cook_metafield.value != blank -%}
+              {%- assign cook_raw = cook_metafield.value | strip -%}
+            {%- elsif cook_metafield != blank -%}
+              {%- assign cook_raw = cook_metafield | strip -%}
+            {%- endif -%}
+          {%- endif -%}
+          
+          {%- if total_metafield != blank -%}
+            {%- if total_metafield.value != blank -%}
+              {%- assign total_raw = total_metafield.value | strip -%}
+            {%- elsif total_metafield != blank -%}
+              {%- assign total_raw = total_metafield | strip -%}
+            {%- endif -%}
+          {%- endif -%}
+          
+          {%- if servings_metafield != blank -%}
+            {%- assign servings = servings_metafield.value | default: servings_metafield -%}
+          {%- endif -%}
+          
+          {%- if difficulty_metafield != blank -%}
+            {%- assign difficulty = difficulty_metafield.value | default: difficulty_metafield -%}
+          {%- endif -%}
+          
+          {%- if calories_metafield != blank -%}
+            {%- assign calories = calories_metafield.value | default: calories_metafield -%}
+          {%- endif -%}
+          
+          {%- if main_citrus_metafield != blank -%}
+            {%- assign main_citrus = main_citrus_metafield.value | default: main_citrus_metafield -%}
+          {%- endif -%}
+        {%- elsif article == blank -%}
+          {%- comment -%} Solo per l'anteprima dell'editor usa dati di esempio {%- endcomment -%}
+          {%- assign prep_raw = block.settings.demo_prep_time -%}
+          {%- assign cook_raw = block.settings.demo_cook_time -%}
+          {%- assign total_raw = block.settings.demo_total_time -%}
+          {%- assign servings = block.settings.demo_servings -%}
+          {%- assign difficulty = block.settings.demo_difficulty -%}
+          {%- assign calories = block.settings.demo_calories -%}
+          {%- assign main_citrus = block.settings.demo_main_citrus -%}
+        {%- endif -%}
+
+        {%- comment -%} Helpers: parse ISO 8601 duration like PT1H20M, PT45M, PT2H {%- endcomment -%}
+        {%- capture durations_json -%}
+        {
+          "prep":"{{ prep_raw | default: '' | escape }}",
+          "cook":"{{ cook_raw | default: '' | escape }}",
+          "total":"{{ total_raw | default: '' | escape }}"
+        }
+        {%- endcapture -%}
+
+        {%- comment -%} Determine if we should render at all - solo se ci sono valori reali {%- endcomment -%}
+        {%- assign has_any = false -%}
+        {%- if prep_raw != blank or cook_raw != blank or total_raw != blank or servings != blank or difficulty != blank or calories != blank or main_citrus != blank -%}
+          {%- assign has_any = true -%}
+        {%- endif -%}
+
+        {%- comment -%} Mostra solo se ci sono dati o se siamo nell'anteprima editor {%- endcomment -%}
+        {%- if has_any -%}
+          <div
+            style="margin-bottom: 20px;"
+            class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <section
+              class="recipe-meta block-{{ block.id }}"
+              aria-label="{{ block.settings.aria_label | default: 'Informazioni ricetta' | escape }}"
+              data-durations='{{ durations_json | strip_newlines | replace: "  ", "" }}'
+            >
+              <div class="recipe-meta__card">
+                {% if block.settings.heading != blank %}
+                  <h2 class="recipe-meta__heading">{{ block.settings.heading }}</h2>
+                {% endif %}
+
+                <div class="recipe-meta__grid" role="list">
+                  {% if block.settings.show_total_time and total_raw != blank %}
+                    <div class="recipe-meta__item" role="listitem">
+                      <span class="recipe-meta__icon" aria-hidden="true">⏱️</span>
+                      <div class="recipe-meta__text">
+                        <span class="recipe-meta__label">{{ block.settings.label_total_time | default: 'Tempo totale' }}</span>
+                        <span class="recipe-meta__value" data-duration="total"></span>
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.show_prep_time %}
+                    {%- if prep_raw != blank and prep_raw != '' -%}
+                      <div class="recipe-meta__item" role="listitem">
+                        <span class="recipe-meta__icon" aria-hidden="true">🧑‍🍳</span>
+                        <div class="recipe-meta__text">
+                          <span class="recipe-meta__label">{{ block.settings.label_prep_time | default: 'Preparazione' }}</span>
+                          <span class="recipe-meta__value" data-duration="prep"></span>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  {% endif %}
+
+                  {% if block.settings.show_cook_time %}
+                    {%- if cook_raw != blank and cook_raw != '' -%}
+                      <div class="recipe-meta__item" role="listitem">
+                        <span class="recipe-meta__icon" aria-hidden="true">🔥</span>
+                        <div class="recipe-meta__text">
+                          <span class="recipe-meta__label">{{ block.settings.label_cook_time | default: 'Cottura' }}</span>
+                          <span class="recipe-meta__value" data-duration="cook"></span>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  {% endif %}
+
+                  {% if block.settings.show_servings and servings != blank %}
+                    <div class="recipe-meta__item" role="listitem">
+                      <span class="recipe-meta__icon" aria-hidden="true">👥</span>
+                      <div class="recipe-meta__text">
+                        <span class="recipe-meta__label">{{ block.settings.label_servings | default: 'Porzioni' }}</span>
+                        <span class="recipe-meta__value">{{ servings }}</span>
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.show_difficulty and difficulty != blank %}
+                    <div class="recipe-meta__item" role="listitem">
+                      <span class="recipe-meta__icon" aria-hidden="true">📊</span>
+                      <div class="recipe-meta__text">
+                        <span class="recipe-meta__label">{{ block.settings.label_difficulty | default: 'Difficoltà' }}</span>
+                        <span class="recipe-meta__value">{{ difficulty }}</span>
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.show_calories and calories != blank %}
+                    <div class="recipe-meta__item" role="listitem">
+                      <span class="recipe-meta__icon" aria-hidden="true">⚡</span>
+                      <div class="recipe-meta__text">
+                        <span class="recipe-meta__label">{{ block.settings.label_calories | default: 'Calorie (per porzione)' }}</span>
+                        <span class="recipe-meta__value">{{ calories }} <span class="recipe-meta__unit">kcal</span></span>
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.show_main_citrus and main_citrus != blank %}
+                    <div class="recipe-meta__item" role="listitem">
+                      <span class="recipe-meta__icon" aria-hidden="true">🍊</span>
+                      <div class="recipe-meta__text">
+                        <span class="recipe-meta__label">{{ block.settings.label_main_citrus | default: 'Agrume principale' }}</span>
+                        <span class="recipe-meta__value">{{ main_citrus }}</span>
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+
+                {% if block.settings.note != blank %}
+                  <p class="recipe-meta__note">{{ block.settings.note }}</p>
+                {% endif %}
+              </div>
+            </section>
+
+            <style>
+              .block-{{ block.id }} .recipe-meta__card{
+                background: rgb(var(--color-background));
+                border: 1px solid rgba(var(--color-foreground), .08);
+                border-radius: 12px;
+                padding: 18px;
+              }
+              .block-{{ block.id }} .recipe-meta__heading{
+                margin: 0 0 12px 0;
+                font-size: calc(var(--font-heading-scale) * 1.2rem);
+                line-height: 1.2;
+              }
+              .metafield-rich_text_field ol {
+                  padding-left: 0px !important;
+              }
+
+              .metafield-rich_text_field ol li {
+                  margin-bottom: 20px !important;
+              }
+              .block-{{ block.id }} .recipe-meta__grid{
+                display: grid;
+                gap: 10px;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+              }
+              @media (min-width: 750px){
+                .block-{{ block.id }} .recipe-meta__grid{
+                  grid-template-columns: repeat({{ block.settings.columns_desktop | default: 6 }}, minmax(0, 1fr));
+                }
+              }
+              .block-{{ block.id }} .recipe-meta__item{
+                display: flex;
+                gap: 10px;
+                align-items: flex-start;
+                padding: 10px 12px;
+                border-radius: 10px;
+                background: rgba(var(--color-foreground), .03);
+                flex-direction: column;
+              }
+              .block-{{ block.id }} .recipe-meta__icon{
+                font-size: 28px;
+                line-height: 1;
+                margin-top: 2px;
+              }
+              .block-{{ block.id }} .recipe-meta__text{
+                display: flex;
+                flex-direction: column;
+                min-width: 0;
+              }
+              .block-{{ block.id }} .recipe-meta__label{
+                font-size: 11px;
+                letter-spacing: .02em;
+                opacity: .75;
+                line-height: 130%;
+                margin-bottom: 5px;
+              }
+              .block-{{ block.id }} .recipe-meta__value{
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 1.3;
+                word-break: break-word;
+              }
+              .block-{{ block.id }} .recipe-meta__unit{
+                font-weight: 500;
+                opacity: .85;
+              }
+              .block-{{ block.id }} .recipe-meta__note{
+                margin: 12px 0 0 0;
+                font-size: 12px;
+                opacity: .75;
+              }
+            </style>
+
+            <script>
+              (function () {
+                const root = document.querySelector('.recipe-meta.block-{{ block.id }}');
+                if (!root) return;
+
+                // Parse durations JSON safely
+                let durations = {};
+                try {
+                  durations = JSON.parse(root.getAttribute('data-durations') || '{}');
+                } catch (e) {}
+
+                // ISO 8601 duration parser (PT#H#M)
+                function formatDuration(iso) {
+                  if (!iso || typeof iso !== 'string') return '';
+                  const s = iso.trim().toUpperCase();
+                  const m = s.match(/^P(T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)$/);
+                  if (!m) return iso; // fallback: show raw if not parseable
+                  const hours = parseInt(m[2] || '0', 10);
+                  const mins  = parseInt(m[3] || '0', 10);
+                  // seconds not used in UI, but could be added if needed
+                  if (hours && mins) return `${hours}h ${mins}m`;
+                  if (hours) return `${hours}h`;
+                  if (mins) return `${mins} min`;
+                  return '—';
+                }
+
+                root.querySelectorAll('[data-duration]').forEach((el) => {
+                  const key = el.getAttribute('data-duration');
+                  const raw = durations[key] || '';
+                  const formatted = formatDuration(raw);
+                  el.textContent = formatted || raw || '';
+                });
+              })();
+            </script>
+          </div>
+        {%- endif -%}
+
+      {%- when 'ingredients' -%}
+        {%- comment -%} Blocco ingredienti ricetta {%- endcomment -%}
+        {%- assign ingredients_metafield = article.metafields.custom.ingredients -%}
+        {%- if ingredients_metafield != blank -%}
+          {%- assign ingredients_value = ingredients_metafield.value | default: ingredients_metafield -%}
+          {%- assign temp_separator = '___INGREDIENT_SEPARATOR___' -%}
+          {%- assign ingredients_normalized = ingredients_value | replace: '\n', temp_separator -%}
+          {%- assign ingredients_with_br = ingredients_normalized | newline_to_br -%}
+          {%- assign ingredients_normalized = ingredients_with_br | replace: '<br />', temp_separator | replace: '<br>', temp_separator -%}
+          {%- assign ingredients_lines = ingredients_normalized | split: temp_separator -%}
+          <div
+            class="article-template__ingredients page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            {% if block.settings.show_heading %}
+              <h2 class="article-template__ingredients-heading">{{ block.settings.heading | default: 'Ingredienti' }}</h2>
+            {% endif %}
+            <ul class="recipe-ingredients-list">
+              {%- for ingredient in ingredients_lines -%}
+                {%- assign ingredient_clean = ingredient | strip_html | strip -%}
+                {%- if ingredient_clean != blank -%}
+                  <li class="recipe-ingredient">{{ ingredient_clean }}</li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+          <style>
+            .article-template__ingredients {
+              margin-top: 4rem !important;
+              margin-bottom: 4rem  !important;
+            }
+            .article-template__ingredients-heading {
+              font-size: 2.5rem;
+              font-weight: 600;
+              margin-bottom: 2rem;
+              letter-spacing: 0.05em;
+            }
+            .recipe-ingredients-list {
+              list-style: none;
+              padding: 0 !important;
+              margin: 0;
+            }
+            .recipe-ingredient {
+              font-size: 1.6rem;
+              line-height: 1.8;
+              margin-bottom: 0px;
+              padding-left: 1.5rem;
+              position: relative;
+            }
+            .recipe-ingredient:before {
+              content: '•';
+              position: absolute;
+              left: 0;
+              color: rgb(123 201 137);
+              font-size: 1.8rem;
+              line-height: 1.6;
+            }
+            .recipe-ingredient:last-child {
+              margin-bottom: 0;
+            }
+            @media (max-width: 749px) {
+              .article-template__ingredients-heading {
+                font-size: 2rem;
+              }
+              .recipe-ingredient {
+                font-size: 1.4rem;
+              }
+            }
+          </style>
+        {%- endif -%}
+
+      {%- when 'method' -%}
+        {%- comment -%} Blocco metodo/svolgimento ricetta {%- endcomment -%}
+        {%- assign recipe_steps_metafield = article.metafields.custom.recipe_step -%}
+        {%- if recipe_steps_metafield != blank -%}
+          {%- assign recipe_steps = recipe_steps_metafield.value | default: recipe_steps_metafield -%}
+          <div
+            class="article-template__method page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            {% if block.settings.show_heading %}
+              <h2 class="article-template__method-heading">{{ block.settings.heading | default: 'Procedimento' }}</h2>
+            {% endif %}
+            <ol class="recipe-steps-list">
+              {%- for step in recipe_steps -%}
+                <li class="recipe-step" id="step{{ forloop.index }}">
+                  <span class="recipe-step__number">{{ forloop.index }}</span>
+                  <div class="recipe-step__content">
+                    <h3 class="recipe-step__title">{{ step.name }}</h3>
+                    {% comment %} Inserisce l'immagine dello step se presente {% endcomment %}
+                    {% if step.image %}
+                      <div class="recipe-step__image-wrapper">
+                        <img src="{{ step.image }}" alt="{{ step.name | escape }}" class="recipe-step__image">
+                      </div>
+                    {% endif %}
+                    <p class="recipe-step__text">{{ step.text }}</p>
+                  </div>
+                </li>
+              {%- endfor -%}
+            </ol>
+          </div>
+          <style>
+            .article-template__method {
+              margin-top: 2rem;
+            }
+            .article-template__method-heading {
+                  font-size: 2.5rem;
+                  font-weight: 600;
+                  margin-bottom: 2rem;
+                  /* text-transform: uppercase; */
+                  letter-spacing: 0.05em;
+            }
+            .recipe-steps-list {
+              list-style: none;
+              padding: 0 !important;
+              margin: 0;
+              counter-reset: step-counter;
+            }
+            .recipe-step {
+              display: flex;
+              gap: 1.5rem;
+              margin-bottom: 2rem;
+              counter-increment: step-counter;
+              align-items: flex-start;
+            }
+            .recipe-step:last-child {
+              margin-bottom: 0;
+            }
+            .recipe-step__number {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              min-width: 3.5rem;
+              height: 3.5rem;
+              background-color: rgb(123 201 137);
+              border-radius: 50%;
+              font-weight: 600;
+              font-size: 1.5rem;
+              color: rgb(255 255 255);
+              flex-shrink: 0;
+            }
+            .recipe-step__content {
+              flex: 1;
+            }
+            .recipe-step__title {
+              font-weight: 600;
+              margin: 0 0 0.5rem 0;
+              line-height: 1.7;
+              letter-spacing: 0;
+            }
+            .recipe-step__text {
+              font-size: 1.6rem;
+              line-height: 1.6;
+              margin: 0;
+              color: rgba(var(--color-foreground), 0.8);
+            }
+            .recipe-step__image-wrapper {
+              margin-bottom: 1rem;
+              border-radius: 0.5rem;
+              overflow: hidden;
+            }
+            .recipe-step__image {
+              display: block;
+              width: 100%;
+              height: auto;
+            }
+            @media (max-width: 749px) {
+              .recipe-step__image {
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+                height: unset;
+              }
+            }
+            @media (max-width: 749px) {
+              .recipe-step {
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+              }
+              /*
+              .recipe-step__number {
+                min-width: 2rem;
+                height: 2rem;
+                font-size: 1rem;
+              }
+              .recipe-step__title {
+                font-size: 1rem;
+              }
+              */
+            }
+          </style>
+        {%- endif -%}
+
+      {%- when 'content' -%}
+        <div
+          class="article-template__content page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {{ article.content }}
+        </div>
+
+      {%- when 'share' -%}
+        <div
+          class="article-template__social-sharing page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {% assign share_url = request.origin | append: article.url %}
+          {% render 'share-button', block: block, share_link: share_url %}
+        </div>
+
+      {%- when 'prodotti_correlati' -%}
+        {%- assign prodotti_metafield = article.metafields.custom.prodotti -%}
+        {%- assign prodotti_list = prodotti_metafield.value -%}
+        {%- if prodotti_list != blank and prodotti_list.size > 0 -%}
+          <div
+            class="recipe-related-products color-{{ block.settings.color_scheme }} gradient{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="recipe-related-products__inner">
+              {%- if block.settings.heading != blank -%}
+                <h2 class="recipe-related-products__heading">{{ block.settings.heading | escape }}</h2>
+              {%- endif -%}
+              {%- if block.settings.description != blank -%}
+                <p class="recipe-related-products__description">{{ block.settings.description | escape }}</p>
+              {%- endif -%}
+              <ul class="recipe-related-products__grid" role="list">
+                {%- for product in prodotti_list -%}
+                  <li class="recipe-product-card">
+                    <a href="{{ product.url }}" class="recipe-product-card__link">
+                      {%- if product.featured_image -%}
+                        <div class="recipe-product-card__image-wrapper">
+                          <img
+                            src="{{ product.featured_image | image_url: width: 400 }}"
+                            alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                            width="400"
+                            height="{{ 400 | divided_by: product.featured_image.aspect_ratio | round }}"
+                            loading="lazy"
+                            class="recipe-product-card__image"
+                          >
+                        </div>
+                      {%- endif -%}
+                      <div class="recipe-product-card__info">
+                        <span class="recipe-product-card__title">{{ product.title | escape }}</span>
+                        {%- assign variant_title = product.selected_or_first_available_variant.title -%}
+                        {%- if variant_title != blank and variant_title != 'Default Title' -%}
+                          <span class="recipe-product-card__variant">{{ variant_title | escape }}</span>
+                        {%- endif -%}
+                        <span class="recipe-product-card__price">
+                          {%- if product.compare_at_price > product.price -%}
+                            <span class="recipe-product-card__price--compare">{{ product.compare_at_price | money }}</span>
+                          {%- endif -%}
+                          {{ product.price | money }}
+                        </span>
+                      </div>
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          </div>
+
+          <style>
+            .recipe-related-products {
+              margin-top: 4rem;
+              margin-bottom: 4rem;
+              padding: 4rem 0;
+            }
+            .recipe-related-products__inner {
+              max-width: var(--page-width, 1200px);
+              margin: 0 auto;
+              padding: 0 1.5rem;
+            }
+            @media (min-width: 750px) {
+              .recipe-related-products__inner {
+                padding: 0 5rem;
+              }
+            }
+            .recipe-related-products__heading {
+              font-size: 2.5rem;
+              font-weight: 600;
+              margin: 0 0 1rem 0;
+              letter-spacing: 0.05em;
+            }
+            .recipe-related-products__description {
+              font-size: 1.5rem;
+              opacity: 0.75;
+              margin: 0 0 2.5rem 0;
+              line-height: 1.6;
+            }
+            .recipe-related-products__grid {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+              display: grid;
+              gap: 2rem;
+              grid-template-columns: repeat(2, 1fr);
+            }
+            @media (min-width: 750px) {
+              .recipe-related-products__grid {
+                grid-template-columns: repeat({{ block.settings.columns_desktop | default: 4 }}, 1fr);
+              }
+            }
+            .recipe-product-card__link {
+              text-decoration: none;
+              color: inherit;
+              display: flex;
+              flex-direction: column;
+              height: 100%;
+            }
+            .recipe-product-card__image-wrapper {
+              aspect-ratio: 1 / 1;
+              overflow: hidden;
+              border-radius: 10px;
+              margin-bottom: 1rem;
+              background: rgba(var(--color-foreground), 0.04);
+            }
+            .recipe-product-card__image {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              transition: transform 0.3s ease;
+            }
+            .recipe-product-card__link:hover .recipe-product-card__image {
+              transform: scale(1.04);
+            }
+            .recipe-product-card__info {
+              display: flex;
+              flex-direction: column;
+              gap: 0.4rem;
+            }
+            .recipe-product-card__title {
+              font-size: 1.4rem;
+              font-weight: 500;
+              line-height: 1.4;
+            }
+            .recipe-product-card__variant {
+              font-size: 1.2rem;
+              opacity: 0.6;
+              line-height: 1.3;
+            }
+            .recipe-product-card__price {
+              font-size: 1.4rem;
+              font-weight: 600;
+              display: flex;
+              gap: 0.6rem;
+              align-items: baseline;
+            }
+            .recipe-product-card__price--compare {
+              font-weight: 400;
+              opacity: 0.55;
+              text-decoration: line-through;
+            }
+          </style>
+        {%- endif -%}
+    {%- endcase -%}
+  {%- endfor -%}
+
+  <div class="article-template__back element-margin-top center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <a href="{{ blog.url }}" class="article-template__link link animate-arrow">
+      <span class="icon-wrap">{% render 'icon-arrow' %}</span>
+      {%- if section.settings.back_label != blank -%}
+        {{- section.settings.back_label | escape -}}
+      {%- else -%}
+        {{ 'blogs.article.back_to_blog' | t: title: blog.title | escape }}
+      {%- endif -%}
+    </a>
+  </div>
+  {%- if blog.comments_enabled? and section.settings.show_comments -%}
+    <div class="article-template__comment-wrapper background-secondary">
+      <div
+        id="comments"
+        class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      >
+        {%- if article.comments_count > 0 -%}
+          {%- assign anchor_id = '#Comments-' | append: article.id -%}
+
+          <h2 id="Comments-{{ article.id }}" tabindex="-1">
+            {{ 'blogs.article.comments' | t: count: article.comments_count }}
+          </h2>
+          {% paginate article.comments by 5 %}
+            <div class="article-template__comments">
+              {%- if comment.status == 'pending' and comment.content -%}
+                <article id="{{ comment.id }}" class="article-template__comments-comment">
+                  {{ comment.content }}
+                  <footer class="right">
+                    <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span>
+                  </footer>
+                </article>
+              {%- endif -%}
+
+              {%- for comment in article.comments -%}
+                <article id="{{ comment.id }}" class="article-template__comments-comment">
+                  {{ comment.content }}
+                  <footer class="right">
+                    <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span
+                    ><span class="caption-with-letter-spacing">
+                      {{- comment.created_at | time_tag: format: 'date' -}}
+                    </span>
+                  </footer>
+                </article>
+              {%- endfor -%}
+              {% render 'pagination', paginate: paginate, anchor: anchor_id %}
+            </div>
+          {% endpaginate %}
+        {%- endif -%}
+        {% form 'new_comment', article %}
+          {%- liquid
+            assign post_message = 'blogs.article.success'
+            if blog.moderated? and comment.status == 'unapproved'
+              assign post_message = 'blogs.article.success_moderated'
+            endif
+          -%}
+          <h2>{{ 'blogs.article.comment_form_title' | t }}</h2>
+          {%- if form.errors -%}
+            <div class="form__message" role="alert">
+              <h3 class="form-status caption-large text-body" tabindex="-1" autofocus>
+                {% render 'icon-error' %}
+                {{ 'templates.contact.form.error_heading' | t }}
+              </h3>
+            </div>
+            <ul class="form-status-list caption-large">
+              {%- for field in form.errors -%}
+                <li>
+                  <a href="#CommentForm-{{ field }}" class="link">
+                    {%- if form.errors.translated_fields[field] contains 'author' -%}
+                      {{ 'blogs.article.name' | t }}
+                    {%- elsif form.errors.translated_fields[field] contains 'body' -%}
+                      {{ 'blogs.article.message' | t }}
+                    {%- else -%}
+                      {{ form.errors.translated_fields[field] }}
+                    {%- endif -%}
+                    {{ form.errors.messages[field] }}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- elsif form.posted_successfully? -%}
+            <div class="form-status-list form__message" role="status">
+              <h3 class="form-status" tabindex="-1" autofocus>
+                {% render 'icon-success' %}
+                {{ post_message | t }}
+              </h3>
+            </div>
+          {%- endif -%}
+
+          <div
+            {% if blog.moderated? == false %}
+              class="article-template__comments-fields"
+            {% endif %}
+          >
+            <div class="article-template__comment-fields">
+              <div class="field field--with-error">
+                <input
+                  type="text"
+                  name="comment[author]"
+                  id="CommentForm-author"
+                  class="field__input"
+                  autocomplete="name"
+                  value="{{ form.author }}"
+                  aria-required="true"
+                  required
+                  {% if form.errors contains 'author' %}
+                    aria-invalid="true"
+                    aria-describedby="CommentForm-author-error"
+                  {% endif %}
+                  placeholder="{{ 'blogs.article.name' | t }}"
+                >
+                <label class="field__label" for="CommentForm-author">
+                  {{- 'blogs.article.name' | t }}
+                  <span aria-hidden="true">*</span></label
+                >
+                {%- if form.errors contains 'author' -%}
+                  <small id="CommentForm-author-error">
+                    <span class="form__message">
+                      {%- render 'icon-error' -%}
+                      {{- 'blogs.article.name' | t }}
+                      {{ form.errors.messages.author }}.</span
+                    >
+                  </small>
+                {%- endif -%}
+              </div>
+              <div class="field field--with-error">
+                <input
+                  type="email"
+                  name="comment[email]"
+                  id="CommentForm-email"
+                  autocomplete="email"
+                  class="field__input"
+                  value="{{ form.email }}"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  aria-required="true"
+                  required
+                  {% if form.errors contains 'email' %}
+                    aria-invalid="true"
+                    aria-describedby="CommentForm-email-error"
+                  {% endif %}
+                  placeholder="{{ 'blogs.article.email' | t }}"
+                >
+                <label class="field__label" for="CommentForm-email">
+                  {{- 'blogs.article.email' | t }}
+                  <span aria-hidden="true">*</span></label
+                >
+                {%- if form.errors contains 'email' -%}
+                  <small id="CommentForm-email-error">
+                    <span class="form__message">
+                      {%- render 'icon-error' -%}
+                      {{- 'blogs.article.email' | t }}
+                      {{ form.errors.messages.email }}.</span
+                    >
+                  </small>
+                {%- endif -%}
+              </div>
+            </div>
+            <div class="field field--with-error">
+              <textarea
+                rows="5"
+                name="comment[body]"
+                id="CommentForm-body"
+                class="text-area field__input"
+                aria-required="true"
+                required
+                {% if form.errors contains 'body' %}
+                  aria-invalid="true"
+                  aria-describedby="CommentForm-body-error"
+                {% endif %}
+                placeholder="{{ 'blogs.article.message' | t }}"
+              >{{ form.body }}</textarea>
+              <label class="form__label field__label" for="CommentForm-body">
+                {{- 'blogs.article.message' | t }}
+                <span aria-hidden="true">*</span></label
+              >
+            </div>
+            {%- if form.errors contains 'body' -%}
+              <small id="CommentForm-body-error">
+                <span class="form__message">
+                  {%- render 'icon-error' -%}
+                  {{- 'blogs.article.message' | t }}
+                  {{ form.errors.messages.body }}.</span
+                >
+              </small>
+            {%- endif -%}
+          </div>
+          {%- if blog.moderated? -%}
+            <p class="article-template__comment-warning caption">{{ 'blogs.article.moderated' | t }}</p>
+          {%- endif -%}
+          <input type="submit" class="button" value="{{ 'blogs.article.post' | t }}">
+        {% endform %}
+      </div>
+    </div>
+  {%- endif -%}
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": {{ article.title | json }},
+  "description": {%- if article.metafields.custom.recipe_intro != blank -%}{{ article.metafields.custom.recipe_intro | metafield_tag | strip_html | json }}{%- else -%}{{ article.excerpt | default: article.summary | json }}{%- endif -%},
+  {%- if article.image -%}
+  "image": [
+    "{{ article.image | image_url: width: 1200 }}"
+  ],
+  {%- endif -%}
+  "author": {
+    "@type": "Person",
+    "name": {{ article.author | json }}
+  },
+  "datePublished": {{ article.published_at | date: "%Y-%m-%d" | json }},
+  "dateModified": {{ article.updated_at | date: "%Y-%m-%d" | json }},
+  {%- if article.metafields.custom.servings != blank -%}
+  "recipeYield": {{ article.metafields.custom.servings.value | default: article.metafields.custom.servings | json }},
+  {%- endif -%}
+  {%- assign prep_time = article.metafields.custom.prep_time.value | default: article.metafields.custom.prep_time -%}
+  {%- if prep_time != blank -%}
+  "prepTime": {{ prep_time | json }},
+  {%- endif -%}
+  {%- assign cook_time = article.metafields.custom.cook_time.value | default: article.metafields.custom.cook_time -%}
+  {%- if cook_time != blank -%}
+  "cookTime": {{ cook_time | json }},
+  {%- endif -%}
+  {%- assign total_time = article.metafields.custom.total_time.value | default: article.metafields.custom.total_time -%}
+  {%- if total_time != blank -%}
+  "totalTime": {{ total_time | json }},
+  {%- endif -%}
+  {%- if article.metafields.custom.difficulty != blank -%}
+  "difficulty": {{ article.metafields.custom.difficulty.value | default: article.metafields.custom.difficulty | json }},
+  {%- endif -%}
+  {%- if article.metafields.custom.calories != blank -%}
+  "nutrition": {
+    "@type": "NutritionInformation",
+    "calories": "{{ article.metafields.custom.calories.value | default: article.metafields.custom.calories }} kcal"
+  },
+  {%- endif -%}
+  {%- if article.metafields.custom.ingredients != blank -%}
+  "recipeIngredient": [
+    {%- assign ingredients_metafield = article.metafields.custom.ingredients -%}
+    {%- assign ingredients_value = ingredients_metafield.value | default: ingredients_metafield -%}
+    {%- comment -%} Converti prima in stringa, poi gestisci i \n {%- endcomment -%}
+    {%- assign ingredients_str = ingredients_value | append: '' -%}
+    {%- assign ingredients_with_br = ingredients_str | newline_to_br -%}
+    {%- assign ingredients_normalized = ingredients_with_br | replace: '<br />', '|||SEP|||' | replace: '<br>', '|||SEP|||' -%}
+    {%- assign ingredients_lines = ingredients_normalized | split: '|||SEP|||' -%}
+    {%- assign first_item = true -%}
+    {%- for ingredient in ingredients_lines -%}
+      {%- assign ingredient_clean = ingredient | strip_html | strip -%}
+      {%- if ingredient_clean != blank -%}
+        {%- unless first_item -%},{%- endunless -%}
+        {{ ingredient_clean | json }}
+        {%- assign first_item = false -%}
+      {%- endif -%}
+    {%- endfor -%}
+  ],
+  {%- endif -%}
+  {%- if article.metafields.custom.recipe_step != blank -%}
+  "recipeInstructions": [
+    {%- assign recipe_steps = article.metafields.custom.recipe_step.value | default: article.metafields.custom.recipe_step -%}
+    {%- assign canonical_url = request.origin | append: article.url -%}
+    {%- assign image = request.origin | append: article.image -%}
+    {%- for step in recipe_steps -%}
+      {
+        "@type": "HowToStep",
+        "name": {{ step.name | json }},
+        "text": {{ step.text | json }},
+        "url": {{ canonical_url | append: '#step' | append: forloop.index | json }},
+        "image": {{ step.image | json }}
+      }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ],
+  {%- endif -%}
+  "recipeCategory": "Ricetta",
+  {%- if article.metafields.custom.recipe_cuisine != blank -%}
+  "recipeCuisine": {{ article.metafields.custom.recipe_cuisine.value | default: article.metafields.custom.recipe_cuisine | json }},
+  {%- endif -%}
+  {%- if article.metafields.custom.main_citrus != blank -%}
+  "keywords": {{ article.metafields.custom.main_citrus.value | default: article.metafields.custom.main_citrus | json }},
+  {%- endif -%}
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ request.origin | append: article.url | json }}
+  }
+}
+</script>
+
+{% schema %}
+{
+  "name": "Ricetta",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Link \"Torna al blog\""
+    },
+    {
+      "type": "text",
+      "id": "back_label",
+      "label": "Testo link torna al blog",
+      "placeholder": "← Torna alle ricette",
+      "info": "Lascia vuoto per usare il testo predefinito del tema."
+    },
+    {
+      "type": "header",
+      "content": "Commenti"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_comments",
+      "label": "Mostra form commenti",
+      "default": true,
+      "info": "Attiva o disattiva la sezione commenti. Richiede anche che i commenti siano abilitati nelle impostazioni del blog."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "featured_image",
+      "name": "t:sections.main-article.blocks.featured_image.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "image_height",
+          "options": [
+            {
+              "value": "adapt",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__1.label"
+            },
+            {
+              "value": "small",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__2.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__3.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__4.label"
+            }
+          ],
+          "default": "adapt",
+          "label": "t:sections.main-article.blocks.featured_image.settings.image_height.label",
+          "info": "t:sections.main-article.blocks.featured_image.settings.image_height.info"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "t:sections.main-article.blocks.title.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "default": true,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_author",
+          "default": false,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+        }
+      ]
+    },
+    {
+      "type": "intro",
+      "name": "Introduzione Ricetta",
+      "limit": 1
+    },
+    {
+      "type": "informazioni",
+      "name": "Informazioni Ricetta",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Titolo",
+          "default": "Info ricetta"
+        },
+        {
+          "type": "text",
+          "id": "aria_label",
+          "label": "ARIA label",
+          "default": "Informazioni ricetta"
+        },
+        {
+          "type": "range",
+          "id": "columns_desktop",
+          "label": "Colonne desktop",
+          "min": 2,
+          "max": 6,
+          "step": 1,
+          "default": 6
+        },
+        {
+          "type": "header",
+          "content": "Mostra campi"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_total_time",
+          "label": "Tempo totale",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_prep_time",
+          "label": "Tempo preparazione",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_cook_time",
+          "label": "Tempo cottura",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_servings",
+          "label": "Porzioni",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_difficulty",
+          "label": "Difficoltà",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_calories",
+          "label": "Calorie",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_main_citrus",
+          "label": "Agrume principale",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Etichette"
+        },
+        {
+          "type": "text",
+          "id": "label_total_time",
+          "label": "Label tempo totale",
+          "default": "Tempo totale"
+        },
+        {
+          "type": "text",
+          "id": "label_prep_time",
+          "label": "Label preparazione",
+          "default": "Preparazione"
+        },
+        {
+          "type": "text",
+          "id": "label_cook_time",
+          "label": "Label cottura",
+          "default": "Cottura"
+        },
+        {
+          "type": "text",
+          "id": "label_servings",
+          "label": "Label porzioni",
+          "default": "Porzioni"
+        },
+        {
+          "type": "text",
+          "id": "label_difficulty",
+          "label": "Label difficoltà",
+          "default": "Difficoltà"
+        },
+        {
+          "type": "text",
+          "id": "label_calories",
+          "label": "Label calorie",
+          "default": "Calorie (per porzione)"
+        },
+        {
+          "type": "text",
+          "id": "label_main_citrus",
+          "label": "Label agrume principale",
+          "default": "Agrume principale"
+        },
+        {
+          "type": "text",
+          "id": "note",
+          "label": "Nota (opzionale)",
+          "default": "Valori indicativi. Le calorie possono variare in base agli ingredienti utilizzati."
+        },
+        {
+          "type": "header",
+          "content": "Dati di esempio (per anteprima editor)"
+        },
+        {
+          "type": "text",
+          "id": "demo_prep_time",
+          "label": "Tempo preparazione esempio",
+          "default": "PT15M",
+          "info": "Formato ISO 8601 (es. PT15M, PT1H30M)"
+        },
+        {
+          "type": "text",
+          "id": "demo_cook_time",
+          "label": "Tempo cottura esempio",
+          "default": "PT30M",
+          "info": "Formato ISO 8601 (es. PT30M, PT2H)"
+        },
+        {
+          "type": "text",
+          "id": "demo_total_time",
+          "label": "Tempo totale esempio",
+          "default": "PT45M",
+          "info": "Formato ISO 8601 (es. PT45M, PT3H)"
+        },
+        {
+          "type": "number",
+          "id": "demo_servings",
+          "label": "Porzioni esempio",
+          "default": 4
+        },
+        {
+          "type": "text",
+          "id": "demo_difficulty",
+          "label": "Difficoltà esempio",
+          "default": "Media"
+        },
+        {
+          "type": "number",
+          "id": "demo_calories",
+          "label": "Calorie esempio",
+          "default": 250
+        },
+        {
+          "type": "text",
+          "id": "demo_main_citrus",
+          "label": "Agrume principale esempio",
+          "default": "Limone"
+        }
+      ]
+    },
+    {
+      "type": "ingredients",
+      "name": "Ingredienti Ricetta",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_heading",
+          "label": "Mostra titolo",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Titolo",
+          "default": "Ingredienti"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "Procedimento Ricetta",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_heading",
+          "label": "Mostra titolo",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Titolo",
+          "default": "Procedimento"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "t:sections.main-article.blocks.content.name",
+      "limit": 1
+    },
+    {
+      "type": "prodotti_correlati",
+      "name": "Prodotti correlati",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.all.color_scheme.label",
+          "default": "scheme-1"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Titolo",
+          "default": "Prodotti usati in questa ricetta"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descrizione",
+          "default": "Acquista gli ingredienti e i prodotti selezionati per questa ricetta."
+        },
+        {
+          "type": "range",
+          "id": "columns_desktop",
+          "label": "Colonne desktop",
+          "min": 2,
+          "max": 5,
+          "step": 1,
+          "default": 4
+        }
+      ]
+    },
+    {
+      "type": "share",
+      "name": "t:sections.main-article.blocks.share.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "share_label",
+          "label": "t:sections.main-article.blocks.share.settings.text.label",
+          "default": "t:sections.main-article.blocks.share.settings.text.default"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-article.blocks.share.settings.featured_image_info.content"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-article.blocks.share.settings.title_info.content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    { 
+        "name": "Recipe Widget",
+        "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
