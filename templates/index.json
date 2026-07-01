@@ -1,1 +1,532 @@
-{"sections":{"image_banner":{"type":"image-banner","blocks":{"heading":{"type":"heading","settings":{"heading":"Clementine di Calabria, Arance e Limoni direttamente dal produttore, con un semplice clic!","heading_size":"h1"}},"text":{"type":"text","settings":{"text":"Prova AgrumiShop.it: agrumi raccolti al momento e spediti a domicilio. Semplice, genuino e naturale!","text_style":"body"}},"button":{"type":"buttons","settings":{"button_label_1":"Scopri i nostri agrumi","button_link_1":"shopify:\/\/collections\/agrumi-di-calabria","button_style_secondary_1":true,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}}},"block_order":["heading","text","button"],"settings":{"image":"shopify:\/\/shop_images\/testata.webp","image_overlay_opacity":40,"image_height":"large","image_behavior":"none","desktop_content_position":"bottom-center","desktop_content_alignment":"center","show_text_box":false,"color_scheme":"accent-2","stack_images_on_mobile":false,"mobile_content_alignment":"left","show_text_below":true}},"featured_collection":{"type":"featured-collection","settings":{"collection":"agrumi-di-calabria","products_to_show":4,"title":"Scopri i nostri agrumi:","heading_size":"h2","description":"","show_description":false,"description_style":"body","columns_desktop":4,"enable_desktop_slider":true,"full_width":false,"show_view_all":false,"view_all_style":"solid","color_scheme":"background-1","image_ratio":"adapt","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"quick_add":"none","columns_mobile":"2","swipe_on_mobile":false,"padding_top":48,"padding_bottom":48}},"ba081ae9-5cb0-4539-bce4-54e58521f7ce":{"type":"image-with-text","blocks":{"template--18229965488405__ba081ae9-5cb0-4539-bce4-54e58521f7ce-168527415873a9df14-0":{"type":"heading","settings":{"heading":"<strong>Arance, clementine e limoni prelibati, direttamente dal produttore al consumatore.<\/strong>","heading_size":"h1"}},"template--18229965488405__ba081ae9-5cb0-4539-bce4-54e58521f7ce-168527415873a9df14-1":{"type":"text","settings":{"text":"<p>AgrumiShop.it è un progetto dell’Azienda Agricola Salonna (Corigliano Calabro), creato per dare a tutti la possibilità di poter <a href=\"\/products\/clementine-di-calabria\" title=\"Clementine di Calabria\">acquistare clementine online<\/a> senza semi e genuini coltivati nella Piana di Sibari, direttamente dal produttore. Oltre alle clementine, coltiviamo e spediamo <a href=\"\/products\/arance-di-calabria\" title=\"Arance di Calabria Navelina - 15Kg\">Arance Navel<\/a> e <a href=\"\/products\/limoni-di-calabria\" title=\"Limoni di Calabria\">Limoni<\/a>, abbattendo i costi!<br\/>Gli agrumi vengono raccolti solo nel momento in cui arriva la richiesta d’ordine, e vengono spediti in 24\/48h* tramite corriere professionale, con la massima cura dell’imballo.<\/p>","text_style":"body"}}},"block_order":["template--18229965488405__ba081ae9-5cb0-4539-bce4-54e58521f7ce-168527415873a9df14-0","template--18229965488405__ba081ae9-5cb0-4539-bce4-54e58521f7ce-168527415873a9df14-1"],"settings":{"image":"shopify:\/\/shop_images\/clementine-su-albero.jpg","height":"adapt","desktop_image_width":"medium","layout":"image_first","image_behavior":"none","content_layout":"no-overlap","desktop_content_position":"top","desktop_content_alignment":"left","mobile_content_alignment":"left","section_color_scheme":"","color_scheme":"background-1","padding_top":36,"padding_bottom":92}},"2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2":{"type":"rich-text","blocks":{"template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-0":{"type":"heading","settings":{"heading":"Perchè scegliere AgrumiShop.it","heading_size":"h1"}},"template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-1":{"type":"text","disabled":true,"settings":{"text":"<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"}},"template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-2":{"type":"button","disabled":true,"settings":{"button_label":"Button label","button_link":"","button_style_secondary":false,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}}},"block_order":["template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-0","template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-1","template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-2"],"disabled":true,"settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"","full_width":true,"padding_top":40,"padding_bottom":0}},"6e25da2f-071c-49b7-a368-1f0b6b2665a8":{"type":"multicolumn","blocks":{"template--18229965488405__6e25da2f-071c-49b7-a368-1f0b6b2665a8-168527470760cf35fd-0":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/icona.png","title":"Dal produttore al consumatore","text":"<p>Non siamo rivenditori, gli agrumi venduti provengono direttamente dai nostri agrumeti.<\/p>","link_label":"","link":""}},"2333591c-a792-40aa-a457-7d96abb6d377":{"type":"column","settings":{"title":"Spedizione in 24h\/48h dalla conferma ordine","text":"<p>Per gararantire la freschezza del prodotto che raccogliamo al momento.<\/p>","link_label":"","link":""}},"3ec244cb-4818-469f-a29e-120afb304706":{"type":"column","settings":{"title":"Raccolti al momento","text":"<p>Arance, clementine e limoni freschi e deliziosi, raccolti al momento della richiesta. <strong>Nessun stoccaggio o magazzino.<\/strong><\/p>","link_label":"","link":""}},"76f151d6-3b83-4251-a382-294d8c2b27e8":{"type":"column","settings":{"title":"100% prodotto italiano","text":"<p>I prodotti provengono dagli agrumeti della Piana di Sibari, Calabria.<\/p>","link_label":"","link":""}},"template--18229965488405__6e25da2f-071c-49b7-a368-1f0b6b2665a8-168527470760cf35fd-1":{"type":"column","settings":{"title":"Spedizione in tutta Italia","text":"<p>Spediamo in tutta Italia tramite corrieri professionali.<\/p>","link_label":"","link":""}}},"block_order":["template--18229965488405__6e25da2f-071c-49b7-a368-1f0b6b2665a8-168527470760cf35fd-0","2333591c-a792-40aa-a457-7d96abb6d377","3ec244cb-4818-469f-a29e-120afb304706","76f151d6-3b83-4251-a382-294d8c2b27e8","template--18229965488405__6e25da2f-071c-49b7-a368-1f0b6b2665a8-168527470760cf35fd-1"],"disabled":true,"settings":{"title":"","heading_size":"h1","image_width":"full","image_ratio":"adapt","button_label":"","button_link":"","columns_desktop":5,"column_alignment":"left","background_style":"none","color_scheme":"background-1","columns_mobile":"1","swipe_on_mobile":false,"padding_top":36,"padding_bottom":68}},"2afcc998-a1f2-41d9-b3cc-58926d389004":{"type":"image-banner","blocks":{"template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-0":{"type":"heading","settings":{"heading":"<strong>Clementine, arance e limoni succosi dalla Piana di Sibari<\/strong>","heading_size":"h1"}},"template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-1":{"type":"text","settings":{"text":"La Piana di Sibari, in Calabria, è nota per i suoi agrumi I.G.P., cioè certificati e riconosciuti per la loro eccelsa qualità e reputazione. Il clima particolarmente favorevole e il lavoro raffinato degli agricoltori garantiscono ad arance, clementine e limoni un gusto eccezionale e un profumo straordinario.La maturazione degli agrumi è un vero e proprio evento nella Piana: sprigiona un profumo che avvolge il territorio calabrese e che ne restituisce i valori: la genuinità, la naturalezza, la semplicità, la bontà.","text_style":"body"}},"template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-2":{"type":"buttons","disabled":true,"settings":{"button_label_1":"Button label","button_link_1":"","button_style_secondary_1":false,"button_label_2":"Button label","button_link_2":"","button_style_secondary_2":false}}},"block_order":["template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-0","template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-1","template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-2"],"settings":{"image":"shopify:\/\/shop_images\/Depositphotos_66877955_L.jpg","image_overlay_opacity":50,"image_height":"large","image_behavior":"fixed","desktop_content_position":"bottom-center","desktop_content_alignment":"center","show_text_box":false,"color_scheme":"inverse","stack_images_on_mobile":true,"mobile_content_alignment":"center","show_text_below":true}},"60ae49d4-d4d5-486b-b42f-a036605ca15b":{"type":"rich-text","blocks":{"template--18229965488405__60ae49d4-d4d5-486b-b42f-a036605ca15b-1685274687211d505b-0":{"type":"heading","settings":{"heading":"Dal produttore al consumatore...","heading_size":"h1"}},"template--18229965488405__60ae49d4-d4d5-486b-b42f-a036605ca15b-1685274687211d505b-1":{"type":"text","settings":{"text":""}}},"block_order":["template--18229965488405__60ae49d4-d4d5-486b-b42f-a036605ca15b-1685274687211d505b-0","template--18229965488405__60ae49d4-d4d5-486b-b42f-a036605ca15b-1685274687211d505b-1"],"settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"background-1","full_width":true,"padding_top":40,"padding_bottom":24}},"6ed4c49b-6910-4feb-b6e3-12de2c35c6e3":{"type":"image-with-text","blocks":{"template--18229965488405__6ed4c49b-6910-4feb-b6e3-12de2c35c6e3-168527415873a9df14-0":{"type":"heading","settings":{"heading":"La coltivazione","heading_size":"h1"}},"template--18229965488405__6ed4c49b-6910-4feb-b6e3-12de2c35c6e3-168527415873a9df14-1":{"type":"text","settings":{"text":"<p>La coltivazione dei nostri agrumi avviene in modo semplice e più naturale possibile, dalla potatura che avviene nel mese di marzo e poi le concimazioni, ed infine l'irrigazione che avviene nei mesi caldi da Maggio fino a Settembre, con cadenza settimanale.<br\/>La fioritura nel mese di Aprile sprigiona un fortissimo profumo di zagara che avvolge tutta la Piana di Sibari e dura per un mese intero, poi da Maggio fino a Ottobre il frutto cresce e matura pian piano fino al periodo di raccolta che avviene nei mesi di Novembre e Dicembre.<br\/>L'amore per la terra da diverse generazioni, riesce a dare un frutto di alta qualità dal sapore genuino e naturale.<\/p>","text_style":"body"}}},"block_order":["template--18229965488405__6ed4c49b-6910-4feb-b6e3-12de2c35c6e3-168527415873a9df14-0","template--18229965488405__6ed4c49b-6910-4feb-b6e3-12de2c35c6e3-168527415873a9df14-1"],"settings":{"image":"shopify:\/\/shop_images\/coltivazione_14b4e257-afb2-4e5f-93de-a7bee5099aaa.jpg","height":"adapt","desktop_image_width":"medium","layout":"image_first","image_behavior":"none","content_layout":"no-overlap","desktop_content_position":"middle","desktop_content_alignment":"left","mobile_content_alignment":"left","section_color_scheme":"","color_scheme":"background-1","padding_top":36,"padding_bottom":36}},"e6296300-5f71-4d25-8212-95ede9208d20":{"type":"image-with-text","blocks":{"template--18229965488405__e6296300-5f71-4d25-8212-95ede9208d20-168527415873a9df14-0":{"type":"heading","settings":{"heading":"La raccolta","heading_size":"h1"}},"template--18229965488405__e6296300-5f71-4d25-8212-95ede9208d20-168527415873a9df14-1":{"type":"text","settings":{"text":"<p>Al momento della ricezione di ogni ordine raccogliamo gli agrumi richiesti, in modo da poter offrire un prodotto sempre fresco e fragrante, dai nostri alberi da frutto alle vostre tavole.<br\/>La raccolta avviene dalla tarda mattinata fino al primo pomeriggio per evitare che il frutto sia inumidito dalle brine notturne.<br\/>Viene raccolto in degli appositi panieri per poi essere travasati nelle cassettine di cartone rigido che utilizziamo per la spedizione.<\/p>","text_style":"body"}}},"block_order":["template--18229965488405__e6296300-5f71-4d25-8212-95ede9208d20-168527415873a9df14-0","template--18229965488405__e6296300-5f71-4d25-8212-95ede9208d20-168527415873a9df14-1"],"settings":{"image":"shopify:\/\/shop_images\/DSC_0045.jpg","height":"adapt","desktop_image_width":"medium","layout":"text_first","image_behavior":"none","content_layout":"no-overlap","desktop_content_position":"middle","desktop_content_alignment":"left","mobile_content_alignment":"left","section_color_scheme":"","color_scheme":"background-1","padding_top":36,"padding_bottom":36}},"d6c1443a-0b3e-40b8-a72d-67dc6b41a892":{"type":"image-with-text","blocks":{"template--18229965488405__d6c1443a-0b3e-40b8-a72d-67dc6b41a892-168527415873a9df14-0":{"type":"heading","settings":{"heading":"La spedizione","heading_size":"h1"}},"template--18229965488405__d6c1443a-0b3e-40b8-a72d-67dc6b41a892-168527415873a9df14-1":{"type":"text","settings":{"text":"<p>Dopo aver preparato l'ordine sistemiamo con cura le cassettine di cartone (500 gr tara e capienza di circa 8,5 kg) che verranno spedite, rivediamo e selezioniamo ancora una volta gli agrumi raccolto e poi le imballiamo con cura per poter essere spedite in modo completamente sicuro a destinazione.<br\/>Per la spedizione ci affidiamo a corrieri nazionali con esperienza nel settore, per far si che il prodotto arrivi integro e senza alcuna traccia di danneggiamento.<br\/>Dai nostri alberi di clementino alle vostre tavole in 24\/48h*.<br\/>E' questo il motto della nostra azienda.<\/p>","text_style":"body"}}},"block_order":["template--18229965488405__d6c1443a-0b3e-40b8-a72d-67dc6b41a892-168527415873a9df14-0","template--18229965488405__d6c1443a-0b3e-40b8-a72d-67dc6b41a892-168527415873a9df14-1"],"settings":{"image":"shopify:\/\/shop_images\/clementine.jpg","height":"adapt","desktop_image_width":"medium","layout":"image_first","image_behavior":"none","content_layout":"no-overlap","desktop_content_position":"middle","desktop_content_alignment":"left","mobile_content_alignment":"left","section_color_scheme":"","color_scheme":"background-1","padding_top":36,"padding_bottom":36}},"d5b35f15-b638-4157-8da2-c259581b5a01":{"type":"rich-text","blocks":{"template--20250317324565__d5b35f15-b638-4157-8da2-c259581b5a01-heading-1":{"type":"heading","settings":{"heading":"Cosa dicono i nostri clienti","heading_size":"h2"}}},"block_order":["template--20250317324565__d5b35f15-b638-4157-8da2-c259581b5a01-heading-1"],"settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"","full_width":true,"padding_top":40,"padding_bottom":20}},"169645394778207992":{"type":"apps","blocks":{"9f4b1a03-1436-4dce-8a54-be47a83e02e0":{"type":"shopify:\/\/apps\/google-reviews-rocket\/blocks\/app-block\/d11c8893-a181-4aff-a280-7446d42cec3b","settings":{"widget_layout":"default"}}},"block_order":["9f4b1a03-1436-4dce-8a54-be47a83e02e0"],"settings":{"include_margins":true}},"1731972271df928f08":{"type":"apps","blocks":{"air_product_reviews_app_carousel_review_list_EJDaJX":{"type":"shopify:\/\/apps\/ag-product-reviews\/blocks\/app-carousel-review-list\/c4e1e9ca-4d46-4e76-bc39-7e42417cb327","settings":{"air_carouselreviews_carouselHeading":"See what our customers said"}}},"block_order":["air_product_reviews_app_carousel_review_list_EJDaJX"],"disabled":true,"settings":{"include_margins":true}},"featured_blog_DmVjQk":{"type":"featured-blog","name":"t:sections.featured-blog.presets.name","settings":{"blog":"ricette","post_limit":3,"heading":"Le nostre ricette","heading_size":"h1","columns_desktop":3,"show_view_all":true,"show_image":true,"show_date":false,"show_author":false,"color_scheme":"background-2","padding_top":36,"padding_bottom":36}}},"order":["image_banner","featured_collection","ba081ae9-5cb0-4539-bce4-54e58521f7ce","2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2","6e25da2f-071c-49b7-a368-1f0b6b2665a8","2afcc998-a1f2-41d9-b3cc-58926d389004","60ae49d4-d4d5-486b-b42f-a036605ca15b","6ed4c49b-6910-4feb-b6e3-12de2c35c6e3","e6296300-5f71-4d25-8212-95ede9208d20","d6c1443a-0b3e-40b8-a72d-67dc6b41a892","d5b35f15-b638-4157-8da2-c259581b5a01","169645394778207992","1731972271df928f08","featured_blog_DmVjQk"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Clementine calabresi, Arance e Limoni direttamente dal produttore, con un semplice clic!",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Prova AgrumiShop.it: agrumi raccolti al momento e spediti a domicilio. Semplice, genuino e naturale!",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Scopri i nostri agrumi",
+            "button_link_1": "shopify://collections/agrumi-di-calabria",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/testata.webp",
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "accent-2",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": true
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "agrumi-di-calabria",
+        "products_to_show": 4,
+        "title": "Scopri i nostri agrumi:",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": true,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "ba081ae9-5cb0-4539-bce4-54e58521f7ce": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--18229965488405__ba081ae9-5cb0-4539-bce4-54e58521f7ce-168527415873a9df14-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Arance, clementine e limoni prelibati, direttamente dal produttore al consumatore.</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "template--18229965488405__ba081ae9-5cb0-4539-bce4-54e58521f7ce-168527415873a9df14-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>AgrumiShop.it è un progetto dell’Azienda Agricola Salonna (Corigliano Calabro), creato per dare a tutti la possibilità di poter <a href=\"/products/clementine-di-calabria\" title=\"Clementine calabresi senza semi\">acquistare clementine online</a> senza semi e genuini coltivati nella Piana di Sibari, direttamente dal produttore. Oltre alle clementine, coltiviamo e spediamo <a href=\"/products/arance-di-calabria\" title=\"Arance di Calabria Navelina - 15Kg\">Arance Navel</a> e <a href=\"/products/limoni-di-calabria\" title=\"Limoni di Calabria\">Limoni</a>, abbattendo i costi!<br/>Gli agrumi vengono raccolti solo nel momento in cui arriva la richiesta d’ordine, e vengono spediti in 24/48h* tramite corriere professionale, con la massima cura dell’imballo.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "template--18229965488405__ba081ae9-5cb0-4539-bce4-54e58521f7ce-168527415873a9df14-0",
+        "template--18229965488405__ba081ae9-5cb0-4539-bce4-54e58521f7ce-168527415873a9df14-1"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/clementine-su-albero.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 92
+      }
+    },
+    "2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2": {
+      "type": "rich-text",
+      "blocks": {
+        "template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Perchè scegliere AgrumiShop.it",
+            "heading_size": "h1"
+          }
+        },
+        "template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-2": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-0",
+        "template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-1",
+        "template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "6e25da2f-071c-49b7-a368-1f0b6b2665a8": {
+      "type": "multicolumn",
+      "blocks": {
+        "template--18229965488405__6e25da2f-071c-49b7-a368-1f0b6b2665a8-168527470760cf35fd-0": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/icona.png",
+            "title": "Dal produttore al consumatore",
+            "text": "<p>Non siamo rivenditori, gli agrumi venduti provengono direttamente dai nostri agrumeti.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "2333591c-a792-40aa-a457-7d96abb6d377": {
+          "type": "column",
+          "settings": {
+            "title": "Spedizione in 24h/48h dalla conferma ordine",
+            "text": "<p>Per gararantire la freschezza del prodotto che raccogliamo al momento.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "3ec244cb-4818-469f-a29e-120afb304706": {
+          "type": "column",
+          "settings": {
+            "title": "Raccolti al momento",
+            "text": "<p>Arance, clementine e limoni freschi e deliziosi, raccolti al momento della richiesta. <strong>Nessun stoccaggio o magazzino.</strong></p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "76f151d6-3b83-4251-a382-294d8c2b27e8": {
+          "type": "column",
+          "settings": {
+            "title": "100% prodotto italiano",
+            "text": "<p>I prodotti provengono dagli agrumeti della Piana di Sibari, Calabria.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "template--18229965488405__6e25da2f-071c-49b7-a368-1f0b6b2665a8-168527470760cf35fd-1": {
+          "type": "column",
+          "settings": {
+            "title": "Spedizione in tutta Italia",
+            "text": "<p>Spediamo in tutta Italia tramite corrieri professionali.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--18229965488405__6e25da2f-071c-49b7-a368-1f0b6b2665a8-168527470760cf35fd-0",
+        "2333591c-a792-40aa-a457-7d96abb6d377",
+        "3ec244cb-4818-469f-a29e-120afb304706",
+        "76f151d6-3b83-4251-a382-294d8c2b27e8",
+        "template--18229965488405__6e25da2f-071c-49b7-a368-1f0b6b2665a8-168527470760cf35fd-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 5,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    },
+    "2afcc998-a1f2-41d9-b3cc-58926d389004": {
+      "type": "image-banner",
+      "blocks": {
+        "template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Clementine, arance e limoni succosi dalla Piana di Sibari</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-1": {
+          "type": "text",
+          "settings": {
+            "text": "La Piana di Sibari, in Calabria, è nota per i suoi agrumi I.G.P., cioè certificati e riconosciuti per la loro eccelsa qualità e reputazione. Il clima particolarmente favorevole e il lavoro raffinato degli agricoltori garantiscono ad arance, clementine e limoni un gusto eccezionale e un profumo straordinario.La maturazione degli agrumi è un vero e proprio evento nella Piana: sprigiona un profumo che avvolge il territorio calabrese e che ne restituisce i valori: la genuinità, la naturalezza, la semplicità, la bontà.",
+            "text_style": "body"
+          }
+        },
+        "template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-2": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-0",
+        "template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-1",
+        "template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-2"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/Depositphotos_66877955_L.jpg",
+        "image_overlay_opacity": 50,
+        "image_height": "large",
+        "image_behavior": "fixed",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "inverse",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "60ae49d4-d4d5-486b-b42f-a036605ca15b": {
+      "type": "rich-text",
+      "blocks": {
+        "template--18229965488405__60ae49d4-d4d5-486b-b42f-a036605ca15b-1685274687211d505b-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Dal produttore al consumatore...",
+            "heading_size": "h1"
+          }
+        },
+        "template--18229965488405__60ae49d4-d4d5-486b-b42f-a036605ca15b-1685274687211d505b-1": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--18229965488405__60ae49d4-d4d5-486b-b42f-a036605ca15b-1685274687211d505b-0",
+        "template--18229965488405__60ae49d4-d4d5-486b-b42f-a036605ca15b-1685274687211d505b-1"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 24
+      }
+    },
+    "6ed4c49b-6910-4feb-b6e3-12de2c35c6e3": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--18229965488405__6ed4c49b-6910-4feb-b6e3-12de2c35c6e3-168527415873a9df14-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "La coltivazione",
+            "heading_size": "h1"
+          }
+        },
+        "template--18229965488405__6ed4c49b-6910-4feb-b6e3-12de2c35c6e3-168527415873a9df14-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>La coltivazione dei nostri agrumi avviene in modo semplice e più naturale possibile, dalla potatura che avviene nel mese di marzo e poi le concimazioni, ed infine l'irrigazione che avviene nei mesi caldi da Maggio fino a Settembre, con cadenza settimanale.<br/>La fioritura nel mese di Aprile sprigiona un fortissimo profumo di zagara che avvolge tutta la Piana di Sibari e dura per un mese intero, poi da Maggio fino a Ottobre il frutto cresce e matura pian piano fino al periodo di raccolta che avviene nei mesi di Novembre e Dicembre.<br/>L'amore per la terra da diverse generazioni, riesce a dare un frutto di alta qualità dal sapore genuino e naturale.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "template--18229965488405__6ed4c49b-6910-4feb-b6e3-12de2c35c6e3-168527415873a9df14-0",
+        "template--18229965488405__6ed4c49b-6910-4feb-b6e3-12de2c35c6e3-168527415873a9df14-1"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/coltivazione_14b4e257-afb2-4e5f-93de-a7bee5099aaa.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "e6296300-5f71-4d25-8212-95ede9208d20": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--18229965488405__e6296300-5f71-4d25-8212-95ede9208d20-168527415873a9df14-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "La raccolta",
+            "heading_size": "h1"
+          }
+        },
+        "template--18229965488405__e6296300-5f71-4d25-8212-95ede9208d20-168527415873a9df14-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Al momento della ricezione di ogni ordine raccogliamo gli agrumi richiesti, in modo da poter offrire un prodotto sempre fresco e fragrante, dai nostri alberi da frutto alle vostre tavole.<br/>La raccolta avviene dalla tarda mattinata fino al primo pomeriggio per evitare che il frutto sia inumidito dalle brine notturne.<br/>Viene raccolto in degli appositi panieri per poi essere travasati nelle cassettine di cartone rigido che utilizziamo per la spedizione.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "template--18229965488405__e6296300-5f71-4d25-8212-95ede9208d20-168527415873a9df14-0",
+        "template--18229965488405__e6296300-5f71-4d25-8212-95ede9208d20-168527415873a9df14-1"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/DSC_0045.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "d6c1443a-0b3e-40b8-a72d-67dc6b41a892": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--18229965488405__d6c1443a-0b3e-40b8-a72d-67dc6b41a892-168527415873a9df14-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "La spedizione",
+            "heading_size": "h1"
+          }
+        },
+        "template--18229965488405__d6c1443a-0b3e-40b8-a72d-67dc6b41a892-168527415873a9df14-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Dopo aver preparato l'ordine sistemiamo con cura le cassettine di cartone (500 gr tara e capienza di circa 8,5 kg) che verranno spedite, rivediamo e selezioniamo ancora una volta gli agrumi raccolto e poi le imballiamo con cura per poter essere spedite in modo completamente sicuro a destinazione.<br/>Per la spedizione ci affidiamo a corrieri nazionali con esperienza nel settore, per far si che il prodotto arrivi integro e senza alcuna traccia di danneggiamento.<br/>Dai nostri alberi di clementino alle vostre tavole in 24/48h*.<br/>E' questo il motto della nostra azienda.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "template--18229965488405__d6c1443a-0b3e-40b8-a72d-67dc6b41a892-168527415873a9df14-0",
+        "template--18229965488405__d6c1443a-0b3e-40b8-a72d-67dc6b41a892-168527415873a9df14-1"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/clementine.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "d5b35f15-b638-4157-8da2-c259581b5a01": {
+      "type": "rich-text",
+      "blocks": {
+        "template--20250317324565__d5b35f15-b638-4157-8da2-c259581b5a01-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Cosa dicono i nostri clienti",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "template--20250317324565__d5b35f15-b638-4157-8da2-c259581b5a01-heading-1"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 20
+      }
+    },
+    "169645394778207992": {
+      "type": "apps",
+      "blocks": {
+        "9f4b1a03-1436-4dce-8a54-be47a83e02e0": {
+          "type": "shopify://apps/google-reviews-rocket/blocks/app-block/d11c8893-a181-4aff-a280-7446d42cec3b",
+          "settings": {
+            "widget_layout": "default"
+          }
+        }
+      },
+      "block_order": [
+        "9f4b1a03-1436-4dce-8a54-be47a83e02e0"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1731972271df928f08": {
+      "type": "apps",
+      "blocks": {
+        "air_product_reviews_app_carousel_review_list_EJDaJX": {
+          "type": "shopify://apps/ag-product-reviews/blocks/app-carousel-review-list/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
+          "settings": {
+            "air_carouselreviews_carouselHeading": "See what our customers said"
+          }
+        }
+      },
+      "block_order": [
+        "air_product_reviews_app_carousel_review_list_EJDaJX"
+      ],
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "featured_blog_DmVjQk": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "ricette",
+        "post_limit": 3,
+        "heading": "Le nostre ricette",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": false,
+        "show_author": false,
+        "color_scheme": "background-2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "featured_collection",
+    "ba081ae9-5cb0-4539-bce4-54e58521f7ce",
+    "2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2",
+    "6e25da2f-071c-49b7-a368-1f0b6b2665a8",
+    "2afcc998-a1f2-41d9-b3cc-58926d389004",
+    "60ae49d4-d4d5-486b-b42f-a036605ca15b",
+    "6ed4c49b-6910-4feb-b6e3-12de2c35c6e3",
+    "e6296300-5f71-4d25-8212-95ede9208d20",
+    "d6c1443a-0b3e-40b8-a72d-67dc6b41a892",
+    "d5b35f15-b638-4157-8da2-c259581b5a01",
+    "169645394778207992",
+    "1731972271df928f08",
+    "featured_blog_DmVjQk"
+  ]
+}
