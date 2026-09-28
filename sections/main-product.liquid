@@ -746,8 +746,22 @@
         endif
       -%}
 
+      {%- liquid
+        assign product_ld = product | structured_data | strip
+        assign ld_rating = product.metafields.reviews.rating.value
+        assign ld_rating_count = product.metafields.reviews.rating_count.value | default: 0
+        if ld_rating != blank and ld_rating_count > 0
+          assign ld_cut = product_ld.size | minus: 1
+          capture ld_aggregate
+            echo ',"aggregateRating":{"@type":"AggregateRating","ratingValue":' | append: ld_rating.rating
+            echo ',"bestRating":' | append: ld_rating.scale_max | append: ',"worstRating":' | append: ld_rating.scale_min
+            echo ',"ratingCount":' | append: ld_rating_count | append: '}}'
+          endcapture
+          assign product_ld = product_ld | slice: 0, ld_cut | append: ld_aggregate
+        endif
+      -%}
       <script type="application/ld+json">
-        {{ product | structured_data }}
+        {{ product_ld }}
       </script>
     </div>
   </product-component>
