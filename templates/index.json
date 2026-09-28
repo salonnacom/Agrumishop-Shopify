@@ -132,31 +132,10 @@
             "heading": "Perchè scegliere AgrumiShop.it",
             "heading_size": "h1"
           }
-        },
-        "template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-1": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
-          }
-        },
-        "template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-2": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
         }
       },
       "block_order": [
-        "template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-0",
-        "template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-1",
-        "template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-2"
+        "template--19321334890773__2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2-16862507984d0fdda0-0"
       ],
       "disabled": true,
       "settings": {
@@ -256,27 +235,14 @@
         "template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-1": {
           "type": "text",
           "settings": {
-            "text": "La Piana di Sibari, in Calabria, è nota per i suoi agrumi I.G.P., cioè certificati e riconosciuti per la loro eccelsa qualità e reputazione. Il clima particolarmente favorevole e il lavoro raffinato degli agricoltori garantiscono ad arance, clementine e limoni un gusto eccezionale e un profumo straordinario.La maturazione degli agrumi è un vero e proprio evento nella Piana: sprigiona un profumo che avvolge il territorio calabrese e che ne restituisce i valori: la genuinità, la naturalezza, la semplicità, la bontà.",
+            "text": "La Piana di Sibari, in Calabria, è da sempre una terra vocata alla coltivazione degli agrumi. Il clima particolarmente favorevole e il lavoro raffinato degli agricoltori garantiscono ad arance, clementine e limoni un gusto eccezionale e un profumo straordinario. La maturazione degli agrumi è un vero e proprio evento nella Piana: sprigiona un profumo che avvolge il territorio calabrese e che ne restituisce i valori: la genuinità, la naturalezza, la semplicità, la bontà.",
             "text_style": "body"
-          }
-        },
-        "template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-2": {
-          "type": "buttons",
-          "disabled": true,
-          "settings": {
-            "button_label_1": "Button label",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "Button label",
-            "button_link_2": "",
-            "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
         "template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-0",
-        "template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-1",
-        "template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-2"
+        "template--19321334890773__2afcc998-a1f2-41d9-b3cc-58926d389004-168624982440615697-1"
       ],
       "settings": {
         "image": "shopify://shop_images/Depositphotos_66877955_L.jpg",
