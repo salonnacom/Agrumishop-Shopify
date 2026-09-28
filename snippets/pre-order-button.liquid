@@ -137,7 +137,7 @@
     >
       <template>
         <pickup-availability-preview class="pickup-availability-preview">
-          {% render 'icon-unavailable' %}
+          {{- 'icon-unavailable.svg' | inline_asset_content -}}
           <div class="pickup-availability-info">
             <p class="caption-large">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
             <button class="pickup-availability-button link link--text underlined-link">
