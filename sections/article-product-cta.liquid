@@ -1,0 +1,304 @@
+{%- comment -%}
+  Card prodotto compatta per articoli e ricette.
+  Prodotto: impostazione della sezione, altrimenti il primo di article.metafields.custom.prodotti.
+{%- endcomment -%}
+
+{%- liquid
+  assign cta_product = section.settings.product
+  if cta_product == blank and article.metafields.custom.prodotti.value != blank
+    assign cta_product = article.metafields.custom.prodotti.value | first
+  endif
+-%}
+
+{%- if cta_product != blank -%}
+  {%- liquid
+    assign variant = cta_product.selected_or_first_available_variant
+    assign rating = cta_product.metafields.reviews.rating.value
+    assign rating_count = cta_product.metafields.reviews.rating_count.value | default: 0
+    assign form_id = 'apc-form-' | append: section.id
+    assign has_variants = true
+    if cta_product.has_only_default_variant or cta_product.variants.size == 1
+      assign has_variants = false
+    endif
+  -%}
+
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+  <div class="color-{{ section.settings.color_scheme }} gradient">
+    <div class="page-width section-{{ section.id }}-padding">
+      <aside class="apc" aria-label="{{ cta_product.title | escape }}">
+        <a href="{{ cta_product.url }}" class="apc__media" tabindex="-1">
+          {%- if cta_product.featured_image -%}
+            {{
+              cta_product.featured_image
+              | image_url: width: 400
+              | image_tag:
+                loading: 'lazy',
+                widths: '120, 200, 300, 400',
+                sizes: '(min-width: 750px) 140px, 96px',
+                alt: cta_product.featured_image.alt | default: cta_product.title
+            }}
+          {%- endif -%}
+        </a>
+
+        <div class="apc__body">
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="apc__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+          {%- endif -%}
+
+          <a href="{{ cta_product.url }}" class="apc__title h4">{{ cta_product.title | escape }}</a>
+
+          {%- if section.settings.show_rating and rating != blank and rating_count > 0 -%}
+            {%- assign rating_pct = rating.rating | divided_by: rating.scale_max | times: 100 -%}
+            <a href="{{ cta_product.url }}" class="apc__rating">
+              <span class="apc__stars" style="--apc-rating: {{ rating_pct }}%;" aria-hidden="true"></span>
+              <span class="visually-hidden">
+                {{- 'accessibility.star_reviews_info' | t: rating_value: rating.rating, rating_max: rating.scale_max -}}
+              </span>
+              <span class="apc__rating-text">{{ rating.rating | round: 1 }} · {{ rating_count }} recensioni</span>
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.show_benefits -%}
+            {%- capture benefits -%}
+              {%- for i in (1..3) -%}
+                {%- assign key = 'icona_' | append: i | append: '_titolo' -%}
+                {%- assign b = cta_product.metafields.custom[key].value -%}
+                {%- if b != blank -%}<li>{{ b | escape }}</li>{%- endif -%}
+              {%- endfor -%}
+            {%- endcapture -%}
+            {%- if benefits != blank -%}
+              <ul class="apc__benefits" role="list">{{ benefits }}</ul>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+
+        <div class="apc__buy">
+          <div class="apc__price">
+            <span class="apc__price-value">{{ variant.price | money }}</span>
+            {%- if variant.compare_at_price > variant.price -%}
+              <s class="apc__price-compare">{{ variant.compare_at_price | money }}</s>
+            {%- endif -%}
+            {%- unless has_variants or cta_product.has_only_default_variant -%}
+              <span class="apc__price-unit">{{ variant.title | escape }}</span>
+            {%- endunless -%}
+          </div>
+
+          {%- if cta_product.available -%}
+            <product-form class="product-form" data-section-id="{{ section.id }}">
+              <div class="product-form__error-message-wrapper" role="alert" hidden>
+                <span class="product-form__error-message"></span>
+              </div>
+              {%- form 'product', cta_product, id: form_id, class: 'apc__form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                {%- if has_variants -%}
+                  <label class="visually-hidden" for="apc-variant-{{ section.id }}">
+                    {{- cta_product.options.first -}}
+                  </label>
+                  <select id="apc-variant-{{ section.id }}" name="id" class="apc__select">
+                    {%- for v in cta_product.variants -%}
+                      <option
+                        value="{{ v.id }}"
+                        {% if v == variant %}selected{% endif %}
+                        {% unless v.available %}disabled{% endunless %}
+                      >
+                        {{ v.title | escape }} – {{ v.price | money | strip_html }}
+                      </option>
+                    {%- endfor -%}
+                  </select>
+                {%- else -%}
+                  <input type="hidden" name="id" value="{{ variant.id }}">
+                {%- endif -%}
+                <button type="submit" name="add" class="product-form__submit button button--primary apc__button">
+                  <span>{{ section.settings.button_label | default: 'Aggiungi al carrello' }}</span>
+                  {%- render 'loading-spinner' -%}
+                </button>
+              {%- endform -%}
+            </product-form>
+          {%- else -%}
+            <a href="{{ cta_product.url }}" class="button button--secondary apc__button">
+              {{- section.settings.soldout_label | default: 'Avvisami quando disponibile' -}}
+            </a>
+          {%- endif -%}
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .apc {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    grid-template-areas: 'media body' 'buy buy';
+    gap: 1.2rem 1.6rem;
+    max-width: 76rem;
+    margin: 0 auto;
+    padding: 1.6rem;
+    border: 1px solid rgba(var(--color-foreground), 0.12);
+    border-radius: 1.2rem;
+    background: rgb(var(--color-background));
+  }
+  .apc__media { grid-area: media; display: block; border-radius: 0.8rem; overflow: hidden; aspect-ratio: 1; }
+  .apc__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .apc__body { grid-area: body; min-width: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+  .apc__eyebrow {
+    margin: 0;
+    font-size: 1.1rem;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.65);
+  }
+  .apc__title { margin: 0; text-decoration: none; color: rgb(var(--color-foreground)); line-height: 1.25; }
+  .apc__title:hover { text-decoration: underline; text-underline-offset: 0.3rem; }
+  .apc__rating { display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; color: inherit; font-size: 1.3rem; }
+  .apc__stars {
+    --apc-star: #e8a317;
+    position: relative;
+    display: inline-block;
+    font-size: 1.4rem;
+    line-height: 1;
+    letter-spacing: 0.1rem;
+  }
+  .apc__stars::before { content: '★★★★★'; color: rgba(var(--color-foreground), 0.2); }
+  .apc__stars::after {
+    content: '★★★★★';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--apc-rating);
+    overflow: hidden;
+    color: var(--apc-star);
+  }
+  .apc__rating-text { color: rgba(var(--color-foreground), 0.75); }
+  .apc__benefits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 1.2rem;
+    margin: 0.2rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 1.3rem;
+    color: rgba(var(--color-foreground), 0.8);
+  }
+  .apc__benefits li::before { content: '✓'; margin-right: 0.4rem; color: #3a8f4f; font-weight: 700; }
+  .apc__buy { grid-area: buy; display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+  .apc__price { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+  .apc__price-value { font-size: 1.8rem; font-weight: 700; color: rgb(var(--color-foreground)); }
+  .apc__price-compare { font-size: 1.4rem; color: rgba(var(--color-foreground), 0.6); }
+  .apc__price-unit { font-size: 1.3rem; color: rgba(var(--color-foreground), 0.7); }
+  .apc__buy product-form, .apc__buy > .apc__button { flex: 1 1 18rem; }
+  .apc__form { display: flex; gap: 0.8rem; margin: 0; }
+  .apc__select {
+    min-height: 4.4rem;
+    padding: 0 1rem;
+    border: 1px solid rgba(var(--color-foreground), 0.3);
+    border-radius: var(--inputs-radius, 0.4rem);
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    font: inherit;
+  }
+  .apc__button { width: 100%; min-height: 4.4rem; }
+  .apc .product-form__error-message-wrapper { font-size: 1.2rem; margin-bottom: 0.6rem; }
+
+  @media screen and (min-width: 750px) {
+    .apc {
+      grid-template-columns: 140px 1fr auto;
+      grid-template-areas: 'media body buy';
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .apc__buy { flex-direction: column; align-items: stretch; min-width: 22rem; }
+    .apc__price { justify-content: center; }
+    .apc__buy product-form, .apc__buy > .apc__button { flex: 0 0 auto; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Card prodotto (articolo)",
+  "tag": "section",
+  "class": "section section-article-product-cta",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Prodotto",
+      "info": "Se vuoto usa il primo prodotto del metacampo dell'articolo \"custom.prodotti\"."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Occhiello",
+      "default": "Dal nostro agrumeto"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Mostra recensioni",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefits",
+      "label": "Mostra punti di forza",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Testo pulsante",
+      "default": "Aggiungi al carrello"
+    },
+    {
+      "type": "text",
+      "id": "soldout_label",
+      "label": "Testo pulsante se non disponibile",
+      "default": "Avvisami quando disponibile"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Card prodotto (articolo)"
+    }
+  ]
+}
+{% endschema %}
