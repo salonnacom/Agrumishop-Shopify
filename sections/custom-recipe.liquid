@@ -625,15 +625,16 @@
                       {%- endif -%}
                       <div class="recipe-product-card__info">
                         <span class="recipe-product-card__title">{{ product.title | escape }}</span>
-                        {%- assign variant_title = product.selected_or_first_available_variant.title -%}
+                        {%- assign card_variant = product.selected_or_first_available_variant -%}
+                        {%- assign variant_title = card_variant.title -%}
                         {%- if variant_title != blank and variant_title != 'Default Title' -%}
                           <span class="recipe-product-card__variant">{{ variant_title | escape }}</span>
                         {%- endif -%}
                         <span class="recipe-product-card__price">
-                          {%- if product.compare_at_price > product.price -%}
-                            <span class="recipe-product-card__price--compare">{{ product.compare_at_price | money }}</span>
+                          {%- if card_variant.compare_at_price > card_variant.price -%}
+                            <span class="recipe-product-card__price--compare">{{ card_variant.compare_at_price | money }}</span>
                           {%- endif -%}
-                          {{ product.price | money }}
+                          {{ card_variant.price | money }}
                         </span>
                       </div>
                     </a>
