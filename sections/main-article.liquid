@@ -288,45 +288,6 @@
   {%- endif -%}
 </article>
 
-{%- unless article.template_suffix == 'ricetta' -%}
-  {%- liquid
-    assign org_id = shop.url | append: '/#organization'
-    assign article_url = request.origin | append: article.url
-    if article.metafields.global.description_tag != blank
-      assign article_description = article.metafields.global.description_tag
-    elsif article.excerpt != blank
-      assign article_description = article.excerpt | strip_html | strip
-    else
-      assign article_description = article.content | strip_html | strip | truncatewords: 40
-    endif
-  -%}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "@id": {{ article_url | append: '#article' | json }},
-      "mainEntityOfPage": { "@type": "WebPage", "@id": {{ article_url | json }} },
-      "url": {{ article_url | json }},
-      "headline": {{ article.title | json }},
-      "description": {{ article_description | json }},
-      {%- if article.image %}
-      "image": [{{ article.image | image_url: width: 1200 | prepend: 'https:' | json }}],
-      {%- endif %}
-      "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
-      "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
-      "inLanguage": {{ request.locale.iso_code | json }},
-      "articleSection": {{ blog.title | json }},
-      {%- if article.tags.size > 0 %}
-      "keywords": {{ article.tags | join: ', ' | json }},
-      {%- endif %}
-      "wordCount": {{ article.content | strip_html | split: ' ' | size }},
-      "author": { "@type": "Organization", "@id": {{ org_id | json }}, "name": {{ shop.name | json }}, "url": {{ shop.url | json }} },
-      "publisher": { "@id": {{ org_id | json }} },
-      "isPartOf": { "@type": "Blog", "name": {{ blog.title | json }}, "url": {{ request.origin | append: blog.url | json }} }
-    }
-  </script>
-{%- endunless -%}
-
 {% schema %}
 {
   "name": "t:sections.main-article.name",
