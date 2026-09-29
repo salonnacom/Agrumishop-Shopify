@@ -1,1 +1,152 @@
-{"sections":{"banner":{"type":"main-collection-banner","settings":{"show_collection_description":true,"show_collection_image":false,"color_scheme":"background-1"}},"product-grid":{"type":"main-collection-product-grid","settings":{"products_per_page":16,"columns_desktop":3,"columns_mobile":"1","color_scheme":"","image_ratio":"adapt","image_shape":"default","show_secondary_image":false,"show_vendor":false,"show_rating":false,"quick_add":"none","enable_filtering":false,"filter_type":"horizontal","enable_sorting":false,"padding_top":0,"padding_bottom":36}},"d4ce8b28-52c2-4aa7-9358-74a9d9a65acc":{"type":"rich-text","blocks":{"template--20250317193493__d4ce8b28-52c2-4aa7-9358-74a9d9a65acc-text-1":{"type":"text","settings":{"text":"{{ collection.metafields.custom.extra_test | metafield_tag }}"}}},"block_order":["template--20250317193493__d4ce8b28-52c2-4aa7-9358-74a9d9a65acc-text-1"],"settings":{"desktop_content_position":"center","content_alignment":"left","color_scheme":"background-2","full_width":true,"padding_top":60,"padding_bottom":72}}},"order":["banner","product-grid","d4ce8b28-52c2-4aa7-9358-74a9d9a65acc"]}
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "background-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "enable_filtering": false,
+        "filter_type": "horizontal",
+        "enable_sorting": false,
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "d4ce8b28-52c2-4aa7-9358-74a9d9a65acc": {
+      "type": "rich-text",
+      "blocks": {
+        "template--20250317193493__d4ce8b28-52c2-4aa7-9358-74a9d9a65acc-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "{{ collection.metafields.custom.extra_test | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "template--20250317193493__d4ce8b28-52c2-4aa7-9358-74a9d9a65acc-text-1"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "background-2",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 72
+      }
+    },
+    "faq_collezione": {
+      "type": "collapsible-content",
+      "blocks": {
+        "faq_01": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Quali arance vendete?",
+            "icon": "none",
+            "row_content": "<p>Coltiviamo e vendiamo due varietà di arance bionde: le <a href=\"/products/arance-navel-calabria\" title=\"Arance Navel di Calabria\">arance Navel</a> (Navelina), senza semi e dal gusto classico, e le <a href=\"/products/arance-vaniglia\" title=\"Arance Vaniglia di Calabria\">arance Vaniglia</a>, dolcissime e con acidità bassissima. Le trovi anche nei nostri <a href=\"/collections/box-miste-di-agrumi-calabresi\" title=\"Box di agrumi misti\">box di agrumi misti</a>.</p>",
+            "page": ""
+          }
+        },
+        "faq_02": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Quando è la stagione delle arance calabresi?",
+            "icon": "none",
+            "row_content": "<p>Indicativamente da <strong>fine novembre ad aprile</strong>: le Navel da fine novembre a marzo, le Vaniglia da dicembre ad aprile. Le date esatte dipendono dalla maturazione dei frutti sulla pianta.</p>",
+            "page": ""
+          }
+        },
+        "faq_03": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Quali arance sono migliori per la spremuta?",
+            "icon": "none",
+            "row_content": "<p>Vanno bene entrambe: le Navel danno una spremuta dal gusto classico, tra dolce e acidulo, le Vaniglia una spremuta più dolce e morbida. Trovi tutti i consigli nella nostra guida alle <a href=\"/blogs/news/arance-da-spremuta\" title=\"Arance da spremuta\">arance da spremuta</a>.</p>",
+            "page": ""
+          }
+        },
+        "faq_04": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Da dove arrivano le vostre arance?",
+            "icon": "none",
+            "row_content": "<p>Dai nostri agrumeti nella <strong>Piana di Sibari</strong>, a Corigliano-Rossano, in provincia di Cosenza. Le raccogliamo a mano solo quando arriva l'ordine e non facciamo trattamenti dopo la raccolta.</p>",
+            "page": ""
+          }
+        },
+        "faq_05": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "In che formati vendete le arance?",
+            "icon": "none",
+            "row_content": "<p>Le arance Navel sono disponibili in cassette da <strong>8 o 15 kg</strong>, le arance Vaniglia in cassette da <strong>15 kg</strong>. Il costo della spedizione è sempre incluso nel prezzo.</p>",
+            "page": ""
+          }
+        },
+        "faq_06": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Quando spedite e in quanto tempo arrivano?",
+            "icon": "none",
+            "row_content": "<p>Spediamo ogni <strong>lunedì e martedì</strong>, subito dopo la raccolta, con corriere BRT o SDA: la consegna avviene di solito in 48–72 ore dalla spedizione, in tutta Italia.</p>",
+            "page": ""
+          }
+        },
+        "faq_07": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Cosa succede se qualche frutto arriva danneggiato?",
+            "icon": "none",
+            "row_content": "<p><a href=\"/pages/contact\" title=\"Contatti\">Scrivici</a> inviando una foto e il peso dei frutti danneggiati: ti rimborsiamo i kg rovinati oppure, se preferisci, creiamo un buono da usare nel prossimo ordine.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_01",
+        "faq_02",
+        "faq_03",
+        "faq_04",
+        "faq_05",
+        "faq_06",
+        "faq_07"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Domande frequenti sulle arance calabresi",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "background-2",
+        "color_scheme": "background-1",
+        "open_first_collapsible_row": false,
+        "faq_schema": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "d4ce8b28-52c2-4aa7-9358-74a9d9a65acc",
+    "faq_collezione"
+  ]
+}
