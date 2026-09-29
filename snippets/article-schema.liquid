@@ -10,6 +10,7 @@
   else
     assign article_description = article.content | strip_html | strip | truncatewords: 40
   endif
+  assign article_description = article_description | replace: '&#39;', "'" | replace: '&quot;', '"' | replace: '&amp;', '&'
 -%}
 <script type="application/ld+json">
   {
@@ -30,7 +31,6 @@
     {%- if article.tags.size > 0 %}
     "keywords": {{ article.tags | join: ', ' | json }},
     {%- endif %}
-    "wordCount": {{ article.content | strip_html | split: ' ' | size }},
     "author": { "@type": "Organization", "@id": {{ org_id | json }}, "name": {{ shop.name | json }}, "url": {{ shop.url | json }} },
     "publisher": { "@id": {{ org_id | json }} },
     "isPartOf": { "@type": "Blog", "name": {{ blog.title | json }}, "url": {{ request.origin | append: blog.url | json }} }

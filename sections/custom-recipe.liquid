@@ -941,15 +941,17 @@
   "@context": "https://schema.org",
   "@type": "Recipe",
   "name": {{ article.title | json }},
-  "description": {%- if article.metafields.custom.recipe_intro != blank -%}{{ article.metafields.custom.recipe_intro | metafield_tag | strip_html | json }}{%- else -%}{{ article.excerpt | default: article.summary | json }}{%- endif -%},
+  "description": {%- if article.metafields.custom.recipe_intro != blank -%}{{ article.metafields.custom.recipe_intro | metafield_tag | strip_html | replace: '&#39;', "'" | replace: '&quot;', '"' | replace: '&amp;', '&' | json }}{%- else -%}{{ article.excerpt | default: article.summary | json }}{%- endif -%},
   {%- if article.image -%}
   "image": [
-    "{{ article.image | image_url: width: 1200 }}"
+    {{ article.image | image_url: width: 1200 | prepend: 'https:' | json }}
   ],
   {%- endif -%}
   "author": {
-    "@type": "Person",
-    "name": {{ article.author | json }}
+    "@type": "Organization",
+    "@id": {{ shop.url | append: '/#organization' | json }},
+    "name": {{ shop.name | json }},
+    "url": {{ shop.url | json }}
   },
   "publisher": { "@id": {{ shop.url | append: '/#organization' | json }} },
   "datePublished": {{ article.published_at | date: "%Y-%m-%d" | json }},
