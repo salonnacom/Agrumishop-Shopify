@@ -477,12 +477,108 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "home_clementine": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Clementine senza semi, raccolte al momento</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Le nostre clementine sono dolci, succose e <strong>quasi sempre senza semi</strong>: le raccogliamo a mano nella Piana di Sibari da fine ottobre a gennaio, solo quando arriva il tuo ordine.</p><p>Vuoi sapere perché non hanno semi e quali varietà esistono? Leggi la nostra <a href=\"/blogs/news/clementine\" title=\"Clementine: cosa sono, perché sono senza semi, varietà e stagione\">guida alle clementine</a> oppure scopri la <a href=\"/blogs/news/differenze-tra-mandarini-e-clementine\" title=\"Differenza tra clementine e mandarini\">differenza tra clementine e mandarini</a>.</p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Acquista le clementine senza semi",
+            "button_link": "shopify://products/clementine-senza-semi",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/clementine_2.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "home_arance": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Arance Navel e Vaniglia dalla Piana di Sibari</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Coltiviamo due arance bionde dal carattere diverso: le <a href=\"/products/arance-navel-calabria\" title=\"Arance Navel (Navelina) di Calabria\">arance Navel</a> (Navelina), senza semi e dal gusto classico, da fine novembre a marzo, e le <a href=\"/products/arance-vaniglia\" title=\"Arance Vaniglia di Calabria\">arance Vaniglia</a>, dolcissime e poco acide, da dicembre ad aprile.</p><p>Scopri <a href=\"/blogs/news/arance-navel\" title=\"Arance Navel: caratteristiche, varietà, stagione\">caratteristiche, varietà e provenienza delle arance Navel</a> e quali scegliere per la <a href=\"/blogs/news/arance-da-spremuta\" title=\"Arance da spremuta\">spremuta</a>.</p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Scopri le arance calabresi",
+            "button_link": "shopify://collections/arance-di-calabria",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/arance_79d05a0d-dba9-4e8d-bc33-06768ccdb239.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
     "ba081ae9-5cb0-4539-bce4-54e58521f7ce",
+    "home_clementine",
+    "home_arance",
     "2bbe2eea-1fc1-4dd3-920e-669dddb3f9d2",
     "6e25da2f-071c-49b7-a368-1f0b6b2665a8",
     "2afcc998-a1f2-41d9-b3cc-58926d389004",
