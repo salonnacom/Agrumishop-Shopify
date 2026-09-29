@@ -426,26 +426,50 @@
   customElements.define('sticky-header', StickyHeader);
 {% endjavascript %}
 
+{%- liquid
+  assign org_id = shop.url | append: '/#organization'
+  if request.locale.iso_code == 'it'
+    assign org_description = 'Azienda Agricola Salonna: produttore di agrumi a Corigliano-Rossano, nella Piana di Sibari (Calabria). Coltiviamo e vendiamo online, direttamente dal produttore, clementine senza semi, arance Navel e Vaniglia, limoni e pompelmi.'
+  else
+    assign org_description = 'Azienda Agricola Salonna: a citrus grower in Corigliano-Rossano, in the Sibari plain (Calabria, Italy). We grow and sell online, direct from the farm, seedless clementines, Navel and Vaniglia oranges, lemons and grapefruits.'
+  endif
+-%}
 <script type="application/ld+json">
   {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": {{ org_id | json }},
     "name": {{ shop.name | json }},
-    {% if settings.logo %}
-      "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
-    {% endif %}
+    "legalName": "Azienda Agricola Salonna Andrea",
+    "alternateName": ["AgrumiShop", "Azienda Agricola Salonna"],
+    "url": {{ shop.url | json }},
+    "description": {{ org_description | json }},
+    {%- if settings.logo %}
+    "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
+    {%- endif %}
+    "email": {{ shop.email | json }},
+    "telephone": "+39 338 339 4047",
+    "vatID": "IT00957930787",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Via Tirana 118",
+      "postalCode": "87064",
+      "addressLocality": "Corigliano-Rossano",
+      "addressRegion": "CS",
+      "addressCountry": "IT"
+    },
+    "knowsAbout": ["Clementine", "Arance Navel", "Arance Vaniglia", "Limoni", "Pompelmi", "Agrumi di Calabria"],
+    {%- assign social_links = settings.social_twitter_link | append: '|' | append: settings.social_facebook_link | append: '|' | append: settings.social_pinterest_link | append: '|' | append: settings.social_instagram_link | append: '|' | append: settings.social_tiktok_link | append: '|' | append: settings.social_tumblr_link | append: '|' | append: settings.social_snapchat_link | append: '|' | append: settings.social_youtube_link | append: '|' | append: settings.social_vimeo_link | split: '|' | compact %}
     "sameAs": [
-      {{ settings.social_twitter_link | json }},
-      {{ settings.social_facebook_link | json }},
-      {{ settings.social_pinterest_link | json }},
-      {{ settings.social_instagram_link | json }},
-      {{ settings.social_tiktok_link | json }},
-      {{ settings.social_tumblr_link | json }},
-      {{ settings.social_snapchat_link | json }},
-      {{ settings.social_youtube_link | json }},
-      {{ settings.social_vimeo_link | json }}
-    ],
-    "url": {{ request.origin | append: page.url | json }}
+      {%- assign first_link = true -%}
+      {%- for link in social_links -%}
+        {%- if link != blank -%}
+          {%- unless first_link %},{% endunless %}
+      {{ link | json }}
+          {%- assign first_link = false -%}
+        {%- endif -%}
+      {%- endfor %}
+    ]
   }
 </script>
 
@@ -453,15 +477,18 @@
   {% assign potential_action_target = request.origin | append: routes.search_url | append: '?q={search_term_string}' %}
   <script type="application/ld+json">
     {
-      "@context": "http://schema.org",
+      "@context": "https://schema.org",
       "@type": "WebSite",
+      "@id": {{ shop.url | append: '/#website' | json }},
       "name": {{ shop.name | json }},
+      "url": {{ shop.url | json }},
+      "inLanguage": {{ request.locale.iso_code | json }},
+      "publisher": { "@id": {{ org_id | json }} },
       "potentialAction": {
         "@type": "SearchAction",
         "target": {{ potential_action_target | json }},
         "query-input": "required name=search_term_string"
-      },
-      "url": {{ request.origin | append: page.url | json }}
+      }
     }
   </script>
 {%- endif -%}

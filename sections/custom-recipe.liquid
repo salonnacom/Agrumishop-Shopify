@@ -951,6 +951,7 @@
     "@type": "Person",
     "name": {{ article.author | json }}
   },
+  "publisher": { "@id": {{ shop.url | append: '/#organization' | json }} },
   "datePublished": {{ article.published_at | date: "%Y-%m-%d" | json }},
   "dateModified": {{ article.updated_at | date: "%Y-%m-%d" | json }},
   {%- if article.metafields.custom.servings != blank -%}
