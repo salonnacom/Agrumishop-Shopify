@@ -3,8 +3,8 @@
 {%- liquid
   assign org_id = shop.url | append: '/#organization'
   assign article_url = request.origin | append: article.url
-  if article.metafields.global.description_tag != blank
-    assign article_description = article.metafields.global.description_tag
+  if page_description != blank
+    assign article_description = page_description | strip
   elsif article.excerpt != blank
     assign article_description = article.excerpt | strip_html | strip
   else
