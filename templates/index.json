@@ -98,7 +98,7 @@
         "template--18229965488405__ba081ae9-5cb0-4539-bce4-54e58521f7ce-168527415873a9df14-1": {
           "type": "text",
           "settings": {
-            "text": "<p>AgrumiShop.it è un progetto dell’Azienda Agricola Salonna (Corigliano Calabro), creato per dare a tutti la possibilità di poter acquistare online <a href=\"/products/clementine-senza-semi\" title=\"Clementine senza semi\">clementine senza semi</a> genuine, coltivate nella Piana di Sibari, direttamente dal produttore. Oltre alle clementine, coltiviamo e spediamo <a href=\"/collections/arance-di-calabria\" title=\"Arance calabresi\">arance calabresi</a>, sia <a href=\"/products/arance-navel-calabria\" title=\"Arance Navel (Navelina) di Calabria\">Navel</a> sia <a href=\"/products/arance-vaniglia\" title=\"Arance Vaniglia di Calabria\">Vaniglia</a>, e <a href=\"/products/limoni-di-calabria\" title=\"Limoni di Calabria\">limoni</a>, abbattendo i costi!<br/>Gli agrumi vengono raccolti solo nel momento in cui arriva la richiesta d’ordine, e vengono spediti in 24/48h* tramite corriere professionale, con la massima cura dell’imballo.</p>",
+            "text": "<p>AgrumiShop.it è un progetto dell’Azienda Agricola Salonna (Corigliano Calabro), creato per dare a tutti la possibilità di poter acquistare online <a href=\"/products/clementine-senza-semi\" title=\"Clementine senza semi\">clementine senza semi</a> genuine, coltivate nella Piana di Sibari, direttamente dal produttore. Oltre alle clementine, coltiviamo e spediamo <a href=\"/collections/arance-di-calabria\" title=\"Arance di Calabria\">arance di Calabria</a>, come le nostre <a href=\"/products/arance-navel-calabria\" title=\"Arance Navel (Navelina) di Calabria\">arance Navel</a>, e <a href=\"/products/limoni-di-calabria\" title=\"Limoni di Calabria\">limoni</a>, abbattendo i costi!<br/>Gli agrumi vengono raccolti solo nel momento in cui arriva la richiesta d’ordine, e vengono spediti il lunedì e il martedì tramite corriere professionale, con la massima cura dell’imballo: la consegna avviene di solito in 48–72 ore.</p>",
             "text_style": "body"
           }
         }
@@ -163,7 +163,7 @@
         "2333591c-a792-40aa-a457-7d96abb6d377": {
           "type": "column",
           "settings": {
-            "title": "Spedizione in 24h/48h dalla conferma ordine",
+            "title": "Spedizione il lunedì e il martedì, consegna in 48–72 ore",
             "text": "<p>Per gararantire la freschezza del prodotto che raccogliamo al momento.</p>",
             "link_label": "",
             "link": ""
@@ -377,7 +377,7 @@
         "template--18229965488405__d6c1443a-0b3e-40b8-a72d-67dc6b41a892-168527415873a9df14-1": {
           "type": "text",
           "settings": {
-            "text": "<p>Dopo aver preparato l'ordine sistemiamo con cura le cassettine di cartone (500 gr tara e capienza di circa 8,5 kg) che verranno spedite, rivediamo e selezioniamo ancora una volta gli agrumi raccolto e poi le imballiamo con cura per poter essere spedite in modo completamente sicuro a destinazione.<br/>Per la spedizione ci affidiamo a corrieri nazionali con esperienza nel settore, per far si che il prodotto arrivi integro e senza alcuna traccia di danneggiamento.<br/>Dai nostri alberi di clementino alle vostre tavole in 24/48h*.<br/>E' questo il motto della nostra azienda.</p>",
+            "text": "<p>Dopo aver preparato l'ordine sistemiamo con cura le cassettine di cartone (500 gr tara e capienza di circa 8,5 kg) che verranno spedite, rivediamo e selezioniamo ancora una volta gli agrumi raccolto e poi le imballiamo con cura per poter essere spedite in modo completamente sicuro a destinazione.<br/>Per la spedizione ci affidiamo a corrieri nazionali con esperienza nel settore, per far si che il prodotto arrivi integro e senza alcuna traccia di danneggiamento.<br/>Dai nostri alberi alle vostre tavole in 48–72 ore dalla spedizione.<br/>E' questo il motto della nostra azienda.</p>",
             "text_style": "body"
           }
         }
@@ -531,22 +531,22 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "<strong>Arance Navel e Vaniglia dalla Piana di Sibari</strong>",
+            "heading": "<strong>Arance di Calabria: le nostre Navel</strong>",
             "heading_size": "h1"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Coltiviamo due arance bionde dal carattere diverso: le <a href=\"/products/arance-navel-calabria\" title=\"Arance Navel (Navelina) di Calabria\">arance Navel</a> (Navelina), senza semi e dal gusto classico, da fine novembre a marzo, e le <a href=\"/products/arance-vaniglia\" title=\"Arance Vaniglia di Calabria\">arance Vaniglia</a>, dolcissime e poco acide, da dicembre ad aprile.</p><p>Scopri <a href=\"/blogs/news/arance-navel\" title=\"Arance Navel: caratteristiche, varietà, stagione\">caratteristiche, varietà e provenienza delle arance Navel</a> e quali scegliere per la <a href=\"/blogs/news/arance-da-spremuta\" title=\"Arance da spremuta\">spremuta</a>.</p>",
+            "text": "<p>Le nostre <a href=\"/collections/arance-di-calabria\" title=\"Arance di Calabria\">arance di Calabria</a> crescono nella Piana di Sibari, tra il Pollino e il Mar Ionio, e le raccogliamo a mano solo quando arriva l'ordine. Le <a href=\"/products/arance-navel-calabria\" title=\"Arance Navel (Navelina) di Calabria\">arance Navel</a> (Navelina) sono bionde, dolci, succose e <strong>senza semi</strong>, perfette a spicchi e per la spremuta: da fine novembre a marzo.</p><p>Scopri <a href=\"/blogs/news/arance-navel\" title=\"Arance Navel: caratteristiche, varietà, stagione\">caratteristiche, varietà e provenienza delle arance Navel</a> e i nostri consigli sulle <a href=\"/blogs/news/arance-da-spremuta\" title=\"Arance da spremuta\">arance da spremuta</a>.</p>",
             "text_style": "body"
           }
         },
         "button": {
           "type": "button",
           "settings": {
-            "button_label": "Scopri le arance calabresi",
-            "button_link": "shopify://collections/arance-di-calabria",
+            "button_label": "Acquista le arance Navel",
+            "button_link": "shopify://products/arance-navel-calabria",
             "button_style_secondary": false
           }
         }
