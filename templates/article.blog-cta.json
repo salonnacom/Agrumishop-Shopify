@@ -72,7 +72,7 @@
     "article_product_cta": {
       "type": "article-product-cta",
       "settings": {
-        "product": "clementine-senza-semi",
+        "product": "",
         "eyebrow": "Dal nostro agrumeto",
         "show_rating": true,
         "show_benefits": true,
