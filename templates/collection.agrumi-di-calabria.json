@@ -1,0 +1,140 @@
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "background-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_filtering": false,
+        "filter_type": "horizontal",
+        "enable_sorting": false,
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "testo_seo": {
+      "type": "rich-text",
+      "blocks": {
+        "text-1": {
+          "type": "text",
+          "settings": {
+            "text": "{{ collection.metafields.custom.extra_test | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "text-1"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "background-2",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 72
+      }
+    },
+    "faq_agrumi": {
+      "type": "collapsible-content",
+      "blocks": {
+        "faq_01": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Quali agrumi vendete?",
+            "icon": "none",
+            "row_content": "<p>Coltiviamo e vendiamo <a href=\"/products/clementine-senza-semi\" title=\"Clementine senza semi\">clementine senza semi</a>, <a href=\"/collections/arance-di-calabria\" title=\"Arance calabresi\">arance</a> Navel e Vaniglia, <a href=\"/products/limoni-di-calabria\" title=\"Limoni di Calabria\">limoni</a>, <a href=\"/collections/pompelmi\" title=\"Pompelmi calabresi\">pompelmi rosa e gialli</a> e <a href=\"/products/limetta-calabrese-limone-dolce-piretta\" title=\"Limetta calabrese (piretta)\">limetta calabrese</a>, detta anche piretta.</p>",
+            "page": ""
+          }
+        },
+        "faq_02": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Quando è la stagione degli agrumi calabresi?",
+            "icon": "none",
+            "row_content": "<p>Ogni agrume ha la sua: le <strong>clementine</strong> da fine ottobre a gennaio, le <strong>arance Navel</strong> da fine novembre a marzo, le <strong>arance Vaniglia</strong> da dicembre ad aprile. Per gli altri agrumi trovi la disponibilità nella scheda di ciascun prodotto. Se un prodotto non è ancora disponibile, clicca su \"Avvisami quando disponibile\".</p>",
+            "page": ""
+          }
+        },
+        "faq_03": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Posso ordinare agrumi diversi nella stessa cassetta?",
+            "icon": "none",
+            "row_content": "<p>Sì, con i nostri <a href=\"/collections/box-miste-di-agrumi-calabresi\" title=\"Box di agrumi misti calabresi\">box di agrumi misti</a>: arance, clementine, limoni e pompelmi in combinazioni diverse, nella stessa cassetta.</p>",
+            "page": ""
+          }
+        },
+        "faq_04": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Da dove arrivano i vostri agrumi?",
+            "icon": "none",
+            "row_content": "<p>Dai nostri agrumeti nella <strong>Piana di Sibari</strong>, a Corigliano-Rossano, in Calabria. Li raccogliamo a mano solo quando arriva l'ordine e non facciamo trattamenti dopo la raccolta.</p>",
+            "page": ""
+          }
+        },
+        "faq_05": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Quando spedite e quanto costa la spedizione?",
+            "icon": "none",
+            "row_content": "<p>Spediamo ogni <strong>lunedì e martedì</strong>, subito dopo la raccolta, con corriere BRT o SDA: la consegna avviene di solito in 48–72 ore, in tutta Italia. Il costo della spedizione è sempre <strong>incluso nel prezzo</strong>.</p>",
+            "page": ""
+          }
+        },
+        "faq_06": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Cosa succede se qualche frutto arriva danneggiato?",
+            "icon": "none",
+            "row_content": "<p><a href=\"/pages/contact\" title=\"Contatti\">Scrivici</a> inviando una foto e il peso dei frutti danneggiati: ti rimborsiamo i kg rovinati oppure, se preferisci, creiamo un buono da usare nel prossimo ordine.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_01",
+        "faq_02",
+        "faq_03",
+        "faq_04",
+        "faq_05",
+        "faq_06"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Domande frequenti sugli agrumi calabresi",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "background-2",
+        "color_scheme": "background-1",
+        "open_first_collapsible_row": false,
+        "faq_schema": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "testo_seo",
+    "faq_agrumi"
+  ]
+}
