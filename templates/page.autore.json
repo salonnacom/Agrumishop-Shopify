@@ -11,7 +11,7 @@
       "type": "featured-blog",
       "settings": {
         "blog": "news",
-        "post_limit": 6,
+        "post_limit": 3,
         "heading": "Le guide di Pietro",
         "heading_size": "h2",
         "columns_desktop": 3,
