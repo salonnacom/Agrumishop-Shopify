@@ -571,6 +571,23 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "featured_blog_guide": {
+      "type": "featured-blog",
+      "settings": {
+        "blog": "news",
+        "post_limit": 3,
+        "heading": "Guide agli agrumi",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": false,
+        "show_author": false,
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -589,6 +606,7 @@
     "d5b35f15-b638-4157-8da2-c259581b5a01",
     "169645394778207992",
     "1731972271df928f08",
+    "featured_blog_guide",
     "featured_blog_DmVjQk"
   ]
 }
