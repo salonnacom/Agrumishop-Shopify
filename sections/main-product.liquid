@@ -748,6 +748,12 @@
 
       {%- liquid
         assign product_ld = product | structured_data | strip
+        assign ld_org = shop.url | append: '/#organization' | json
+        assign ld_seller = '"@type":"Offer","seller":{"@id":' | append: ld_org | append: '},'
+        assign product_ld = product_ld | replace: '"@type":"Offer",', ld_seller
+        assign ld_cut = product_ld.size | minus: 1
+        assign ld_manufacturer = ',"manufacturer":{"@id":' | append: ld_org | append: '}}'
+        assign product_ld = product_ld | slice: 0, ld_cut | append: ld_manufacturer
         assign ld_rating = product.metafields.reviews.rating.value
         assign ld_rating_count = product.metafields.reviews.rating_count.value | default: 0
         if ld_rating != blank and ld_rating_count > 0
