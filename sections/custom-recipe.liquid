@@ -947,12 +947,7 @@
     {{ article.image | image_url: width: 1200 | prepend: 'https:' | json }}
   ],
   {%- endif -%}
-  "author": {
-    "@type": "Organization",
-    "@id": {{ shop.url | append: '/#organization' | json }},
-    "name": {{ shop.name | json }},
-    "url": {{ shop.url | json }}
-  },
+  "author": {% render 'author-person-schema' %},
   "publisher": { "@id": {{ shop.url | append: '/#organization' | json }} },
   "datePublished": {{ article.published_at | date: "%Y-%m-%d" | json }},
   "dateModified": {{ article.updated_at | date: "%Y-%m-%d" | json }},

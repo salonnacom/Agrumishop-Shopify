@@ -90,6 +90,17 @@
     "complementary_products": "Complementary products"
   },
   "blogs": {
+    "author": {
+      "name": "Pietro Salonna",
+      "role": "Agricultural technician",
+      "by": "by",
+      "updated": "Updated",
+      "company": "Azienda Agricola Salonna",
+      "box_heading": "About the author",
+      "box_heading_recipe": "About the author",
+      "bio": "Pietro Salonna is an agricultural technician (perito agrario) and writes AgrumiShop's guides. He is the son of Andrea Salonna, farmer and owner of Azienda Agricola Salonna, which grows citrus fruit in Corigliano-Rossano, in the Sibari plain (Calabria): a family-run farm that has worked the land for three generations.",
+      "more": "More about Pietro"
+    },
     "article": {
       "blog": "Blog",
       "read_more_title": "Read more: {{ title }}",

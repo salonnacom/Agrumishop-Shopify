@@ -1,0 +1,3 @@
+{%- comment -%} Oggetto JSON-LD Person dell'autore delle guide (Pietro Salonna). Usato da article-schema, custom-recipe e dalla pagina autore. {%- endcomment -%}
+{%- assign author_page = pages['pietro-salonna'] -%}
+{"@type":"Person","@id":{{ shop.url | append: '/pages/pietro-salonna#person' | json }},"name":{{ 'blogs.author.name' | t | json }},"jobTitle":{{ 'blogs.author.role' | t | json }}{% if author_page != empty %},"url":{{ request.origin | append: author_page.url | json }}{% endif %},"worksFor":{"@id":{{ shop.url | append: '/#organization' | json }}}}

@@ -31,7 +31,7 @@
     {%- if article.tags.size > 0 %}
     "keywords": {{ article.tags | join: ', ' | json }},
     {%- endif %}
-    "author": { "@type": "Organization", "@id": {{ org_id | json }}, "name": {{ shop.name | json }}, "url": {{ shop.url | json }} },
+    "author": {% render 'author-person-schema' %},
     "publisher": { "@id": {{ org_id | json }} },
     "isPartOf": { "@type": "Blog", "name": {{ blog.title | json }}, "url": {{ request.origin | append: blog.url | json }} }
   }

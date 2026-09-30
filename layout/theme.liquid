@@ -327,6 +327,9 @@
       }
     </script>
       {%- if request.page_type == 'article' -%}{% render 'article-schema', article: article, blog: blog %}{%- endif -%}
+    {%- if request.page_type == 'page' and page.handle == 'pietro-salonna' -%}
+      <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","url":{{ request.origin | append: page.url | json }},"mainEntity":{% render 'author-person-schema' %}}</script>
+    {%- endif -%}
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

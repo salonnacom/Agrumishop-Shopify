@@ -143,14 +143,34 @@
       ],
       "disabled": true,
       "settings": {}
+    },
+    "author_byline": {
+      "type": "article-author",
+      "settings": {
+        "style": "byline",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 8
+      }
+    },
+    "author_box": {
+      "type": "article-author",
+      "settings": {
+        "style": "box",
+        "color_scheme": "",
+        "padding_top": 8,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
     "rich_text_4x8XdN",
+    "author_byline",
     "image_banner_3hwRyk",
     "rich_text_ncQKT7",
     "article_product_cta",
     "rich_text_KcPwyN",
+    "author_box",
     "main"
   ]
 }

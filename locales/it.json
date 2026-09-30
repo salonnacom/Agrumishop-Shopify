@@ -84,6 +84,17 @@
     "complementary_products": "Prodotti complementari"
   },
   "blogs": {
+    "author": {
+      "name": "Pietro Salonna",
+      "role": "Perito agrario",
+      "by": "di",
+      "updated": "Aggiornato il",
+      "company": "Azienda Agricola Salonna",
+      "box_heading": "Chi ha scritto questa guida",
+      "box_heading_recipe": "Chi ha scritto questa ricetta",
+      "bio": "Pietro Salonna è perito agrario e scrive le guide di AgrumiShop. È figlio di Andrea Salonna, agricoltore e titolare dell'Azienda Agricola Salonna, che coltiva agrumi a Corigliano-Rossano, nella Piana di Sibari (Calabria): un'azienda a conduzione familiare che lavora la terra da tre generazioni.",
+      "more": "Scopri di più su Pietro"
+    },
     "article": {
       "blog": "Blog",
       "read_more_title": "Leggi di più: {{ title }}",
