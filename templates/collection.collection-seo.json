@@ -115,14 +115,34 @@
             "row_content": "<p><a href=\"/pages/contact\" title=\"Contatti\">Scrivici</a> inviando una foto e il peso dei frutti danneggiati: ti rimborsiamo i kg rovinati oppure, se preferisci, creiamo un buono da usare nel prossimo ordine.</p>",
             "page": ""
           }
+        },
+        "faq_08": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Quali sono i tipi di arance calabresi?",
+            "icon": "none",
+            "row_content": "<p>In Calabria si coltivano soprattutto arance bionde come le <strong>Navel</strong> (Navelina e Washington Navel), le <strong>Valencia</strong> tardive e le arance \"di San Giuseppe\" della zona di Reggio Calabria (Belladonna e Biondo tardivo), oltre a varietà pigmentate come il <strong>Tarocco</strong>. Nei nostri agrumeti della Piana di Sibari coltiviamo le <a href=\"/products/arance-navel-calabria\" title=\"Arance Navel di Calabria\">arance Navel</a> e le <a href=\"/products/arance-vaniglia\" title=\"Arance Vaniglia di Calabria\">arance Vaniglia</a>. Per i periodi di raccolta di tutti gli agrumi guarda il nostro <a href=\"/blogs/news/calendario-agrumi-calabria\" title=\"Calendario degli agrumi di Calabria\">calendario degli agrumi</a>.</p>",
+            "page": ""
+          }
+        },
+        "faq_09": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Quanto costano le arance calabresi?",
+            "icon": "none",
+            "row_content": "<p>Il prezzo dipende dalla varietà e dal formato della cassetta: trovi prezzi e prezzo al kg aggiornati nella tabella qui sopra. Il costo della spedizione è sempre incluso, quindi il prezzo che vedi è quello che paghi.</p>",
+            "page": ""
+          }
         }
       },
       "block_order": [
         "faq_01",
+        "faq_08",
         "faq_02",
         "faq_03",
         "faq_04",
         "faq_05",
+        "faq_09",
         "faq_06",
         "faq_07"
       ],
@@ -141,11 +161,24 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "prezzi": {
+      "type": "collection-prices",
+      "settings": {
+        "heading": "Prezzi delle arance calabresi",
+        "heading_en": "Calabrian orange prices",
+        "note": "<p>Prezzi per cassetta, <strong>spedizione inclusa</strong> in tutta Italia. Le arance sono disponibili da fine novembre ad aprile, secondo la varietà: quando una cassetta è fuori stagione puoi chiedere nella scheda di essere avvisato alla riapertura degli ordini.</p>",
+        "note_en": "<p>Prices per box, <strong>shipping included</strong> anywhere in Italy. Oranges are available from late November to April, depending on the variety: when a box is out of season you can ask to be notified on the product page as soon as orders reopen.</p>",
+        "color_scheme": "background-1",
+        "padding_top": 12,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "banner",
     "product-grid",
+    "prezzi",
     "d4ce8b28-52c2-4aa7-9358-74a9d9a65acc",
     "faq_collezione"
   ]
