@@ -11,7 +11,7 @@
     {%- for variant in product.variants -%}
       {%- assign variant_title = variant.title | downcase -%}
       {%- unless variant_title contains 'kg' -%}{%- continue -%}{%- endunless -%}
-      {%- assign kg = variant_title | remove: 'kg' | strip | replace: ',', '.' | plus: 0 -%}
+      {%- assign kg = variant_title | remove: 'kg' | remove: 'box' | remove: 'da ' | strip | replace: ',', '.' | plus: 0 -%}
       {%- if kg <= 0 -%}{%- continue -%}{%- endif -%}
       {%- assign rows = rows | plus: 1 -%}
       {%- assign price_per_kg = variant.price | times: 1.0 | divided_by: kg | round -%}
