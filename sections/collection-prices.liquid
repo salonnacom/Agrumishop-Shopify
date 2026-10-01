@@ -39,8 +39,9 @@
     }
     .collection-prices { max-width: 78rem; margin: 0 auto; }
     .collection-prices .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 2rem 0 1rem; }
-    .collection-prices table { width: 100%; border-collapse: collapse; font-size: 1.5rem; }
-    .collection-prices th, .collection-prices td { border: 1px solid rgba(var(--color-foreground), 0.15); padding: 0.8rem 1rem; text-align: left; white-space: nowrap; }
+    .collection-prices table { width: 100%; border-collapse: collapse; table-layout: auto; font-size: 1.5rem; }
+    .collection-prices th, .collection-prices td { border: 1px solid rgba(var(--color-foreground), 0.15); padding: 0.8rem 1rem; text-align: left; vertical-align: middle; white-space: nowrap; }
+    .collection-prices td:first-child { white-space: normal; min-width: 18rem; }
     .collection-prices thead th { background: rgba(var(--color-foreground), 0.05); }
   {%- endstyle -%}
   <div class="color-{{ section.settings.color_scheme }} gradient">
