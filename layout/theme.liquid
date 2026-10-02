@@ -22,15 +22,8 @@
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
-    {%- liquid
-      # Home IT: meta description dal locale (la descrizione del negozio nelle Preferenze non è modificabile via API)
-      assign meta_description = page_description
-      if request.page_type == 'index' and request.locale.iso_code == 'it'
-        assign meta_description = 'general.meta.home_description' | t
-      endif
-    -%}
-    {% if meta_description %}
-      <meta name="description" content="{{ meta_description | escape }}">
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
     {% render 'meta-tags' %}

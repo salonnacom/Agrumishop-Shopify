@@ -3,9 +3,6 @@
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
   assign og_description = page_description | default: shop.description | default: shop.name
-  if request.page_type == 'index' and request.locale.iso_code == 'it'
-    assign og_description = 'general.meta.home_description' | t
-  endif
 
   if request.page_type == 'product'
     assign og_type = 'product'
