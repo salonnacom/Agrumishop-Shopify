@@ -17,7 +17,7 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "@id": {{ article_url | append: '#article' | json }},
-    "mainEntityOfPage": { "@type": "WebPage", "@id": {{ article_url | json }} },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": {{ article_url | json }}, "breadcrumb": { "@id": {{ article_url | append: '#breadcrumb' | json }} } },
     "url": {{ article_url | json }},
     "headline": {{ article.title | json }},
     "description": {{ article_description | json }},

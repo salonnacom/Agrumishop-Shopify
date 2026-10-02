@@ -1,0 +1,137 @@
+{%- comment -%}
+  Breadcrumb visibile + JSON-LD BreadcrumbList (@id: <url canonico>#breadcrumb), generati dagli stessi nodi.
+  Renderizzato da layout/theme.liquid sotto l'header, esclusa la homepage.
+  Nodi intermedi:
+  - prodotti, collezioni, articoli: metafield custom.breadcrumb_collections (list.collection_reference)
+  - pagine: metafield custom.breadcrumb_pages (list.page_reference)
+  - articoli: il blog viene aggiunto in automatico prima dell'articolo
+{%- endcomment -%}
+{%- liquid
+  assign sep = '::BC::'
+  assign bc_names = ''
+  assign bc_urls = ''
+  assign parents = blank
+  assign current_name = ''
+  assign current_url = ''
+
+  case request.page_type
+    when 'product'
+      assign parents = product.metafields.custom.breadcrumb_collections.value
+      assign current_name = product.title
+      assign current_url = product.url
+    when 'collection'
+      assign parents = collection.metafields.custom.breadcrumb_collections.value
+      assign current_name = collection.title
+      assign current_url = collection.url
+    when 'article'
+      assign parents = article.metafields.custom.breadcrumb_collections.value
+      assign current_name = article.title
+      assign current_url = article.url
+    when 'blog'
+      assign current_name = blog.title
+      assign current_url = blog.url
+    when 'page'
+      assign parents = page.metafields.custom.breadcrumb_pages.value
+      assign current_name = page.title
+      assign current_url = page.url
+    when 'search'
+      assign current_name = 'general.search.search' | t
+      assign current_url = routes.search_url
+    when 'list-collections'
+      assign current_name = 'Collezioni'
+      assign current_url = routes.collections_url
+  endcase
+
+  for parent in parents limit: 4
+    if parent.url == current_url or parent.url == blank
+      continue
+    endif
+    assign bc_names = bc_names | append: parent.title | append: sep
+    assign bc_urls = bc_urls | append: parent.url | append: sep
+  endfor
+
+  if request.page_type == 'article'
+    assign bc_names = bc_names | append: blog.title | append: sep
+    assign bc_urls = bc_urls | append: blog.url | append: sep
+  endif
+
+  assign bc_names = bc_names | split: sep
+  assign bc_urls = bc_urls | split: sep
+  assign home_url = request.origin | append: routes.root_url
+-%}
+{%- if current_name != blank -%}
+  <nav class="breadcrumbs page-width" aria-label="Breadcrumb">
+    <ol class="breadcrumbs__list">
+      <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="{{ routes.root_url }}">Home</a></li>
+      {%- for name in bc_names -%}
+        <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="{{ bc_urls[forloop.index0] }}">{{ name | escape }}</a></li>
+      {%- endfor -%}
+      <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">{{ current_name | escape }}</span></li>
+    </ol>
+  </nav>
+
+  {%- unless request.page_type == 'search' -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "@id": {{ request.origin | append: current_url | append: '#breadcrumb' | json }},
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ home_url | json }} },
+          {%- for name in bc_names %}
+          { "@type": "ListItem", "position": {{ forloop.index | plus: 1 }}, "name": {{ name | json }}, "item": {{ request.origin | append: bc_urls[forloop.index0] | json }} },
+          {%- endfor %}
+          { "@type": "ListItem", "position": {{ bc_names.size | plus: 2 }}, "name": {{ current_name | json }}, "item": {{ request.origin | append: current_url | json }} }
+        ]
+      }
+    </script>
+  {%- endunless -%}
+
+  <style>
+    .breadcrumbs {
+      padding-top: 1.2rem;
+      padding-bottom: 1.2rem;
+      font-size: 1.3rem;
+      line-height: 1.4;
+      color: rgba(var(--color-foreground), 0.75);
+    }
+    .breadcrumbs__list {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      white-space: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+    }
+    .breadcrumbs__list::-webkit-scrollbar {
+      display: none;
+    }
+    .breadcrumbs__item {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+    }
+    .breadcrumbs__item + .breadcrumbs__item::before {
+      content: '›';
+      margin: 0 0.8rem;
+      opacity: 0.6;
+    }
+    .breadcrumbs__link {
+      color: inherit;
+      text-decoration: none;
+    }
+    .breadcrumbs__link:hover {
+      color: rgb(var(--color-foreground));
+      text-decoration: underline;
+      text-underline-offset: 0.3rem;
+    }
+    .breadcrumbs__current {
+      color: rgb(var(--color-foreground));
+    }
+  </style>
+{%- endif -%}

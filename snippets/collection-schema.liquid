@@ -1,4 +1,4 @@
-{%- comment -%} JSON-LD CollectionPage (con ItemList dei prodotti) + BreadcrumbList per le collezioni. Renderizzato da layout/theme.liquid. {%- endcomment -%}
+{%- comment -%} JSON-LD CollectionPage (con ItemList dei prodotti) per le collezioni (la BreadcrumbList è in snippets/breadcrumbs.liquid). Renderizzato da layout/theme.liquid. {%- endcomment -%}
 {%- liquid
   assign org_id = shop.url | append: '/#organization'
   assign collection_url = request.origin | append: collection.url
@@ -41,14 +41,6 @@
             {%- endfor %}
           ]
         }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": {{ collection_url | append: '#breadcrumb' | json }},
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": {{ shop.name | json }}, "item": {{ home_url | json }} },
-          { "@type": "ListItem", "position": 2, "name": {{ collection_name | json }}, "item": {{ collection_url | json }} }
-        ]
       }
     ]
   }
