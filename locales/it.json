@@ -64,7 +64,12 @@
       "next_slide": "Scorri verso destra",
       "previous_slide": "Scorri verso sinistra",
       "name": "Cursore"
-    }
+    },
+    "breadcrumbs": {
+      "home": "Home",
+      "collections": "Collezioni"
+    },
+    "organization_description": "Azienda Agricola Salonna: produttore di agrumi a Corigliano-Rossano, nella Piana di Sibari (Calabria). Coltiviamo e vendiamo online, direttamente dal produttore, clementine senza semi, arance Navel e Vaniglia, limoni e pompelmi."
   },
   "newsletter": {
     "label": "Indirizzo email",
@@ -413,6 +418,15 @@
       "min_error": "Questo articolo ha un minimo di {{ min }}",
       "max_error": "Questo articolo ha un massimo di {{ max }}",
       "step_error": "Puoi aggiungere questo articolo solo in incrementi di {{ step }}"
+    },
+    "collection_prices": {
+      "product": "Prodotto",
+      "box": "Cassetta",
+      "price": "Prezzo",
+      "price_per_kg": "Prezzo al kg",
+      "availability": "Disponibilità",
+      "available": "Disponibile",
+      "out_of_season": "Fuori stagione"
     }
   },
   "localization": {

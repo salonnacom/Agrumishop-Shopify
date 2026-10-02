@@ -1,4 +1,4 @@
-{%- comment -%} Tabella prezzi della collezione (formato, prezzo, prezzo al kg) calcolata dalle varianti "N Kg": resta aggiornata quando cambiano i prezzi. Testi IT/EN in base alla lingua. {%- endcomment -%}
+{%- comment -%} Tabella prezzi della collezione (formato, prezzo, prezzo al kg) calcolata dalle varianti "N Kg": resta aggiornata quando cambiano i prezzi. Etichette dai file di lingua; titolo e testo dalle impostazioni (EN da heading_en/text_en, le altre lingue dalle traduzioni). {%- endcomment -%}
 {%- liquid
   assign en = false
   if request.locale.iso_code == 'en'
@@ -20,7 +20,7 @@
         <td>{{ variant.title | escape }}</td>
         <td>{{ variant.price | money }}</td>
         <td>{{ price_per_kg | money }}/kg</td>
-        <td>{% if variant.available %}{% if en %}Available{% else %}Disponibile{% endif %}{% else %}{% if en %}Out of season{% else %}Fuori stagione{% endif %}{% endif %}</td>
+        <td>{% if variant.available %}{{ 'sections.collection_prices.available' | t }}{% else %}{{ 'sections.collection_prices.out_of_season' | t }}{% endif %}</td>
       </tr>
     {%- endfor -%}
   {%- endfor -%}
@@ -52,11 +52,7 @@
           <table>
             <thead>
               <tr>
-                {%- if en -%}
-                  <th>Product</th><th>Box</th><th>Price</th><th>Price per kg</th><th>Availability</th>
-                {%- else -%}
-                  <th>Prodotto</th><th>Cassetta</th><th>Prezzo</th><th>Prezzo al kg</th><th>Disponibilità</th>
-                {%- endif -%}
+                <th>{{ 'sections.collection_prices.product' | t }}</th><th>{{ 'sections.collection_prices.box' | t }}</th><th>{{ 'sections.collection_prices.price' | t }}</th><th>{{ 'sections.collection_prices.price_per_kg' | t }}</th><th>{{ 'sections.collection_prices.availability' | t }}</th>
               </tr>
             </thead>
             <tbody>

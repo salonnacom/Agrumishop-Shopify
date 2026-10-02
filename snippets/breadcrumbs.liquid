@@ -38,7 +38,7 @@
       assign current_name = 'general.search.search' | t
       assign current_url = routes.search_url
     when 'list-collections'
-      assign current_name = 'Collezioni'
+      assign current_name = 'general.breadcrumbs.collections' | t
       assign current_url = routes.collections_url
   endcase
 
@@ -62,7 +62,7 @@
 {%- if current_name != blank -%}
   <nav class="breadcrumbs page-width" aria-label="Breadcrumb">
     <ol class="breadcrumbs__list">
-      <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="{{ routes.root_url }}">Home</a></li>
+      <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t }}</a></li>
       {%- for name in bc_names -%}
         <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="{{ bc_urls[forloop.index0] }}">{{ name | escape }}</a></li>
       {%- endfor -%}
@@ -77,7 +77,7 @@
         "@type": "BreadcrumbList",
         "@id": {{ request.origin | append: current_url | append: '#breadcrumb' | json }},
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ home_url | json }} },
+          { "@type": "ListItem", "position": 1, "name": {{ 'general.breadcrumbs.home' | t | json }}, "item": {{ home_url | json }} },
           {%- for name in bc_names %}
           { "@type": "ListItem", "position": {{ forloop.index | plus: 1 }}, "name": {{ name | json }}, "item": {{ request.origin | append: bc_urls[forloop.index0] | json }} },
           {%- endfor %}

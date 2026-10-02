@@ -55,7 +55,12 @@
       "next_slide": "Nach rechts schieben",
       "previous_slide": "Nach links schieben",
       "name": "Slider"
-    }
+    },
+    "breadcrumbs": {
+      "home": "Startseite",
+      "collections": "Sortiment"
+    },
+    "organization_description": "Azienda Agricola Salonna: Familienbetrieb für Zitrusfrüchte in Corigliano-Rossano in der Ebene von Sibari (Kalabrien, Italien). Wir bauen kernlose Clementinen, Navel- und Vaniglia-Orangen, Zitronen und Grapefruits an und verkaufen sie online direkt vom Erzeuger."
   },
   "newsletter": {
     "label": "E-Mail",
@@ -86,7 +91,8 @@
       "read_more_title": "Weiterlesen: {{ title }}",
       "comments": {
         "one": "{{ count }} Kommentar",
-        "other": "{{ count }} Kommentare"
+        "other": "{{ count }} Kommentare",
+        "many": "{{ count }} Kommentare"
       },
       "moderated": "Bitte beachte, dass Kommentare vor der Veröffentlichung freigegeben werden müssen.",
       "comment_form_title": "Hinterlasse einen Kommentar",
@@ -98,6 +104,17 @@
       "share": "Diesen Artikel teilen",
       "success": "Dein Kommentar wurde erfolgreich gepostet! Vielen Dank!",
       "success_moderated": "Dein Kommentar wurde erfolgreich gepostet. Da unser Blog moderiert wird, werden wir ihn erst kurze Zeit später veröffentlichen."
+    },
+    "author": {
+      "name": "Pietro Salonna",
+      "role": "Agrartechniker",
+      "by": "von",
+      "updated": "Aktualisiert am",
+      "company": "Azienda Agricola Salonna",
+      "box_heading": "Über den Autor",
+      "box_heading_recipe": "Über den Autor",
+      "bio": "Pietro Salonna ist Agrartechniker (perito agrario) und schreibt die Ratgeber von AgrumiShop. Er ist der Sohn von Andrea Salonna, Landwirt und Inhaber der Azienda Agricola Salonna, die in Corigliano-Rossano in der Ebene von Sibari (Kalabrien) Zitrusfrüchte anbaut: ein Familienbetrieb, der das Land seit drei Generationen bewirtschaftet.",
+      "more": "Mehr über Pietro"
     }
   },
   "onboarding": {
@@ -194,16 +211,19 @@
       "filter_button": "Filter",
       "filters_selected": {
         "one": "{{ count }} ausgewählt",
-        "other": "{{ count }} ausgewählt"
+        "other": "{{ count }} ausgewählt",
+        "many": "{{ count }} ausgewählt"
       },
       "max_price": "Der höchste Preis ist {{ price }}",
       "product_count": {
         "one": "{{ product_count }} von {{ count }} Produkt",
-        "other": "{{ product_count }} von {{ count }} Produkten"
+        "other": "{{ product_count }} von {{ count }} Produkten",
+        "many": "{{ product_count }} von {{ count }} Produkten"
       },
       "product_count_simple": {
         "one": "{{ count }} Produkt",
-        "other": "{{ count }} Produkte"
+        "other": "{{ count }} Produkte",
+        "many": "{{ count }} Produkte"
       },
       "reset": "Zurücksetzen",
       "sort_button": "Sortieren",
@@ -221,7 +241,8 @@
       "no_results": "Keine Ergebnisse gefunden für \"{{ terms }}\". Überprüfe die Schreibweise oder versuche es mit einer anderen Suchanfrage.",
       "results_with_count": {
         "one": "{{ count }} Ergebnis",
-        "other": "{{ count }} Ergebnisse"
+        "other": "{{ count }} Ergebnisse",
+        "many": "{{ count }} Ergebnisse"
       },
       "title": "Suchergebnisse",
       "page": "Seite",
@@ -229,19 +250,23 @@
       "search_for": "Nach \"{{ terms }}\" suchen",
       "results_with_count_and_term": {
         "one": "{{ count }} Ergebnis für \"{{ terms }}\" gefunden",
-        "other": "{{ count }} Ergebnisse für \"{{ terms }}\" gefunden"
+        "other": "{{ count }} Ergebnisse für \"{{ terms }}\" gefunden",
+        "many": "{{ count }} Ergebnisse für „{{ terms }}“"
       },
       "results_pages_with_count": {
         "one": "{{ count }} Seite",
-        "other": "{{ count }} Seiten"
+        "other": "{{ count }} Seiten",
+        "many": "{{ count }} Seiten"
       },
       "results_suggestions_with_count": {
         "one": "{{ count }} Vorschlag",
-        "other": "{{ count }} Vorschläge"
+        "other": "{{ count }} Vorschläge",
+        "many": "{{ count }} Vorschläge"
       },
       "results_products_with_count": {
         "one": "{{ count }} Produkt",
-        "other": "{{ count }} Produkte"
+        "other": "{{ count }} Produkte",
+        "many": "{{ count }} Produkte"
       },
       "suggestions": "Vorschläge",
       "pages": "Seiten"
@@ -258,7 +283,8 @@
         "send": "Senden",
         "post_success": "Danke, dass du uns kontaktiert hast. Wir werden uns so schnell wie möglich bei dir melden.",
         "error_heading": "Bitte passe Folgendes an:",
-        "title": "Kontaktformular"
+        "title": "Kontaktformular",
+        "lastname": "Nachname"
       }
     },
     "404": {
@@ -272,7 +298,8 @@
       "menu": "Menü",
       "cart_count": {
         "one": "{{ count }} Artikel",
-        "other": "{{ count }} Artikel"
+        "other": "{{ count }} Artikel",
+        "many": "{{ count }} Artikel"
       }
     },
     "cart": {
@@ -307,7 +334,12 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Inkl. Zollgebühren. Steuern, Rabatte und <a href=\"{{ link }}\">Versand</a> werden beim Checkout berechnet.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Inkl. Zollgebühren. Steuern, Rabatte und Versand werden beim Checkout berechnet.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Steuern, Rabatte und <a href=\"{{ link }}\">Versand</a> werden beim Checkout berechnet.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Steuern, Rabatte und Versand werden beim Checkout berechnet."
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Steuern, Rabatte und Versand werden beim Checkout berechnet.",
+      "subtotal": "Zwischensumme",
+      "new_subtotal": "Neue Zwischensumme",
+      "taxes_included_but_shipping_at_checkout": "",
+      "taxes_included_and_shipping_policy_html": "",
+      "taxes_and_shipping_at_checkout": ""
     },
     "footer": {
       "payment": "Zahlungsmethoden"
@@ -360,11 +392,13 @@
       "variant_total": "Varianten insgesamt",
       "items_added": {
         "one": "{{ quantity }} Artikel hinzugefügt",
-        "other": "{{ quantity }} Artikel hinzugefügt"
+        "other": "{{ quantity }} Artikel hinzugefügt",
+        "many": "{{ quantity }} Artikel hinzugefügt"
       },
       "items_removed": {
         "one": "{{ quantity }} Artikel entfernt",
-        "other": "{{ quantity }} Artikel entfernt"
+        "other": "{{ quantity }} Artikel entfernt",
+        "many": "{{ quantity }} Artikel entfernt"
       },
       "product_variants": "Produktvarianten",
       "total_items": "Artikel gesamt",
@@ -375,6 +409,15 @@
       "min_error": "Dieser Artikel hat ein Minimum von {{ min }}",
       "max_error": "Dieser Artikel hat ein Maximum von {{ max }}",
       "step_error": "Du kannst diesen Artikel nur in Abstufungen von {{ step }} hinzufügen."
+    },
+    "collection_prices": {
+      "product": "Produkt",
+      "box": "Kiste",
+      "price": "Preis",
+      "price_per_kg": "Preis pro kg",
+      "availability": "Verfügbarkeit",
+      "available": "Verfügbar",
+      "out_of_season": "Außerhalb der Saison"
     }
   },
   "localization": {
@@ -527,6 +570,28 @@
       "send_on_label": "Senden am (optional)",
       "expanded": "Formular für den Empfänger des Gutscheins erweitert",
       "collapsed": "Formular für den Empfänger des Gutscheins minimiert"
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "online_store_chat": {
+        "title": "Haben Sie Fragen? Chatten Sie mit uns"
+      },
+      "payment_gateway": {
+        "bank_deposit_label": "Banküberweisung"
+      }
+    },
+    "links": {
+      "powered_by_shopify": "- Umgesetzt von <a href=\"https://www.salonna.com\">Salonna.com</a>"
+    }
+  },
+  "customer_accounts": {
+    "order_details": {
+      "payment": {
+        "payment_type": {
+          "bank_deposit": "Banküberweisung"
+        }
+      }
     }
   }
 }

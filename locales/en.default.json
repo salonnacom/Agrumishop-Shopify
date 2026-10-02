@@ -64,7 +64,12 @@
       "next_slide": "Slide right",
       "previous_slide": "Slide left",
       "name": "Slider"
-    }
+    },
+    "breadcrumbs": {
+      "home": "Home",
+      "collections": "Collections"
+    },
+    "organization_description": "Azienda Agricola Salonna: a citrus grower in Corigliano-Rossano, in the Sibari plain (Calabria, Italy). We grow and sell online, direct from the farm, seedless clementines, Navel and Vaniglia oranges, lemons and grapefruits."
   },
   "newsletter": {
     "label": "E-Mail",
@@ -413,6 +418,15 @@
       "min_error": "This item has a minimum of {{ min }}",
       "max_error": "This item has a maximum of {{ max }}",
       "step_error": "You can only add this item in increments of {{ step }}"
+    },
+    "collection_prices": {
+      "product": "Product",
+      "box": "Box",
+      "price": "Price",
+      "price_per_kg": "Price per kg",
+      "availability": "Availability",
+      "available": "Available",
+      "out_of_season": "Out of season"
     }
   },
   "localization": {

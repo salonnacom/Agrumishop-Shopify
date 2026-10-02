@@ -428,11 +428,7 @@
 
 {%- liquid
   assign org_id = shop.url | append: '/#organization'
-  if request.locale.iso_code == 'it'
-    assign org_description = 'Azienda Agricola Salonna: produttore di agrumi a Corigliano-Rossano, nella Piana di Sibari (Calabria). Coltiviamo e vendiamo online, direttamente dal produttore, clementine senza semi, arance Navel e Vaniglia, limoni e pompelmi.'
-  else
-    assign org_description = 'Azienda Agricola Salonna: a citrus grower in Corigliano-Rossano, in the Sibari plain (Calabria, Italy). We grow and sell online, direct from the farm, seedless clementines, Navel and Vaniglia oranges, lemons and grapefruits.'
-  endif
+  assign org_description = 'general.organization_description' | t
 -%}
 <script type="application/ld+json">
   {
