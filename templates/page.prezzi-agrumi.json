@@ -26,7 +26,7 @@
           "settings": {
             "heading": "Come calcoliamo il prezzo medio?",
             "icon": "none",
-            "row_content": "<p>Ogni settimana rileviamo i prezzi di un paniere fisso di prodotti venduti online da aziende agricole e negozi specializzati italiani. Consideriamo solo agrumi di origine italiana, di categoria I e da tavola, in cassette da 8 a 18 kg. Per ogni prodotto calcoliamo il prezzo al kg <strong>con la spedizione verso l'Italia inclusa</strong>, poi facciamo la media. Pubblichiamo la media solo quando almeno 3 negozi hanno il prodotto disponibile.</p>",
+            "row_content": "<p>Ogni settimana rileviamo i prezzi di un paniere fisso di prodotti venduti online da aziende agricole e negozi specializzati italiani. Consideriamo solo agrumi di origine italiana, di categoria I e da tavola, in cassette da 8 a 18 kg. Per ogni prodotto calcoliamo il prezzo al kg <strong>con la spedizione verso l'Italia inclusa</strong>, poi facciamo la media. Pubblichiamo la media solo quando abbastanza negozi hanno il prodotto disponibile.</p>",
             "page": ""
           }
         },
@@ -53,7 +53,7 @@
           "settings": {
             "heading": "Quali negozi fanno parte del paniere?",
             "icon": "none",
-            "row_content": "<p>Otto negozi online di aziende agricole e marketplace di agrumi di Sicilia e Calabria, scelti tra quelli che compaiono più spesso nei risultati di ricerca e che pubblicano prezzi, formati e costi di spedizione. AgrumiShop non fa parte del paniere: la pagina mostra il prezzo del mercato, non il nostro.</p>",
+            "row_content": "<p>Negozi online di aziende agricole e marketplace di agrumi di Sicilia e Calabria, scelti tra quelli che compaiono più spesso nei risultati di ricerca e che pubblicano prezzi, formati e costi di spedizione. AgrumiShop non fa parte del paniere: la pagina mostra il prezzo del mercato, non il nostro.</p>",
             "page": ""
           }
         },

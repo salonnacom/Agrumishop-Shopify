@@ -423,7 +423,7 @@
       "subtitle": "Media settimanale dei prezzi degli agrumi italiani venduti online dai produttori: al kg, con la spedizione inclusa.",
       "average_label": "Prezzo medio online, al kg con spedizione",
       "vs_previous": "Rispetto alla rilevazione precedente",
-      "range": "Da {{ min }} a {{ max }} al kg · {{ n }} negozi",
+      "range": "Da {{ min }} a {{ max }} al kg",
       "bio_average": "Bio: {{ price }}/kg in media",
       "bio_missing": "Bio: prezzi non ancora sufficienti",
       "chart_label": "Andamento del prezzo medio di {{ name }}",

@@ -1,5 +1,5 @@
 {%- comment -%}
-  Ultimo prezzo medio di un agrume (sezione citrus-prices): media al kg, variazione rispetto alla rilevazione precedente, min–max e numero di negozi.
+  Ultimo prezzo medio di un agrume (sezione citrus-prices): media al kg, variazione rispetto alla rilevazione precedente, min–max.
   Accetta: c (voce di data.citrus con almeno un punto in c.conv)
 {%- endcomment -%}
 {%- liquid
@@ -30,4 +30,4 @@
     </span>
   {%- endif -%}
 </p>
-<p class="cp__meta">{{ 'sections.citrus_prices.range' | t: min: min_s, max: max_s, n: last.n }}</p>
+<p class="cp__meta">{{ 'sections.citrus_prices.range' | t: min: min_s, max: max_s }}</p>

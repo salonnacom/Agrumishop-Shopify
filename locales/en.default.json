@@ -423,7 +423,7 @@
       "subtitle": "Weekly average price of Italian citrus fruit sold online by growers: per kg, shipping included.",
       "average_label": "Average online price, per kg incl. shipping",
       "vs_previous": "Compared with the previous survey",
-      "range": "From {{ min }} to {{ max }} per kg · {{ n }} shops",
+      "range": "From {{ min }} to {{ max }} per kg",
       "bio_average": "Organic: {{ price }}/kg on average",
       "bio_missing": "Organic: not enough prices yet",
       "chart_label": "Average price trend of {{ name }}",

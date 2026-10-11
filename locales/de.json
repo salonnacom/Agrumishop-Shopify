@@ -414,7 +414,7 @@
       "subtitle": "Wöchentlicher Durchschnittspreis italienischer Zitrusfrüchte, die Erzeuger online verkaufen: pro kg, inklusive Versand.",
       "average_label": "Durchschnittlicher Onlinepreis pro kg inkl. Versand",
       "vs_previous": "Im Vergleich zur vorherigen Erhebung",
-      "range": "Von {{ min }} bis {{ max }} pro kg · {{ n }} Shops",
+      "range": "Von {{ min }} bis {{ max }} pro kg",
       "bio_average": "Bio: durchschnittlich {{ price }}/kg",
       "bio_missing": "Bio: noch zu wenige Preise",
       "chart_label": "Preisentwicklung {{ name }}",
