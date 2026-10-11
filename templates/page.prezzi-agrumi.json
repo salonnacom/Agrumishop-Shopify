@@ -1,0 +1,109 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 0
+      }
+    },
+    "citrus_prices": {
+      "type": "citrus-prices",
+      "settings": {
+        "style": "full",
+        "heading": "",
+        "link": "",
+        "color_scheme": "background-1",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "faq_metodo": {
+      "type": "collapsible-content",
+      "blocks": {
+        "faq_01": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Come calcoliamo il prezzo medio?",
+            "icon": "none",
+            "row_content": "<p>Ogni settimana rileviamo i prezzi di un paniere fisso di prodotti venduti online da aziende agricole e negozi specializzati italiani. Consideriamo solo agrumi di origine italiana, di categoria I e da tavola, in cassette da 8 a 18 kg. Per ogni prodotto calcoliamo il prezzo al kg <strong>con la spedizione verso l'Italia inclusa</strong>, poi facciamo la media. Pubblichiamo la media solo quando almeno 3 negozi hanno il prodotto disponibile.</p>",
+            "page": ""
+          }
+        },
+        "faq_02": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Perché il prezzo include la spedizione?",
+            "icon": "none",
+            "row_content": "<p>Perché è quello che spende davvero chi ordina online. Alcuni negozi includono la spedizione nel prezzo, altri la aggiungono al carrello: senza contarla i prezzi non sarebbero confrontabili.</p>",
+            "page": ""
+          }
+        },
+        "faq_03": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Perché gli agrumi bio sono indicati a parte?",
+            "icon": "none",
+            "row_content": "<p>Gli agrumi biologici certificati costano in genere di più: metterli nella stessa media alzerebbe il prezzo e renderebbe il dato meno utile. Per questo li mostriamo con una media separata, quando ci sono abbastanza prezzi.</p>",
+            "page": ""
+          }
+        },
+        "faq_04": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Quali negozi fanno parte del paniere?",
+            "icon": "none",
+            "row_content": "<p>Otto negozi online di aziende agricole e marketplace di agrumi di Sicilia e Calabria, scelti tra quelli che compaiono più spesso nei risultati di ricerca e che pubblicano prezzi, formati e costi di spedizione. AgrumiShop non fa parte del paniere: la pagina mostra il prezzo del mercato, non il nostro.</p>",
+            "page": ""
+          }
+        },
+        "faq_05": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Perché al supermercato il prezzo è diverso?",
+            "icon": "none",
+            "row_content": "<p>Al supermercato si comprano confezioni da 1–3 kg senza spedizione e, fuori stagione, spesso agrumi di origine estera. Online dal produttore si acquistano cassette più grandi, raccolte su ordine e consegnate a casa: sono due acquisti diversi, per questo non li mescoliamo.</p>",
+            "page": ""
+          }
+        },
+        "faq_06": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Ogni quanto vengono aggiornati i prezzi?",
+            "icon": "none",
+            "row_content": "<p>Una volta a settimana, durante la stagione degli agrumi italiani (da ottobre a maggio). Quando un agrume è fuori stagione o non ci sono abbastanza prezzi, il grafico resta fermo fino alla rilevazione successiva.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_01",
+        "faq_02",
+        "faq_03",
+        "faq_04",
+        "faq_05",
+        "faq_06"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Come funziona la rilevazione",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "background-2",
+        "color_scheme": "background-1",
+        "open_first_collapsible_row": false,
+        "faq_schema": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "citrus_prices",
+    "faq_metodo"
+  ]
+}

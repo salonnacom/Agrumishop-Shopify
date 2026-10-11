@@ -419,6 +419,39 @@
       "max_error": "Questo articolo ha un massimo di {{ max }}",
       "step_error": "Puoi aggiungere questo articolo solo in incrementi di {{ step }}"
     },
+    "citrus_prices": {
+      "subtitle": "Media settimanale dei prezzi degli agrumi italiani venduti online dai produttori: al kg, con la spedizione inclusa.",
+      "average_label": "Prezzo medio online, al kg con spedizione",
+      "vs_previous": "Rispetto alla rilevazione precedente",
+      "range": "Da {{ min }} a {{ max }} al kg · {{ n }} negozi",
+      "bio_average": "Bio: {{ price }}/kg in media",
+      "bio_missing": "Bio: prezzi non ancora sufficienti",
+      "chart_label": "Andamento del prezzo medio di {{ name }}",
+      "legend_conv": "Media (fascia minimo–massimo)",
+      "legend_bio": "Bio",
+      "chart_soon": "Il grafico parte dalla seconda rilevazione settimanale.",
+      "show_data": "Vedi i dati settimana per settimana",
+      "col_week": "Settimana",
+      "col_avg": "Media €/kg",
+      "col_range": "Minimo – massimo",
+      "col_bio": "Bio €/kg",
+      "waiting": "In attesa dei prezzi della nuova stagione.",
+      "updated": "Ultimo aggiornamento: {{ date }}",
+      "see_all": "Andamento e metodo",
+      "dataset_description": "Media settimanale dei prezzi al consumo di arance, clementine, limoni e mandarini italiani venduti online da produttori e negozi specializzati, in euro al kg con spedizione inclusa. Rilevazione AgrumiShop su un paniere fisso di negozi.",
+      "names": {
+        "arance": "Arance",
+        "clementine": "Clementine",
+        "limoni": "Limoni",
+        "mandarini": "Mandarini"
+      },
+      "season": {
+        "arance": "Stagione: da fine novembre ad aprile.",
+        "clementine": "Stagione: da fine ottobre a gennaio.",
+        "limoni": "Stagione: da ottobre ad aprile.",
+        "mandarini": "Stagione: da novembre a febbraio."
+      }
+    },
     "collection_prices": {
       "product": "Prodotto",
       "box": "Cassetta",

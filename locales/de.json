@@ -410,6 +410,39 @@
       "max_error": "Dieser Artikel hat ein Maximum von {{ max }}",
       "step_error": "Du kannst diesen Artikel nur in Abstufungen von {{ step }} hinzufügen."
     },
+    "citrus_prices": {
+      "subtitle": "Wöchentlicher Durchschnittspreis italienischer Zitrusfrüchte, die Erzeuger online verkaufen: pro kg, inklusive Versand.",
+      "average_label": "Durchschnittlicher Onlinepreis pro kg inkl. Versand",
+      "vs_previous": "Im Vergleich zur vorherigen Erhebung",
+      "range": "Von {{ min }} bis {{ max }} pro kg · {{ n }} Shops",
+      "bio_average": "Bio: durchschnittlich {{ price }}/kg",
+      "bio_missing": "Bio: noch zu wenige Preise",
+      "chart_label": "Preisentwicklung {{ name }}",
+      "legend_conv": "Durchschnitt (Spanne min–max)",
+      "legend_bio": "Bio",
+      "chart_soon": "Die Grafik beginnt mit der zweiten wöchentlichen Erhebung.",
+      "show_data": "Daten Woche für Woche anzeigen",
+      "col_week": "Woche",
+      "col_avg": "Durchschnitt €/kg",
+      "col_range": "Min – max",
+      "col_bio": "Bio €/kg",
+      "waiting": "Wir warten auf die Preise der neuen Saison.",
+      "updated": "Zuletzt aktualisiert: {{ date }}",
+      "see_all": "Entwicklung und Methode",
+      "dataset_description": "Wöchentlicher Durchschnittspreis für italienische Orangen, Clementinen, Zitronen und Mandarinen, die online von Erzeugern und Fachhändlern verkauft werden, in Euro pro kg inklusive Versand. Erhebung von AgrumiShop über ein festes Panel von Shops.",
+      "names": {
+        "arance": "Orangen",
+        "clementine": "Clementinen",
+        "limoni": "Zitronen",
+        "mandarini": "Mandarinen"
+      },
+      "season": {
+        "arance": "Saison: Ende November bis April.",
+        "clementine": "Saison: Ende Oktober bis Januar.",
+        "limoni": "Saison: Oktober bis April.",
+        "mandarini": "Saison: November bis Februar."
+      }
+    },
     "collection_prices": {
       "product": "Produkt",
       "box": "Kiste",

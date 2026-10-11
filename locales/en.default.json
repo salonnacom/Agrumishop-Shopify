@@ -419,6 +419,39 @@
       "max_error": "This item has a maximum of {{ max }}",
       "step_error": "You can only add this item in increments of {{ step }}"
     },
+    "citrus_prices": {
+      "subtitle": "Weekly average price of Italian citrus fruit sold online by growers: per kg, shipping included.",
+      "average_label": "Average online price, per kg incl. shipping",
+      "vs_previous": "Compared with the previous survey",
+      "range": "From {{ min }} to {{ max }} per kg · {{ n }} shops",
+      "bio_average": "Organic: {{ price }}/kg on average",
+      "bio_missing": "Organic: not enough prices yet",
+      "chart_label": "Average price trend of {{ name }}",
+      "legend_conv": "Average (min–max range)",
+      "legend_bio": "Organic",
+      "chart_soon": "The chart starts from the second weekly survey.",
+      "show_data": "See the week-by-week data",
+      "col_week": "Week",
+      "col_avg": "Average €/kg",
+      "col_range": "Min – max",
+      "col_bio": "Organic €/kg",
+      "waiting": "Waiting for the new season's prices.",
+      "updated": "Last updated: {{ date }}",
+      "see_all": "Trend and method",
+      "dataset_description": "Weekly average consumer price of Italian oranges, clementines, lemons and mandarins sold online by growers and specialist shops, in euro per kg including shipping. AgrumiShop survey of a fixed panel of shops.",
+      "names": {
+        "arance": "Oranges",
+        "clementine": "Clementines",
+        "limoni": "Lemons",
+        "mandarini": "Mandarins"
+      },
+      "season": {
+        "arance": "Season: late November to April.",
+        "clementine": "Season: late October to January.",
+        "limoni": "Season: October to April.",
+        "mandarini": "Season: November to February."
+      }
+    },
     "collection_prices": {
       "product": "Product",
       "box": "Box",

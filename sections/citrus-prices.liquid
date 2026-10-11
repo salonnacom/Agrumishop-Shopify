@@ -1,0 +1,231 @@
+{%- comment -%}
+  Prezzi di mercato degli agrumi: media settimanale dei prezzi online (al kg, spedizione inclusa) letta dal metafield shop custom.prezzi_agrumi,
+  aggiornato dallo script .claude/prezzi/collect.py. Stile "full" per la pagina dedicata (grafici + tabella dati + schema Dataset), "compact" per la home.
+  Un agrume senza almeno una media valida mostra il messaggio di inizio stagione; il grafico parte dalla seconda rilevazione.
+{%- endcomment -%}
+{%- liquid
+  assign data = shop.metafields.custom.prezzi_agrumi.value
+  assign compact = false
+  if section.settings.style == 'compact'
+    assign compact = true
+  endif
+-%}
+{%- if data -%}
+  {%- style -%}
+    .section-{{ section.id }}-padding { padding-top: calc({{ section.settings.padding_top }}px * 0.75); padding-bottom: calc({{ section.settings.padding_bottom }}px * 0.75); }
+    @media screen and (min-width: 750px) { .section-{{ section.id }}-padding { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; } }
+    .cp { --cp-line: rgb(var(--color-button)); --cp-muted: rgba(var(--color-foreground), 0.65); --cp-border: rgba(var(--color-foreground), 0.12); }
+    .cp__head { max-width: 78rem; margin: 0 auto 2.4rem; text-align: center; }
+    .cp__head h2 { margin: 0 0 0.8rem; }
+    .cp__head p { margin: 0; color: var(--cp-muted); }
+    .cp__grid { display: grid; gap: 1.6rem; grid-template-columns: 1fr; }
+    @media screen and (min-width: 750px) { .cp__grid { grid-template-columns: repeat(2, 1fr); } .cp--compact .cp__grid { grid-template-columns: repeat(4, 1fr); } }
+    .cp--compact .cp__grid { grid-template-columns: repeat(2, 1fr); }
+    .cp__card { border: 1px solid var(--cp-border); border-radius: 1.2rem; padding: 2rem; display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; }
+    .cp--compact .cp__card { padding: 1.4rem; }
+    .cp__name { font-size: 1.8rem; margin: 0; }
+    .cp__label { font-size: 1.3rem; color: var(--cp-muted); margin: 0; }
+    .cp__price { font-size: 3.2rem; font-weight: 700; line-height: 1.1; margin: 0.4rem 0 0; display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap; }
+    .cp--compact .cp__price { font-size: 2.4rem; }
+    .cp__price small { font-size: 1.4rem; font-weight: 400; color: var(--cp-muted); }
+    .cp__trend { font-size: 1.4rem; font-weight: 600; }
+    .cp__trend--up { color: #b3261e; } .cp__trend--down { color: #1b7f3b; } .cp__trend--flat { color: var(--cp-muted); }
+    .cp__meta, .cp__wait { font-size: 1.4rem; color: var(--cp-muted); margin: 0; }
+    .cp__wait { font-style: italic; }
+    .cp__chart { width: 100%; height: auto; margin-top: 0.8rem; overflow: visible; }
+    .cp__chart text { font-size: 9px; fill: var(--cp-muted); }
+    .cp__legend { display: flex; gap: 1.6rem; font-size: 1.3rem; color: var(--cp-muted); margin: 0; flex-wrap: wrap; }
+    .cp__legend span::before { content: ''; display: inline-block; width: 1.6rem; height: 0; border-top: 2px solid var(--cp-line); vertical-align: middle; margin-right: 0.5rem; }
+    .cp__legend .cp__legend-bio::before { border-top-style: dashed; border-color: rgba(var(--color-foreground), 0.55); }
+    .cp__data { margin-top: 0.8rem; font-size: 1.4rem; }
+    .cp__data table { width: 100%; border-collapse: collapse; margin-top: 0.8rem; }
+    .cp__data th, .cp__data td { border-bottom: 1px solid var(--cp-border); padding: 0.4rem 0.6rem; text-align: left; white-space: nowrap; }
+    .cp__foot { text-align: center; margin-top: 2rem; font-size: 1.4rem; color: var(--cp-muted); }
+    .cp__foot a { color: rgb(var(--color-foreground)); }
+  {%- endstyle -%}
+
+  <div class="color-{{ section.settings.color_scheme }} gradient">
+    <div class="page-width section-{{ section.id }}-padding">
+      <div class="cp{% if compact %} cp--compact{% endif %}">
+        {%- if section.settings.heading != blank -%}
+          <div class="cp__head">
+            <h2 class="h2">{{ section.settings.heading | escape }}</h2>
+            <p>{{ 'sections.citrus_prices.subtitle' | t }}</p>
+          </div>
+        {%- endif -%}
+
+        <div class="cp__grid">
+          {%- for c in data.citrus -%}
+            {%- liquid
+              assign name_key = 'sections.citrus_prices.names.' | append: c.key
+              assign season_key = 'sections.citrus_prices.season.' | append: c.key
+              assign pts = c.conv
+              assign n_pts = pts.size
+              assign last = pts.last
+              assign bio_last = c.bio.last
+            -%}
+            <div class="cp__card">
+              <h3 class="cp__name">{{ name_key | t }}</h3>
+              {%- if n_pts > 0 -%}
+                {%- liquid
+                  assign trend = 'flat'
+                  if n_pts > 1
+                    assign prev_index = n_pts | minus: 2
+                    assign prev = pts[prev_index]
+                    assign delta = last.avg | minus: prev.avg
+                    if delta > 0.004
+                      assign trend = 'up'
+                    elsif delta < -0.004
+                      assign trend = 'down'
+                    endif
+                    assign pct = delta | times: 100 | divided_by: prev.avg | round: 1 | abs
+                  endif
+                -%}
+                <p class="cp__label">{{ 'sections.citrus_prices.average_label' | t }}</p>
+                <p class="cp__price">
+                  {{ last.avg | times: 100 | round | money }}<small>/kg</small>
+                  {%- if n_pts > 1 -%}
+                    <span class="cp__trend cp__trend--{{ trend }}" title="{{ 'sections.citrus_prices.vs_previous' | t }}">
+                      {%- case trend -%}{%- when 'up' -%}▲ +{{ pct }}%{%- when 'down' -%}▼ −{{ pct }}%{%- else -%}={%- endcase -%}
+                    </span>
+                  {%- endif -%}
+                </p>
+                {%- assign min_s = last.min | times: 100 | round | money -%}
+                {%- assign max_s = last.max | times: 100 | round | money -%}
+                <p class="cp__meta">{{ 'sections.citrus_prices.range' | t: min: min_s, max: max_s, n: last.n }}</p>
+                {%- unless compact -%}
+                  <p class="cp__meta">
+                    {%- if bio_last -%}{%- assign bio_s = bio_last.avg | times: 100 | round | money -%}{{ 'sections.citrus_prices.bio_average' | t: price: bio_s }}{%- else -%}{{ 'sections.citrus_prices.bio_missing' | t }}{%- endif -%}
+                  </p>
+                  {%- if n_pts > 1 -%}
+                    <svg class="cp__chart" viewBox="0 0 320 130" role="img" aria-label="{{ 'sections.citrus_prices.chart_label' | t: name: c.name }}" data-cp-chart="{{ c.key }}"></svg>
+                    <p class="cp__legend"><span>{{ 'sections.citrus_prices.legend_conv' | t }}</span>{% if c.bio.size > 1 %}<span class="cp__legend-bio">{{ 'sections.citrus_prices.legend_bio' | t }}</span>{% endif %}</p>
+                  {%- else -%}
+                    <p class="cp__wait">{{ 'sections.citrus_prices.chart_soon' | t }}</p>
+                  {%- endif -%}
+                  <details class="cp__data">
+                    <summary>{{ 'sections.citrus_prices.show_data' | t }}</summary>
+                    <table>
+                      <thead><tr><th>{{ 'sections.citrus_prices.col_week' | t }}</th><th>{{ 'sections.citrus_prices.col_avg' | t }}</th><th>{{ 'sections.citrus_prices.col_range' | t }}</th><th>{{ 'sections.citrus_prices.col_bio' | t }}</th></tr></thead>
+                      <tbody>
+                        {%- for p in pts reversed -%}
+                          {%- assign bio_avg = '' -%}
+                          {%- for b in c.bio -%}{%- if b.d == p.d -%}{%- assign bio_avg = b.avg -%}{%- endif -%}{%- endfor -%}
+                          <tr>
+                            <td>{{ p.d | date: '%d/%m/%Y' }}</td>
+                            <td>{{ p.avg | times: 100 | round | money }}</td>
+                            <td>{{ p.min | times: 100 | round | money }} – {{ p.max | times: 100 | round | money }}</td>
+                            <td>{% if bio_avg != '' %}{{ bio_avg | times: 100 | round | money }}{% else %}–{% endif %}</td>
+                          </tr>
+                        {%- endfor -%}
+                      </tbody>
+                    </table>
+                  </details>
+                {%- endunless -%}
+              {%- else -%}
+                <p class="cp__wait">{{ 'sections.citrus_prices.waiting' | t }}</p>
+                <p class="cp__meta">{{ season_key | t }}</p>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <p class="cp__foot">
+          {%- if data.updated -%}{{ 'sections.citrus_prices.updated' | t: date: data.updated | date: '%d/%m/%Y' }}{%- endif -%}
+          {%- if compact and section.settings.link != blank %} · <a href="{{ section.settings.link }}">{{ 'sections.citrus_prices.see_all' | t }}</a>{%- endif -%}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {%- unless compact -%}
+    <script type="application/json" id="cp-data-{{ section.id }}">{{ data | json }}</script>
+    <script>
+      (function () {
+        var raw = document.getElementById('cp-data-{{ section.id }}');
+        if (!raw) return;
+        var data = JSON.parse(raw.textContent), NS = 'http://www.w3.org/2000/svg';
+        function el(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; }
+        function fmt(v) { return v.toFixed(2).replace('.', ',') + ' €'; }
+        function day(d) { var p = d.split('-'); return p[2] + '/' + p[1]; }
+        data.citrus.forEach(function (c) {
+          var svg = document.querySelector('[data-cp-chart="' + c.key + '"]');
+          if (!svg || c.conv.length < 2) return;
+          var W = 320, H = 130, L = 34, R = 8, T = 8, B = 20;
+          var dates = c.conv.map(function (p) { return p.d; });
+          c.bio.forEach(function (p) { if (dates.indexOf(p.d) < 0) dates.push(p.d); });
+          dates.sort();
+          var vals = [];
+          c.conv.forEach(function (p) { vals.push(p.min, p.max); });
+          c.bio.forEach(function (p) { vals.push(p.avg); });
+          var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals), pad = Math.max((hi - lo) * 0.15, 0.1);
+          lo = Math.max(0, lo - pad); hi = hi + pad;
+          var x = function (d) { return L + (W - L - R) * (dates.length < 2 ? 0.5 : dates.indexOf(d) / (dates.length - 1)); };
+          var y = function (v) { return T + (H - T - B) * (1 - (v - lo) / (hi - lo)); };
+          var fg = (getComputedStyle(svg).getPropertyValue('--cp-line') || '').trim() || '#c25e00';
+          [lo + (hi - lo) * 0.1, (lo + hi) / 2, hi - (hi - lo) * 0.1].forEach(function (v) {
+            el('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), stroke: 'currentColor', 'stroke-opacity': 0.1 }, svg);
+            el('text', { x: L - 4, y: y(v) + 3, 'text-anchor': 'end' }, svg).textContent = v.toFixed(2).replace('.', ',');
+          });
+          el('text', { x: x(dates[0]), y: H - 4, 'text-anchor': 'start' }, svg).textContent = day(dates[0]);
+          el('text', { x: x(dates[dates.length - 1]), y: H - 4, 'text-anchor': 'end' }, svg).textContent = day(dates[dates.length - 1]);
+          var band = c.conv.map(function (p) { return x(p.d) + ',' + y(p.max); }).concat(c.conv.slice().reverse().map(function (p) { return x(p.d) + ',' + y(p.min); }));
+          el('polygon', { points: band.join(' '), fill: fg, 'fill-opacity': 0.12 }, svg);
+          el('polyline', { points: c.conv.map(function (p) { return x(p.d) + ',' + y(p.avg); }).join(' '), fill: 'none', stroke: fg, 'stroke-width': 2.2, 'stroke-linejoin': 'round' }, svg);
+          if (c.bio.length > 1) el('polyline', { points: c.bio.map(function (p) { return x(p.d) + ',' + y(p.avg); }).join(' '), fill: 'none', stroke: 'currentColor', 'stroke-opacity': 0.55, 'stroke-width': 1.6, 'stroke-dasharray': '4 3' }, svg);
+          c.conv.forEach(function (p) {
+            var dot = el('circle', { cx: x(p.d), cy: y(p.avg), r: 2.8, fill: fg }, svg);
+            el('title', {}, dot).textContent = day(p.d) + ': ' + fmt(p.avg) + '/kg';
+          });
+        });
+      })();
+    </script>
+    {%- liquid
+      assign first_week = ''
+      for c in data.citrus
+        for p in c.conv
+          if first_week == '' or p.d < first_week
+            assign first_week = p.d
+          endif
+        endfor
+      endfor
+    -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": {{ section.settings.heading | default: page.title | json }},
+        "description": {{ 'sections.citrus_prices.dataset_description' | t | json }},
+        "url": {{ request.origin | append: request.path | json }},
+        "creator": { "@id": {{ shop.url | append: '/#organization' | json }} },
+        "isAccessibleForFree": true,
+        {%- if first_week != '' -%}"temporalCoverage": {{ first_week | append: '/' | append: data.updated | json }},{%- endif -%}
+        "dateModified": {{ data.updated | json }},
+        "spatialCoverage": { "@type": "Place", "name": "Italia" },
+        "variableMeasured": [
+          {%- for c in data.citrus -%}
+            {%- assign name_key = 'sections.citrus_prices.names.' | append: c.key -%}
+            { "@type": "PropertyValue", "name": {{ name_key | t | append: ' – €/kg' | json }}, "unitText": "EUR/kg"{% if c.conv.last %}, "value": {{ c.conv.last.avg }}{% endif %} }{% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        ]
+      }
+    </script>
+  {%- endunless -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Prezzi agrumi",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "select", "id": "style", "label": "Stile", "options": [{ "value": "full", "label": "Pagina completa" }, { "value": "compact", "label": "Riquadro compatto" }], "default": "full" },
+    { "type": "text", "id": "heading", "label": "Titolo", "default": "Prezzo degli agrumi oggi" },
+    { "type": "url", "id": "link", "label": "Link alla pagina (stile compatto)" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "background-1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_top", "default": 36 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_bottom", "default": 36 }
+  ],
+  "presets": [{ "name": "Prezzi agrumi" }]
+}
+{% endschema %}
