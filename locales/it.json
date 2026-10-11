@@ -429,7 +429,7 @@
       "chart_label": "Andamento del prezzo medio di {{ name }}",
       "legend_conv": "Media (fascia minimo–massimo)",
       "legend_bio": "Bio",
-      "chart_soon": "Il grafico parte dalla seconda rilevazione settimanale.",
+      "tabs_label": "Scegli l'agrume",
       "show_data": "Vedi i dati settimana per settimana",
       "col_week": "Settimana",
       "col_avg": "Media €/kg",
@@ -437,7 +437,7 @@
       "col_bio": "Bio €/kg",
       "waiting": "In attesa dei prezzi della nuova stagione.",
       "updated": "Ultimo aggiornamento: {{ date }}",
-      "see_all": "Andamento e metodo",
+      "cta": "Scopri i prezzi",
       "dataset_description": "Media settimanale dei prezzi al consumo di arance, clementine, limoni e mandarini italiani venduti online da produttori e negozi specializzati, in euro al kg con spedizione inclusa. Rilevazione AgrumiShop su un paniere fisso di negozi.",
       "names": {
         "arance": "Arance",

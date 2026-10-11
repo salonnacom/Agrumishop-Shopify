@@ -1,0 +1,33 @@
+{%- comment -%}
+  Ultimo prezzo medio di un agrume (sezione citrus-prices): media al kg, variazione rispetto alla rilevazione precedente, min–max e numero di negozi.
+  Accetta: c (voce di data.citrus con almeno un punto in c.conv)
+{%- endcomment -%}
+{%- liquid
+  assign pts = c.conv
+  assign n_pts = pts.size
+  assign last = pts.last
+  assign trend = 'flat'
+  if n_pts > 1
+    assign prev_index = n_pts | minus: 2
+    assign prev = pts[prev_index]
+    assign delta = last.avg | minus: prev.avg
+    if delta > 0.004
+      assign trend = 'up'
+    elsif delta < -0.004
+      assign trend = 'down'
+    endif
+    assign pct = delta | times: 100 | divided_by: prev.avg | round: 1 | abs
+  endif
+  assign min_s = last.min | times: 100 | round | money
+  assign max_s = last.max | times: 100 | round | money
+-%}
+<p class="cp__label">{{ 'sections.citrus_prices.average_label' | t }}</p>
+<p class="cp__price">
+  {{ last.avg | times: 100 | round | money }}<small>/kg</small>
+  {%- if n_pts > 1 -%}
+    <span class="cp__trend cp__trend--{{ trend }}" title="{{ 'sections.citrus_prices.vs_previous' | t }}">
+      {%- case trend -%}{%- when 'up' -%}▲ +{{ pct }}%{%- when 'down' -%}▼ −{{ pct }}%{%- else -%}={%- endcase -%}
+    </span>
+  {%- endif -%}
+</p>
+<p class="cp__meta">{{ 'sections.citrus_prices.range' | t: min: min_s, max: max_s, n: last.n }}</p>

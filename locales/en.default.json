@@ -429,7 +429,7 @@
       "chart_label": "Average price trend of {{ name }}",
       "legend_conv": "Average (min–max range)",
       "legend_bio": "Organic",
-      "chart_soon": "The chart starts from the second weekly survey.",
+      "tabs_label": "Choose the citrus fruit",
       "show_data": "See the week-by-week data",
       "col_week": "Week",
       "col_avg": "Average €/kg",
@@ -437,7 +437,7 @@
       "col_bio": "Organic €/kg",
       "waiting": "Waiting for the new season's prices.",
       "updated": "Last updated: {{ date }}",
-      "see_all": "Trend and method",
+      "cta": "See prices",
       "dataset_description": "Weekly average consumer price of Italian oranges, clementines, lemons and mandarins sold online by growers and specialist shops, in euro per kg including shipping. AgrumiShop survey of a fixed panel of shops.",
       "names": {
         "arance": "Oranges",
