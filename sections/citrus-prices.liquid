@@ -209,16 +209,17 @@
           var vals = [];
           conv.forEach(function (p) { vals.push(p.min, p.max); });
           bio.forEach(function (p) { vals.push(p.avg); });
-          var lo = 0, hi = 5;
+          var lo = 0, hi = 4, step = 1;
           if (vals.length) {
             lo = Math.min.apply(null, vals); hi = Math.max.apply(null, vals);
-            var pad = Math.max((hi - lo) * 0.2, 0.5);
-            lo = Math.max(0, Math.floor((lo - pad) * 2) / 2); hi = Math.ceil((hi + pad) * 2) / 2;
+            var pad = Math.max((hi - lo) * 0.2, 0.3);
+            lo = Math.max(0, lo - pad); hi = hi + pad;
+            step = [0.25, 0.5, 1, 2, 5].filter(function (s) { return (hi - lo) / s <= 5; })[0] || 5;
+            lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
           }
           var y = function (v) { return T + (H - T - B) * (1 - (v - lo) / (hi - lo)); };
-          var step = (hi - lo) / 4;
 
-          for (var i = 0; i <= 4; i++) {
+          for (var i = 0; i <= Math.round((hi - lo) / step); i++) {
             var v = lo + step * i;
             el('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), stroke: 'currentColor', 'stroke-opacity': i === 0 ? 0.25 : 0.1 }, svg);
             el('text', { x: L - 8, y: y(v) + 4, 'text-anchor': 'end' }, svg).textContent = num(v) + ' €';
