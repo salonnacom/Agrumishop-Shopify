@@ -591,7 +591,6 @@
     },
     "home_prezzi": {
       "type": "citrus-prices",
-      "disabled": true,
       "settings": {
         "style": "compact",
         "heading": "Prezzo degli agrumi oggi",
