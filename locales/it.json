@@ -439,6 +439,11 @@
       "updated": "Ultimo aggiornamento: {{ date }}",
       "cta": "Scopri i prezzi",
       "dataset_description": "Media settimanale dei prezzi al consumo di arance, clementine, limoni e mandarini italiani venduti online da produttori e negozi specializzati, in euro al kg con spedizione inclusa. Rilevazione AgrumiShop su un paniere fisso di negozi.",
+      "variety_line": "{{ name }}: {{ price }}/kg (da {{ min }} a {{ max }})",
+      "varieties": {
+        "tarocco": "Tarocco",
+        "navel": "Navel"
+      },
       "names": {
         "arance": "Arance",
         "clementine": "Clementine",

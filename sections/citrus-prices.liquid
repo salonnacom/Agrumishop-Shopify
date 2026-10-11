@@ -35,6 +35,7 @@
     .cp__price small { font-size: 1.4rem; font-weight: 400; color: var(--cp-muted); }
     .cp__trend { font-size: 1.4rem; font-weight: 600; }
     .cp__trend--up { color: #b3261e; } .cp__trend--down { color: #1b7f3b; } .cp__trend--flat { color: var(--cp-muted); }
+    .cp__variety { font-size: 1.5rem; margin: 0; }
     .cp__meta, .cp__wait { font-size: 1.4rem; color: var(--cp-muted); margin: 0; }
     .cp__wait { font-style: italic; }
     .cp__foot { text-align: center; margin-top: 2rem; font-size: 1.4rem; color: var(--cp-muted); display: flex; flex-direction: column; align-items: center; gap: 1.6rem; }
@@ -109,6 +110,18 @@
                 <h3 class="cp__name">{{ name_key | t }}</h3>
                 {%- if pts.size > 0 -%}
                   {%- render 'citrus-prices-summary', c: c -%}
+                  {%- for v in c.varieties -%}
+                    {%- if v.conv.last and v.conv.last.d == pts.last.d -%}
+                      {%- liquid
+                        assign var_key = 'sections.citrus_prices.varieties.' | append: v.key
+                        assign var_name = var_key | t
+                        assign var_price = v.conv.last.avg | times: 100 | round | money
+                        assign var_min = v.conv.last.min | times: 100 | round | money
+                        assign var_max = v.conv.last.max | times: 100 | round | money
+                      -%}
+                      <p class="cp__variety">{{ 'sections.citrus_prices.variety_line' | t: name: var_name, price: var_price, min: var_min, max: var_max }}</p>
+                    {%- endif -%}
+                  {%- endfor -%}
                   <p class="cp__meta">
                     {%- if bio_last -%}{%- assign bio_s = bio_last.avg | times: 100 | round | money -%}{{ 'sections.citrus_prices.bio_average' | t: price: bio_s }}{%- else -%}{{ 'sections.citrus_prices.bio_missing' | t }}{%- endif -%}
                   </p>
@@ -126,7 +139,7 @@
                 <details class="cp__data">
                   <summary>{{ 'sections.citrus_prices.show_data' | t }}</summary>
                   <table>
-                    <thead><tr><th>{{ 'sections.citrus_prices.col_week' | t }}</th><th>{{ 'sections.citrus_prices.col_avg' | t }}</th><th>{{ 'sections.citrus_prices.col_range' | t }}</th><th>{{ 'sections.citrus_prices.col_bio' | t }}</th></tr></thead>
+                    <thead><tr><th>{{ 'sections.citrus_prices.col_week' | t }}</th><th>{{ 'sections.citrus_prices.col_avg' | t }}</th><th>{{ 'sections.citrus_prices.col_range' | t }}</th>{% for v in c.varieties %}{% assign var_key = 'sections.citrus_prices.varieties.' | append: v.key %}<th>{{ var_key | t }} €/kg</th>{% endfor %}<th>{{ 'sections.citrus_prices.col_bio' | t }}</th></tr></thead>
                     <tbody>
                       {%- for p in pts reversed -%}
                         {%- assign bio_avg = '' -%}
@@ -135,6 +148,11 @@
                           <td>{{ p.d | date: '%d/%m/%Y' }}</td>
                           <td>{{ p.avg | times: 100 | round | money }}</td>
                           <td>{{ p.min | times: 100 | round | money }} – {{ p.max | times: 100 | round | money }}</td>
+                          {%- for v in c.varieties -%}
+                            {%- assign var_avg = '' -%}
+                            {%- for vp in v.conv -%}{%- if vp.d == p.d -%}{%- assign var_avg = vp.avg -%}{%- endif -%}{%- endfor -%}
+                            <td>{% if var_avg != '' %}{{ var_avg | times: 100 | round | money }}{% else %}–{% endif %}</td>
+                          {%- endfor -%}
                           <td>{% if bio_avg != '' %}{{ bio_avg | times: 100 | round | money }}{% else %}–{% endif %}</td>
                         </tr>
                       {%- endfor -%}
@@ -280,7 +298,13 @@
         "variableMeasured": [
           {%- for c in data.citrus -%}
             {%- assign name_key = 'sections.citrus_prices.names.' | append: c.key -%}
-            { "@type": "PropertyValue", "name": {{ name_key | t | append: ' – €/kg' | json }}, "unitText": "EUR/kg"{% if c.conv.last %}, "value": {{ c.conv.last.avg }}{% endif %} }{% unless forloop.last %},{% endunless %}
+            {%- unless forloop.first %},{% endunless -%}
+            { "@type": "PropertyValue", "name": {{ name_key | t | append: ' – €/kg' | json }}, "unitText": "EUR/kg"{% if c.conv.last %}, "value": {{ c.conv.last.avg }}{% endif %} }
+            {%- for v in c.varieties -%}
+              {%- assign var_key = 'sections.citrus_prices.varieties.' | append: v.key -%}
+              {%- assign var_name = var_key | t -%}
+              ,{ "@type": "PropertyValue", "name": {{ name_key | t | append: ' ' | append: var_name | append: ' – €/kg' | json }}, "unitText": "EUR/kg"{% if v.conv.last %}, "value": {{ v.conv.last.avg }}{% endif %} }
+            {%- endfor -%}
           {%- endfor -%}
         ]
       }

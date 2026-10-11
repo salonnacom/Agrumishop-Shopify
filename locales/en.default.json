@@ -439,6 +439,11 @@
       "updated": "Last updated: {{ date }}",
       "cta": "See prices",
       "dataset_description": "Weekly average consumer price of Italian oranges, clementines, lemons and mandarins sold online by growers and specialist shops, in euro per kg including shipping. AgrumiShop survey of a fixed panel of shops.",
+      "variety_line": "{{ name }}: {{ price }}/kg (from {{ min }} to {{ max }})",
+      "varieties": {
+        "tarocco": "Tarocco",
+        "navel": "Navel"
+      },
       "names": {
         "arance": "Oranges",
         "clementine": "Clementines",
