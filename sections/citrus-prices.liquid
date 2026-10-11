@@ -131,7 +131,7 @@
         </div>
 
         <p class="cp__foot">
-          {%- if data.updated -%}{{ 'sections.citrus_prices.updated' | t: date: data.updated | date: '%d/%m/%Y' }}{%- endif -%}
+          {%- if data.updated -%}{%- assign updated_s = data.updated | date: '%d/%m/%Y' -%}{{ 'sections.citrus_prices.updated' | t: date: updated_s }}{%- endif -%}
           {%- if compact and section.settings.link != blank %} · <a href="{{ section.settings.link }}">{{ 'sections.citrus_prices.see_all' | t }}</a>{%- endif -%}
         </p>
       </div>
