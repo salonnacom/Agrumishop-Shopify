@@ -93,6 +93,11 @@
     .cp__data { grid-column: 1 / -1; font-size: 1.4rem; }
     .cp__data table { width: 100%; border-collapse: collapse; margin-top: 0.8rem; }
     .cp__data th, .cp__data td { border-bottom: 1px solid var(--cp-border); padding: 0.4rem 0.6rem; text-align: left; white-space: nowrap; }
+    .cp__brief { max-width: 78rem; margin: 0 auto 2.4rem; padding: 1.6rem 2rem; border-left: 0.4rem solid rgb(var(--color-button)); background: rgba(var(--color-button), 0.06); border-radius: 0 1.2rem 1.2rem 0; }
+    .cp__brief p, .cp__brief ul { margin: 0; }
+    .cp__brief-title { font-weight: 700; }
+    .cp__brief ul { padding-left: 2rem; margin: 0.6rem 0; }
+    .cp__brief .cp__meta { margin-top: 0.4rem; }
   {%- endstyle -%}
 
   <div class="color-{{ section.settings.color_scheme }} gradient">
@@ -141,6 +146,45 @@
             {%- endfor -%}
           </div>
         {%- else -%}
+          {%- comment -%} Riepilogo testuale dell'ultima rilevazione: frase citabile (motori di ricerca e assistenti AI), solo agrumi con media della settimana corrente. {%- endcomment -%}
+          {%- liquid
+            assign months = 'sections.citrus_prices.months' | t | split: ','
+            assign month_index = data.updated | date: '%m' | plus: 0 | minus: 1
+            assign updated_long = data.updated | date: '%-d' | append: ' ' | append: months[month_index] | append: ' ' | append: data.updated | date: '%Y'
+            assign waiting_names = ''
+          -%}
+          <div class="cp__brief">
+            <p class="cp__brief-title">{{ 'sections.citrus_prices.brief_title' | t: date: updated_long }}</p>
+            <ul>
+              {%- for c in data.citrus -%}
+                {%- assign name_key = 'sections.citrus_prices.names.' | append: c.key -%}
+                {%- if c.conv.last and c.conv.last.d == data.updated -%}
+                  {%- liquid
+                    assign b_price = c.conv.last.avg | times: 100 | round | money
+                    assign b_min = c.conv.last.min | times: 100 | round | money
+                    assign b_max = c.conv.last.max | times: 100 | round | money
+                    assign b_name = name_key | t
+                  -%}
+                  <li>
+                    {{- 'sections.citrus_prices.brief_line' | t: name: b_name, price: b_price, min: b_min, max: b_max -}}
+                    {%- for v in c.varieties -%}
+                      {%- if v.conv.last and v.conv.last.d == data.updated -%}
+                        {%- assign var_key = 'sections.citrus_prices.varieties.' | append: v.key -%}
+                        {%- assign var_price = v.conv.last.avg | times: 100 | round | money -%}
+                        ; {{ var_key | t }} {{ var_price }}/kg
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </li>
+                {%- else -%}
+                  {%- capture waiting_name -%}{{ name_key | t }}{%- endcapture -%}
+                  {%- if waiting_names == '' -%}{%- assign waiting_names = waiting_name -%}{%- else -%}{%- assign waiting_names = waiting_names | append: ', ' | append: waiting_name -%}{%- endif -%}
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+            {%- if waiting_names != '' -%}<p class="cp__meta">{{ 'sections.citrus_prices.brief_waiting' | t: names: waiting_names }}</p>{%- endif -%}
+            <p class="cp__meta">{{ 'sections.citrus_prices.brief_source' | t }}</p>
+          </div>
+
           <div class="cp__tabs" role="tablist" aria-label="{{ 'sections.citrus_prices.tabs_label' | t }}">
             {%- for c in data.citrus -%}
               {%- assign name_key = 'sections.citrus_prices.names.' | append: c.key -%}

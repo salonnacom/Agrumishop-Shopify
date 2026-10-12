@@ -457,7 +457,12 @@
         "clementine": "Season: late October to January.",
         "limoni": "Season: October to April.",
         "mandarini": "Season: November to February."
-      }
+      },
+      "brief_title": "Average online price of Italian citrus fruit as of {{ date }}, per kg including shipping:",
+      "brief_line": "{{ name }}: {{ price }}/kg on average (from {{ min }} to {{ max }} per kg)",
+      "brief_waiting": "Waiting for the new season's prices: {{ names }}.",
+      "brief_source": "Source: AgrumiShop weekly survey of prices from online shops of Italian growers. Our own price is not included.",
+      "months": "January,February,March,April,May,June,July,August,September,October,November,December"
     },
     "collection_prices": {
       "product": "Product",
