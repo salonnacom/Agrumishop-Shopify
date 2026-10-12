@@ -35,6 +35,10 @@
     .cp__card:hover .cp__media img { transform: scale(1.04); }
     .cp__card--off .cp__media img { filter: grayscale(0.6); opacity: 0.75; }
     .cp__badge { position: absolute; left: 1rem; bottom: 1rem; background: rgb(var(--color-background)); color: rgb(var(--color-foreground)); font-weight: 700; font-size: 1.5rem; padding: 0.4rem 1.2rem; border-radius: 4rem; box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.12); }
+    .cp__badge { display: inline-flex; align-items: center; gap: 0.5rem; padding-left: 0.6rem; }
+    .cp__badge .cp__icon { width: 2.4rem; height: 2.4rem; background: none; box-shadow: none; }
+    .cp__badge .cp__icon svg { width: 2.4rem; height: 2.4rem; }
+    .cp__media--blank .cp__badge .cp__icon, .cp__media--blank .cp__badge .cp__icon svg { width: 3rem; height: 3rem; }
     .cp__media--blank .cp__badge { left: 50%; bottom: 50%; transform: translate(-50%, 50%); font-size: 1.8rem; }
     .cp__body { padding: 1.4rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
     .cp--compact .cp__price { color: rgb(var(--color-button)); font-size: 3.2rem; }
@@ -130,7 +134,7 @@
                       {{- product.featured_media | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 450, 600', sizes: '(min-width: 750px) 25vw, 50vw', alt: product.title -}}
                     </a>
                   {%- endif -%}
-                  <span class="cp__badge">{{ name_key | t }}</span>
+                  <span class="cp__badge">{%- render 'citrus-icon', key: c.key -%}{{ name_key | t }}</span>
                 </div>
                 <div class="cp__body">
                   {%- if c.conv.size > 0 -%}
