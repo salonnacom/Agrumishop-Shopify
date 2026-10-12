@@ -150,7 +150,8 @@
           {%- liquid
             assign months = 'sections.citrus_prices.months' | t | split: ','
             assign month_index = data.updated | date: '%m' | plus: 0 | minus: 1
-            assign updated_long = data.updated | date: '%-d' | append: ' ' | append: months[month_index] | append: ' ' | append: data.updated | date: '%Y'
+            assign updated_year = data.updated | date: '%Y'
+            assign updated_long = data.updated | date: '%-d' | append: ' ' | append: months[month_index] | append: ' ' | append: updated_year
             assign waiting_names = ''
           -%}
           <div class="cp__brief">
