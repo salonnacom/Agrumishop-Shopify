@@ -119,7 +119,7 @@
                   {%- endif -%}
                   <div class="cp__links">
                     {%- if section.settings.link != blank -%}<a href="{{ page_url }}">{{ 'sections.citrus_prices.trend_link' | t }}</a>{%- endif -%}
-                    {%- if product -%}<a href="{{ product.url }}">{{ 'sections.citrus_prices.product_link' | t: title: product.title }}</a>{%- endif -%}
+                    {%- if product != blank -%}<a href="{{ product.url }}">{{ 'sections.citrus_prices.product_link' | t }}</a>{%- endif -%}
                   </div>
                 </div>
               </div>

@@ -429,7 +429,7 @@
       "waiting": "Wir warten auf die Preise der neuen Saison.",
       "updated": "Zuletzt aktualisiert: {{ date }}",
       "trend_link": "Verlauf ansehen",
-      "product_link": "{{ title }} entdecken",
+      "product_link": "Online kaufen",
       "cta": "Preise ansehen",
       "dataset_description": "Wöchentlicher Durchschnittspreis für italienische Orangen, Clementinen, Zitronen und Mandarinen, die online von Erzeugern und Fachhändlern verkauft werden, in Euro pro kg inklusive Versand. Erhebung von AgrumiShop über ein festes Panel von Shops.",
       "variety_line": "{{ name }}: {{ price }}/kg (von {{ min }} bis {{ max }})",

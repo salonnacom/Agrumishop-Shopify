@@ -438,7 +438,7 @@
       "waiting": "In attesa dei prezzi della nuova stagione.",
       "updated": "Ultimo aggiornamento: {{ date }}",
       "trend_link": "Vedi l'andamento",
-      "product_link": "Scopri {{ title }}",
+      "product_link": "Acquista online",
       "cta": "Scopri i prezzi",
       "dataset_description": "Media settimanale dei prezzi al consumo di arance, clementine, limoni e mandarini italiani venduti online da produttori e negozi specializzati, in euro al kg con spedizione inclusa. Rilevazione AgrumiShop su un paniere fisso di negozi.",
       "variety_line": "{{ name }}: {{ price }}/kg (da {{ min }} a {{ max }})",
