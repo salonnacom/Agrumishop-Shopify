@@ -462,6 +462,7 @@
       "brief_line": "{{ name }}: durchschnittlich {{ price }}/kg (von {{ min }} bis {{ max }} pro kg)",
       "brief_waiting": "Wir warten auf die Preise der neuen Saison: {{ names }}.",
       "brief_source": "Quelle: wöchentliche Erhebung von AgrumiShop zu den Preisen in Onlineshops italienischer Erzeuger. Unser eigener Preis ist nicht enthalten.",
+      "day": "{{ day }}.",
       "months": "Januar,Februar,März,April,Mai,Juni,Juli,August,September,Oktober,November,Dezember"
     },
     "collection_prices": {

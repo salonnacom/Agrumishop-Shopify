@@ -151,7 +151,9 @@
             assign months = 'sections.citrus_prices.months' | t | split: ','
             assign month_index = data.updated | date: '%m' | plus: 0 | minus: 1
             assign updated_year = data.updated | date: '%Y'
-            assign updated_long = data.updated | date: '%-d' | append: ' ' | append: months[month_index] | append: ' ' | append: updated_year
+            assign updated_day = data.updated | date: '%-d'
+            assign updated_day = 'sections.citrus_prices.day' | t: day: updated_day
+            assign updated_long = updated_day | append: ' ' | append: months[month_index] | append: ' ' | append: updated_year
             assign waiting_names = ''
           -%}
           <div class="cp__brief">

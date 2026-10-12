@@ -462,6 +462,7 @@
       "brief_line": "{{ name }}: {{ price }}/kg in media (da {{ min }} a {{ max }} al kg)",
       "brief_waiting": "In attesa dei prezzi della nuova stagione: {{ names }}.",
       "brief_source": "Fonte: rilevazione settimanale AgrumiShop sui prezzi di negozi online di produttori italiani. Il nostro prezzo non è incluso.",
+      "day": "{{ day }}",
       "months": "gennaio,febbraio,marzo,aprile,maggio,giugno,luglio,agosto,settembre,ottobre,novembre,dicembre"
     },
     "collection_prices": {
