@@ -79,7 +79,9 @@
     @media screen and (min-width: 990px) { .cp__panel { grid-template-columns: minmax(24rem, 1fr) 2.4fr; padding: 2.8rem; } }
     .cp__summary { display: flex; flex-direction: column; gap: 0.8rem; min-width: 0; }
     .cp__panel .cp__name { font-size: 2.2rem; }
-    .cp__panel .cp__price { font-size: 4rem; }
+    .cp__panel .cp__price { font-size: 4rem; color: rgb(var(--color-button)); }
+    .cp__panel .cp__price small { color: var(--cp-muted); }
+    @media screen and (max-width: 749px) { .cp__tabs { gap: 0.6rem; } .cp__tab { font-size: 1.4rem; padding: 0.6rem 1.2rem; } .cp__panel { padding: 1.6rem; } }
     .cp__plot { min-width: 0; }
     .cp__chart { width: 100%; height: auto; display: block; overflow: visible; }
     .cp__chart text { font-size: 11px; fill: var(--cp-muted); }
@@ -297,7 +299,9 @@
           if (!svg) return;
           var inSeason = function (p) { var v = t(p.d); return v >= start && v < end; };
           var conv = c.conv.filter(inSeason), bio = c.bio.filter(inSeason);
-          var W = 640, H = 300, L = 48, R = 12, T = 14, B = 30;
+          // Larghezza del viewBox pari a quella reale (min 320, max 640): le etichette restano leggibili anche su telefono.
+          var W = Math.round(Math.max(320, Math.min(640, root.clientWidth - 40))), H = W < 480 ? 240 : 300, L = 48, R = 12, T = 14, B = 30;
+          svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
           var x = function (d) { return L + (W - L - R) * (t(d) - start) / (end - start); };
 
           var vals = [];
