@@ -28,7 +28,25 @@
     .cp__head p { margin: 0; color: var(--cp-muted); }
     .cp__grid { display: grid; gap: 1.6rem; grid-template-columns: repeat(2, 1fr); }
     @media screen and (min-width: 750px) { .cp__grid { grid-template-columns: repeat(4, 1fr); } }
-    .cp__card { border: 1px solid var(--cp-border); border-radius: 1.2rem; padding: 1.4rem; display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; }
+    .cp__card { border: 1px solid var(--cp-border); border-radius: 1.6rem; overflow: hidden; display: flex; flex-direction: column; min-width: 0; background: rgb(var(--color-background)); box-shadow: 0 0.2rem 1.2rem rgba(var(--color-foreground), 0.06); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .cp__card:hover { transform: translateY(-0.3rem); box-shadow: 0 0.8rem 2.4rem rgba(var(--color-foreground), 0.12); }
+    .cp__media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: linear-gradient(135deg, rgba(var(--color-button), 0.22), rgba(var(--color-button), 0.06)); }
+    .cp__media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .cp__card:hover .cp__media img { transform: scale(1.04); }
+    .cp__card--off .cp__media img { filter: grayscale(0.6); opacity: 0.75; }
+    .cp__badge { position: absolute; left: 1rem; bottom: 1rem; background: rgb(var(--color-background)); color: rgb(var(--color-foreground)); font-weight: 700; font-size: 1.5rem; padding: 0.4rem 1.2rem; border-radius: 4rem; box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.12); }
+    .cp__media--blank .cp__badge { left: 50%; bottom: 50%; transform: translate(-50%, 50%); font-size: 1.8rem; }
+    .cp__body { padding: 1.4rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+    .cp--compact .cp__price { color: rgb(var(--color-button)); font-size: 3.2rem; }
+    .cp--compact .cp__price small { color: var(--cp-muted); }
+    .cp__trend { border-radius: 4rem; padding: 0.1rem 0.8rem; font-size: 1.3rem; }
+    .cp__trend--up { background: rgba(179, 38, 30, 0.1); } .cp__trend--down { background: rgba(27, 127, 59, 0.1); } .cp__trend--flat { background: rgba(var(--color-foreground), 0.06); }
+    .cp__spark { width: 100%; height: auto; display: block; margin: 0.4rem 0 0; overflow: visible; }
+    .cp__spark text { font-size: 10px; fill: var(--cp-muted); }
+    .cp__links { margin-top: auto; padding-top: 0.8rem; display: flex; flex-direction: column; gap: 0.3rem; font-size: 1.4rem; }
+    .cp__links a { color: rgb(var(--color-foreground)); text-underline-offset: 0.3rem; }
+    .cp__links a::after { content: ' →'; }
+    @media screen and (max-width: 749px) { .cp--compact .cp__price { font-size: 2.6rem; } .cp__body { padding: 1.2rem; } .cp__badge { font-size: 1.3rem; } }
     .cp__name { font-size: 1.8rem; margin: 0; }
     .cp__label { font-size: 1.3rem; color: var(--cp-muted); margin: 0; }
     .cp__price { font-size: 2.4rem; font-weight: 700; line-height: 1.1; margin: 0.4rem 0 0; display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap; }
@@ -78,15 +96,32 @@
               {%- liquid
                 assign name_key = 'sections.citrus_prices.names.' | append: c.key
                 assign season_key = 'sections.citrus_prices.season.' | append: c.key
+                assign product_key = 'product_' | append: c.key
+                assign product = section.settings[product_key]
+                assign page_url = section.settings.link | append: '#' | append: c.key
               -%}
-              <div class="cp__card">
-                <h3 class="cp__name">{{ name_key | t }}</h3>
-                {%- if c.conv.size > 0 -%}
-                  {%- render 'citrus-prices-summary', c: c -%}
-                {%- else -%}
-                  <p class="cp__wait">{{ 'sections.citrus_prices.waiting' | t }}</p>
-                  <p class="cp__meta">{{ season_key | t }}</p>
-                {%- endif -%}
+              <div class="cp__card{% if c.conv.size == 0 %} cp__card--off{% endif %}">
+                <div class="cp__media{% if product.featured_media == blank %} cp__media--blank{% endif %}">
+                  {%- if product.featured_media -%}
+                    <a href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+                      {{- product.featured_media | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 450, 600', sizes: '(min-width: 750px) 25vw, 50vw', alt: product.title -}}
+                    </a>
+                  {%- endif -%}
+                  <span class="cp__badge">{{ name_key | t }}</span>
+                </div>
+                <div class="cp__body">
+                  {%- if c.conv.size > 0 -%}
+                    {%- render 'citrus-prices-summary', c: c -%}
+                    <svg class="cp__spark" viewBox="0 0 200 56" aria-hidden="true" data-cp-spark="{{ c.key }}"></svg>
+                  {%- else -%}
+                    <p class="cp__wait">{{ 'sections.citrus_prices.waiting' | t }}</p>
+                    <p class="cp__meta">{{ season_key | t }}</p>
+                  {%- endif -%}
+                  <div class="cp__links">
+                    {%- if section.settings.link != blank -%}<a href="{{ page_url }}">{{ 'sections.citrus_prices.trend_link' | t }}</a>{%- endif -%}
+                    {%- if product -%}<a href="{{ product.url }}">{{ 'sections.citrus_prices.product_link' | t: title: product.title }}</a>{%- endif -%}
+                  </div>
+                </div>
               </div>
             {%- endfor -%}
           </div>
@@ -176,13 +211,13 @@
     </div>
   </div>
 
-  {%- unless compact -%}
-    <script type="application/json" id="cp-data-{{ section.id }}">{{ data | json }}</script>
+  <script type="application/json" id="cp-data-{{ section.id }}">{{ data | json }}</script>
     <script>
       (function () {
         var root = document.getElementById('cp-{{ section.id }}');
         var raw = document.getElementById('cp-data-{{ section.id }}');
         if (!root || !raw) return;
+        var data = JSON.parse(raw.textContent), NS = 'http://www.w3.org/2000/svg';
 
         var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
         function select(tab, focus) {
@@ -194,6 +229,8 @@
           });
           if (focus) tab.focus();
         }
+        var fromHash = tabs.filter(function (t) { return location.hash && t.id === 'cp-tab-{{ section.id }}-' + location.hash.slice(1); })[0];
+        if (fromHash) { select(fromHash); root.scrollIntoView(); }
         tabs.forEach(function (t, i) {
           t.addEventListener('click', function () { select(t); });
           t.addEventListener('keydown', function (e) {
@@ -205,7 +242,6 @@
         });
 
         // Grafico della stagione ottobre–maggio: asse X a mesi, fascia min–max, media con punti, bio tratteggiato.
-        var data = JSON.parse(raw.textContent), NS = 'http://www.w3.org/2000/svg';
         var lang = document.documentElement.lang || 'it';
         function el(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; }
         function t(d) { var p = d.split('-'); return Date.UTC(+p[0], +p[1] - 1, +p[2]); }
@@ -215,6 +251,33 @@
         var y0 = +ref[1] >= 8 ? +ref[0] : +ref[0] - 1;
         var start = Date.UTC(y0, 9, 1), end = Date.UTC(y0 + 1, 5, 1);
         var monthFmt = new Intl.DateTimeFormat(lang, { month: 'short', timeZone: 'UTC' });
+
+        // Mini grafico (home): stessa stagione, senza assi, solo fascia, linea e ultimo punto evidenziato.
+        data.citrus.forEach(function (c) {
+          var svg = root.querySelector('[data-cp-spark="' + c.key + '"]');
+          if (!svg) return;
+          var pts = c.conv.filter(function (p) { var v = t(p.d); return v >= start && v < end; });
+          if (!pts.length) return;
+          var W = 200, H = 56, T = 6, B = 16, P = 4;
+          var x = function (d) { return P + (W - 2 * P) * (t(d) - start) / (end - start); };
+          var lo = Math.min.apply(null, pts.map(function (p) { return p.min; })), hi = Math.max.apply(null, pts.map(function (p) { return p.max; }));
+          var pad = Math.max((hi - lo) * 0.2, 0.25); lo -= pad; hi += pad;
+          var y = function (v) { return T + (H - T - B) * (1 - (v - lo) / (hi - lo)); };
+          var fg = (getComputedStyle(svg).getPropertyValue('--cp-line') || '').trim() || '#c25e00';
+          el('line', { x1: P, x2: W - P, y1: H - B, y2: H - B, stroke: 'currentColor', 'stroke-opacity': 0.15 }, svg);
+          el('text', { x: P, y: H - 3, 'text-anchor': 'start' }, svg).textContent = monthFmt.format(new Date(start)).replace('.', '');
+          el('text', { x: W - P, y: H - 3, 'text-anchor': 'end' }, svg).textContent = monthFmt.format(new Date(Date.UTC(y0 + 1, 4, 1))).replace('.', '');
+          if (pts.length > 1) {
+            var band = pts.map(function (p) { return x(p.d) + ',' + y(p.max); }).concat(pts.slice().reverse().map(function (p) { return x(p.d) + ',' + y(p.min); }));
+            el('polygon', { points: band.join(' '), fill: fg, 'fill-opacity': 0.15 }, svg);
+            el('polyline', { points: pts.map(function (p) { return x(p.d) + ',' + y(p.avg); }).join(' '), fill: 'none', stroke: fg, 'stroke-width': 2.2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, svg);
+          } else {
+            el('line', { x1: x(pts[0].d), x2: x(pts[0].d), y1: y(pts[0].min), y2: y(pts[0].max), stroke: fg, 'stroke-opacity': 0.3, 'stroke-width': 6, 'stroke-linecap': 'round' }, svg);
+          }
+          var last = pts[pts.length - 1];
+          el('circle', { cx: x(last.d), cy: y(last.avg), r: 6, fill: fg, 'fill-opacity': 0.2 }, svg);
+          el('circle', { cx: x(last.d), cy: y(last.avg), r: 3.5, fill: fg }, svg);
+        });
 
         data.citrus.forEach(function (c) {
           var svg = root.querySelector('[data-cp-chart="' + c.key + '"]');
@@ -273,6 +336,7 @@
         });
       })();
     </script>
+  {%- unless compact -%}
     {%- liquid
       assign first_week = ''
       for c in data.citrus
@@ -321,6 +385,11 @@
     { "type": "select", "id": "style", "label": "Stile", "options": [{ "value": "full", "label": "Pagina completa" }, { "value": "compact", "label": "Riquadro compatto" }], "default": "full" },
     { "type": "text", "id": "heading", "label": "Titolo", "default": "Prezzo degli agrumi oggi" },
     { "type": "url", "id": "link", "label": "Link alla pagina (stile compatto)" },
+    { "type": "header", "content": "Prodotti nei riquadri (stile compatto)" },
+    { "type": "product", "id": "product_arance", "label": "Arance" },
+    { "type": "product", "id": "product_clementine", "label": "Clementine" },
+    { "type": "product", "id": "product_limoni", "label": "Limoni" },
+    { "type": "product", "id": "product_mandarini", "label": "Mandarini" },
     { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "background-1" },
     { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_top", "default": 36 },
     { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_bottom", "default": 36 }

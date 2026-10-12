@@ -595,6 +595,10 @@
         "style": "compact",
         "heading": "Prezzo degli agrumi oggi",
         "link": "shopify://pages/prezzi-agrumi",
+        "product_arance": "arance-navel-calabria",
+        "product_clementine": "clementine-senza-semi",
+        "product_limoni": "limoni-di-calabria",
+        "product_mandarini": "",
         "color_scheme": "background-1",
         "padding_top": 24,
         "padding_bottom": 24
