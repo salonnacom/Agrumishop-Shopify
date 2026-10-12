@@ -46,7 +46,20 @@
     .cp__links { margin-top: auto; padding-top: 0.8rem; display: flex; flex-direction: column; gap: 0.3rem; font-size: 1.4rem; }
     .cp__links a { color: rgb(var(--color-foreground)); text-underline-offset: 0.3rem; }
     .cp__links a::after { content: ' →'; }
-    @media screen and (max-width: 749px) { .cp--compact .cp__price { font-size: 2.6rem; } .cp__body { padding: 1.2rem; } .cp__badge { font-size: 1.3rem; } }
+    .cp__links a { white-space: nowrap; }
+    @media screen and (max-width: 749px) {
+      .cp--compact .cp__grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .cp--compact .cp__card { flex-direction: row; }
+      .cp--compact .cp__media { flex: 0 0 36%; aspect-ratio: auto; min-height: 15rem; }
+      .cp--compact .cp__media a { position: absolute; inset: 0; }
+      .cp--compact .cp__badge { left: 0.8rem; bottom: 0.8rem; font-size: 1.3rem; padding: 0.3rem 1rem; }
+      .cp--compact .cp__media--blank .cp__badge { left: 50%; bottom: 50%; }
+      .cp--compact .cp__price { font-size: 2.8rem; }
+      .cp__body { padding: 1.2rem 1.4rem; gap: 0.3rem; }
+      .cp__body .cp__label, .cp__body .cp__meta, .cp__body .cp__wait { font-size: 1.3rem; }
+      .cp__spark { max-width: 22rem; }
+      .cp__links { flex-direction: row; flex-wrap: wrap; gap: 0.4rem 1.6rem; font-size: 1.3rem; padding-top: 0.6rem; }
+    }
     .cp__name { font-size: 1.8rem; margin: 0; }
     .cp__label { font-size: 1.3rem; color: var(--cp-muted); margin: 0; }
     .cp__price { font-size: 2.4rem; font-weight: 700; line-height: 1.1; margin: 0.4rem 0 0; display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap; }
