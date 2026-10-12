@@ -73,6 +73,9 @@
     .cp__foot p { margin: 0; }
     .cp__tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-bottom: 2rem; }
     .cp__tab { font: inherit; font-size: 1.5rem; padding: 0.8rem 1.8rem; border-radius: 4rem; border: 1px solid var(--cp-border); background: transparent; color: rgb(var(--color-foreground)); cursor: pointer; }
+    .cp__tab { display: inline-flex; align-items: center; gap: 0.8rem; padding-left: 0.8rem; }
+    .cp__icon { flex: 0 0 auto; width: 3.2rem; height: 3.2rem; border-radius: 50%; background: #fff; box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.15); display: inline-flex; align-items: center; justify-content: center; }
+    .cp__icon svg { width: 2.4rem; height: 2.4rem; display: block; }
     .cp__tab[aria-selected="true"] { background: rgb(var(--color-button)); border-color: rgb(var(--color-button)); color: rgb(var(--color-button-text)); }
     .cp__panel { border: 1px solid var(--cp-border); border-radius: 1.2rem; padding: 2rem; display: grid; gap: 2rem; grid-template-columns: 1fr; }
     .cp__panel[hidden] { display: none; }
@@ -81,7 +84,7 @@
     .cp__panel .cp__name { font-size: 2.2rem; }
     .cp__panel .cp__price { font-size: 4rem; color: rgb(var(--color-button)); }
     .cp__panel .cp__price small { color: var(--cp-muted); }
-    @media screen and (max-width: 749px) { .cp__tabs { gap: 0.4rem; flex-wrap: nowrap; } .cp__tab { font-size: 1.3rem; padding: 0.6rem 1rem; white-space: nowrap; } .cp__panel { padding: 1.6rem; } }
+    @media screen and (max-width: 749px) { .cp__tabs { gap: 0.4rem; flex-wrap: nowrap; } .cp__tab { font-size: 1.3rem; padding: 0.6rem 0.8rem; white-space: nowrap; flex-direction: column; gap: 0.4rem; border-radius: 1.4rem; flex: 1 1 0; min-width: 0; } .cp__icon { width: 2.8rem; height: 2.8rem; } .cp__icon svg { width: 2.1rem; height: 2.1rem; } .cp__panel { padding: 1.6rem; } }
     .cp__plot { min-width: 0; }
     .cp__chart { width: 100%; height: auto; display: block; overflow: visible; }
     .cp__chart text { font-size: 11px; fill: var(--cp-muted); }
@@ -191,7 +194,9 @@
           <div class="cp__tabs" role="tablist" aria-label="{{ 'sections.citrus_prices.tabs_label' | t }}">
             {%- for c in data.citrus -%}
               {%- assign name_key = 'sections.citrus_prices.names.' | append: c.key -%}
-              <button type="button" class="cp__tab" role="tab" id="cp-tab-{{ section.id }}-{{ c.key }}" aria-controls="cp-panel-{{ section.id }}-{{ c.key }}" aria-selected="{% if c.key == active_key %}true{% else %}false{% endif %}"{% unless c.key == active_key %} tabindex="-1"{% endunless %}>{{ name_key | t }}</button>
+              <button type="button" class="cp__tab" role="tab" id="cp-tab-{{ section.id }}-{{ c.key }}" aria-controls="cp-panel-{{ section.id }}-{{ c.key }}" aria-selected="{% if c.key == active_key %}true{% else %}false{% endif %}"{% unless c.key == active_key %} tabindex="-1"{% endunless %}>
+                {%- render 'citrus-icon', key: c.key -%}<span>{{ name_key | t }}</span>
+              </button>
             {%- endfor -%}
           </div>
 
