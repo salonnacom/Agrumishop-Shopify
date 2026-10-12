@@ -12,4 +12,4 @@
 # Custom rules for SEO
 User-agent: *
 Disallow: /*?pr_
-Disallow: /*?*utm_
+{%- comment -%} Niente Disallow sugli utm_: i link prodotto di Google Merchant Center li contengono (utm_medium=product_sync) e verrebbero bloccati; i duplicati li gestisce il canonical. {%- endcomment -%}
