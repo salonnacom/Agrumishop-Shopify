@@ -22,7 +22,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "Arance, clementine, limoni e pompelmi della Piana di Sibari, raccolti a mano solo quando arriva il tuo ordine. Spedizione inclusa nel prezzo.",
+            "text": "Arance, clementine, limoni e pompelmi raccolti a mano solo quando arriva il tuo ordine, direttamente dal produttore. Spedizione inclusa nel prezzo.",
             "text_style": "body"
           }
         },
@@ -98,7 +98,7 @@
         "template--18229965488405__ba081ae9-5cb0-4539-bce4-54e58521f7ce-168527415873a9df14-1": {
           "type": "text",
           "settings": {
-            "text": "<p>AgrumiShop.it è un progetto dell’Azienda Agricola Salonna (Corigliano-Rossano), creato per dare a tutti la possibilità di acquistare online <a href=\"/collections/agrumi-di-calabria\" title=\"Agrumi di Calabria\">agrumi di Calabria</a> genuini, coltivati nella Piana di Sibari, direttamente dal produttore: <a href=\"/products/clementine-senza-semi\" title=\"Clementine senza semi\">clementine senza semi</a>, <a href=\"/collections/arance-di-calabria\" title=\"Arance di Calabria\">arance di Calabria</a> come le nostre <a href=\"/products/arance-navel-calabria\" title=\"Arance Navel (Navelina) di Calabria\">arance Navel</a>, <a href=\"/products/limoni-di-calabria\" title=\"Limoni di Calabria\">limoni</a> e <a href=\"/collections/pompelmi\" title=\"Pompelmi\">pompelmi</a>, abbattendo i costi!<br/>Gli agrumi vengono raccolti solo nel momento in cui arriva la richiesta d’ordine, e vengono spediti il lunedì e il martedì tramite corriere professionale, con la massima cura dell’imballo: la consegna avviene di solito in 48–72 ore.</p>",
+            "text": "<p>AgrumiShop.it è un progetto dell’Azienda Agricola Salonna (Corigliano-Rossano), creato per dare a tutti la possibilità di acquistare online <a href=\"/collections/agrumi-di-calabria\" title=\"I nostri agrumi\">agrumi</a> genuini direttamente dal produttore, abbattendo i costi: <a href=\"/collections/arance-di-calabria\" title=\"Arance di Calabria\">arance di Calabria</a> come le nostre <a href=\"/products/arance-navel-calabria\" title=\"Arance Navel (Navelina) di Calabria\">arance Navel</a>, <a href=\"/products/limoni-di-calabria\" title=\"Limoni di Calabria\">limoni</a> e <a href=\"/collections/pompelmi\" title=\"Pompelmi\">pompelmi</a> coltivati nella Piana di Sibari, e <a href=\"/products/clementine-senza-semi\" title=\"Clementine senza semi\">clementine senza semi</a>.<br/>Gli agrumi vengono raccolti solo nel momento in cui arriva la richiesta d’ordine, e vengono spediti il lunedì e il martedì tramite corriere professionale, con la massima cura dell’imballo: la consegna avviene di solito in 48–72 ore.</p>",
             "text_style": "body"
           }
         }
@@ -491,7 +491,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Le nostre clementine sono dolci, succose e <strong>quasi sempre senza semi</strong>: le raccogliamo a mano nella Piana di Sibari da fine ottobre a gennaio, solo quando arriva il tuo ordine.</p><p>Vuoi sapere perché non hanno semi e quali varietà esistono? Leggi la nostra <a href=\"/blogs/news/clementine\" title=\"Clementine: cosa sono, perché sono senza semi, varietà e stagione\">guida alle clementine</a> oppure scopri la <a href=\"/blogs/news/differenze-tra-mandarini-e-clementine\" title=\"Differenza tra clementine e mandarini\">differenza tra clementine e mandarini</a>.</p>",
+            "text": "<p>Le nostre clementine sono dolci, succose e <strong>quasi sempre senza semi</strong>: le raccogliamo a mano da fine ottobre a gennaio, solo quando arriva il tuo ordine.</p><p>Vuoi sapere perché non hanno semi e quali varietà esistono? Leggi la nostra <a href=\"/blogs/news/clementine\" title=\"Clementine: cosa sono, perché sono senza semi, varietà e stagione\">guida alle clementine</a> oppure scopri la <a href=\"/blogs/news/differenze-tra-mandarini-e-clementine\" title=\"Differenza tra clementine e mandarini\">differenza tra clementine e mandarini</a>.</p>",
             "text_style": "body"
           }
         },
