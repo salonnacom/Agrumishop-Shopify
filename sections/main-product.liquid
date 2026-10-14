@@ -751,6 +751,11 @@
         assign ld_org = shop.url | append: '/#organization' | json
         assign ld_seller = '"@type":"Offer","seller":{"@id":' | append: ld_org | append: '},'
         assign product_ld = product_ld | replace: '"@type":"Offer",', ld_seller
+        if product_ld contains '"@type":"ProductGroup"'
+          assign ld_variant_desc = product.description | strip_html | strip_newlines | truncate: 300 | json
+          assign ld_variant = '"@type":"Product","description":' | append: ld_variant_desc | append: ','
+          assign product_ld = product_ld | replace: '"@type":"Product",', ld_variant
+        endif
         assign ld_cut = product_ld.size | minus: 1
         assign ld_manufacturer = ',"manufacturer":{"@id":' | append: ld_org | append: '}}'
         assign product_ld = product_ld | slice: 0, ld_cut | append: ld_manufacturer
