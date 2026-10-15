@@ -429,6 +429,7 @@
         "url": {{ request.origin | append: request.path | json }},
         "creator": { "@id": {{ shop.url | append: '/#organization' | json }} },
         "isAccessibleForFree": true,
+        "license": "https://creativecommons.org/licenses/by/4.0/",
         {%- if first_week != '' -%}"temporalCoverage": {{ first_week | append: '/' | append: data.updated | json }},{%- endif -%}
         "dateModified": {{ data.updated | json }},
         "spatialCoverage": { "@type": "Place", "name": "Italia" },
