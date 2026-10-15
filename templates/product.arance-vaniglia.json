@@ -287,7 +287,7 @@
           "settings": {
             "heading": "Si possono usare per la spremuta?",
             "icon": "none",
-            "row_content": "<p>Sì: danno un succo dolce e poco acido. Come per tutte le spremute, il consiglio è di berla subito dopo averla preparata, per gustarne al meglio il sapore. Trovi altri consigli nella nostra guida alle <a href=\"/blogs/news/arance-da-spremuta\" title=\"Arance da spremuta\">arance da spremuta</a>.</p>",
+            "row_content": "<p>Sì: danno un succo dolce e poco acido. Come per tutte le spremute, il consiglio è di berla subito dopo averla preparata, per gustarne al meglio il sapore. Altri consigli su come scegliere le <a href=\"/blogs/news/arance-da-spremuta\" title=\"Arance da spremuta\">arance da spremuta</a> sono nella nostra guida.</p>",
             "page": ""
           }
         },
@@ -323,7 +323,7 @@
           "settings": {
             "heading": "Cosa succede se qualche frutto arriva danneggiato?",
             "icon": "none",
-            "row_content": "<p><a href=\"/pages/contact\" title=\"Contatti\">Scrivici</a> inviando una foto e il peso dei frutti danneggiati: ti rimborsiamo i kg rovinati oppure, se preferisci, creiamo un buono da usare nel prossimo ordine. Gestiamo ogni segnalazione in tempi rapidi.</p>",
+            "row_content": "<p>Basta <a href=\"/pages/contact\">scriverci</a> inviando una foto e il peso dei frutti danneggiati: ti rimborsiamo i kg rovinati oppure, se preferisci, creiamo un buono da usare nel prossimo ordine. Gestiamo ogni segnalazione in tempi rapidi.</p>",
             "page": ""
           }
         }

@@ -279,7 +279,7 @@
           "settings": {
             "heading": "Le clementine sono davvero senza semi?",
             "icon": "none",
-            "row_content": "<p>Sì, quasi sempre. La clementina è un frutto <strong>apireno</strong>: quando i fiori non vengono impollinati dal polline di altre varietà di agrumi, i frutti crescono senza semi. Può capitare di trovarne uno o due, se nelle vicinanze fioriscono altri agrumi e le api trasportano il polline, ma è l'eccezione. Lo spieghiamo nella nostra <a href=\"/blogs/news/clementine\" title=\"Clementine: cosa sono, perché sono senza semi, varietà e stagione\">guida alle clementine</a>.</p>",
+            "row_content": "<p>Sì, quasi sempre. La clementina è un frutto <strong>apireno</strong>: quando i fiori non vengono impollinati dal polline di altre varietà di agrumi, i frutti crescono senza semi. Può capitare di trovarne uno o due, se nelle vicinanze fioriscono altri agrumi e le api trasportano il polline, ma è l'eccezione. Lo spieghiamo nella nostra <a href=\"/blogs/news/clementine\" title=\"Clementine: cosa sono, perché sono senza semi, varietà e stagione\">guida alle clementine</a>, insieme a varietà e stagione.</p>",
             "page": ""
           }
         },
@@ -288,7 +288,7 @@
           "settings": {
             "heading": "Che differenza c'è tra clementine e mandarini?",
             "icon": "none",
-            "row_content": "<p>La differenza principale è nei semi: la clementina ne è quasi sempre priva, il mandarino ne contiene molti. La clementina è più tonda, ha la buccia liscia e lucida e un sapore più dolce; il mandarino è più schiacciato ai poli, con la buccia più rugosa e un profumo più intenso, leggermente acidulo. <a href=\"/blogs/news/differenze-tra-mandarini-e-clementine\" title=\"Differenza tra clementine e mandarini\">Leggi la guida completa</a>.</p>",
+            "row_content": "<p>La differenza principale è nei semi: la clementina ne è quasi sempre priva, il mandarino ne contiene molti. La clementina è più tonda, ha la buccia liscia e lucida e un sapore più dolce; il mandarino è più schiacciato ai poli, con la buccia più rugosa e un profumo più intenso, leggermente acidulo. Tutte le differenze tra <a href=\"/blogs/news/differenze-tra-mandarini-e-clementine\">clementine e mandarini</a> sono nella nostra guida.</p>",
             "page": ""
           }
         },
@@ -369,7 +369,7 @@
           "settings": {
             "heading": "Cosa succede se qualche frutto arriva danneggiato?",
             "icon": "none",
-            "row_content": "<p><a href=\"/pages/contact\" title=\"Contatti\">Scrivici</a> inviando una foto e il peso dei frutti danneggiati: ti rimborsiamo i kg rovinati oppure, se preferisci, creiamo un buono da usare nel prossimo ordine. Gestiamo ogni segnalazione in tempi rapidi.</p>",
+            "row_content": "<p>Basta <a href=\"/pages/contact\">scriverci</a> inviando una foto e il peso dei frutti danneggiati: ti rimborsiamo i kg rovinati oppure, se preferisci, creiamo un buono da usare nel prossimo ordine. Gestiamo ogni segnalazione in tempi rapidi.</p>",
             "page": ""
           }
         }
