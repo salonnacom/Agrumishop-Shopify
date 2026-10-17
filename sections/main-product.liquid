@@ -687,7 +687,9 @@
                     {%- endif -%}
                   </product-recommendations>
                 {%- when 'icon-with-text' -%}
-                  {% render 'icon-with-text', block: block %}
+                  {%- unless block.settings.overlay -%}
+                    {% render 'icon-with-text', block: block %}
+                  {%- endunless -%}
               {%- endcase -%}
             {%- endfor -%}
             <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -1559,6 +1561,13 @@
       "type": "icon-with-text",
       "name": "t:sections.main-product.blocks.icon_with_text.name",
       "settings": [
+        {
+          "type": "checkbox",
+          "id": "overlay",
+          "label": "Mostra sulla foto principale",
+          "info": "Le icone compaiono in basso a sinistra sulla prima foto, invece che nella colonna di testo.",
+          "default": false
+        },
         {
           "type": "select",
           "id": "layout",

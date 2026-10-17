@@ -83,6 +83,7 @@
             constrain_to_viewport: section.settings.constrain_to_viewport,
             lazy_load: false
           %}
+          {%- render 'media-icons-overlay', section: section, product: product -%}
         </li>
       {%- endif -%}
       {%- for media in product.media -%}
@@ -121,6 +122,9 @@
               constrain_to_viewport: section.settings.constrain_to_viewport,
               lazy_load: lazy_load
             %}
+            {%- if media_position == 1 -%}
+              {%- render 'media-icons-overlay', section: section, product: product -%}
+            {%- endif -%}
           </li>
         {%- endunless -%}
       {%- endfor -%}

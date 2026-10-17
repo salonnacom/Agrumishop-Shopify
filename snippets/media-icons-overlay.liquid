@@ -1,0 +1,32 @@
+{% comment %}
+  Punti di forza (blocco icon-with-text con "Mostra sulla foto principale") in sovrimpressione
+  in basso a sinistra sulla prima foto della galleria prodotto.
+  Accepts:
+  - section: {Object} sezione main-product
+{% endcomment %}
+{%- for block in section.blocks -%}
+  {%- if block.type == 'icon-with-text' and block.settings.overlay -%}
+    <ul class="media-icons-overlay list-unstyled" aria-label="{{ product.title | escape }}">
+      {%- for i in (1..3) -%}
+        {%- liquid
+          assign heading_key = 'heading_' | append: i
+          assign image_key = 'image_' | append: i
+          assign icon_key = 'icon_' | append: i
+          assign heading = block.settings[heading_key]
+          assign image = block.settings[image_key]
+        -%}
+        {%- if heading != blank -%}
+          <li class="media-icons-overlay__item">
+            {%- if image != blank -%}
+              <img src="{{ image | image_url: width: 96 }}" alt="" width="32" height="32" loading="eager">
+            {%- else -%}
+              {%- render 'icon-accordion', icon: block.settings[icon_key] -%}
+            {%- endif -%}
+            <span>{{ heading }}</span>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}

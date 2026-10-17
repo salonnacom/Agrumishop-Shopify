@@ -43,6 +43,7 @@
         "c6c870f1-55a0-4b02-8d10-046127d1e2cc": {
           "type": "icon-with-text",
           "settings": {
+            "overlay": true,
             "layout": "horizontal",
             "icon_1": "truck",
             "image_1": "{{ product.metafields.custom.icona_1_immagine.value }}",

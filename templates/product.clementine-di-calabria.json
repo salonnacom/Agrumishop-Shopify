@@ -44,6 +44,7 @@
         "icon_with_text_yRkyQp": {
           "type": "icon-with-text",
           "settings": {
+            "overlay": true,
             "layout": "horizontal",
             "icon_1": "heart",
             "image_1": "shopify://shop_images/senza-semi.jpg",
