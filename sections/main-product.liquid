@@ -751,6 +751,14 @@
         assign ld_org = shop.url | append: '/#organization' | json
         assign ld_seller = '"@type":"Offer","seller":{"@id":' | append: ld_org | append: '},'
         assign product_ld = product_ld | replace: '"@type":"Offer",', ld_seller
+        capture ld_preorder
+          render 'preorder-date', product: product, part: 'iso'
+        endcapture
+        assign ld_preorder = ld_preorder | strip
+        if ld_preorder != blank
+          assign ld_po = '"availability":"http:\/\/schema.org\/PreOrder","availabilityStarts":"' | append: ld_preorder | append: '"'
+          assign product_ld = product_ld | replace: '"availability":"http:\/\/schema.org\/InStock"', ld_po
+        endif
         if product_ld contains '"@type":"ProductGroup"'
           assign ld_variant_desc = product.description | strip_html | strip_newlines | truncate: 300 | json
           assign ld_variant = '"@type":"Product","description":' | append: ld_variant_desc | append: ','

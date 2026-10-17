@@ -1,0 +1,42 @@
+{% comment %}
+  Banner pre-ordine sopra il pulsante di acquisto.
+  Accepts:
+  - product: {Object}
+  - po_label: {String} data di prima spedizione già formattata (da snippet preorder-date)
+{% endcomment %}
+{%- liquid
+  assign po_weekday = ''
+  capture po_weekday
+    render 'preorder-date', product: product, part: 'weekday'
+  endcapture
+  assign po_discount = product.metafields.custom.preorder_sconto.value
+-%}
+<div class="preorder-banner">
+  <p class="preorder-banner__title">{{ 'products.product.preorder.banner_title' | t }}</p>
+  <p class="preorder-banner__text">
+    {{ 'products.product.preorder.banner_text' | t: weekday: po_weekday, date: po_label }}
+    {%- if po_discount != blank and po_discount > 0 %}
+      <strong>{{ 'products.product.preorder.banner_discount' | t: percent: po_discount }}</strong>
+    {%- endif -%}
+  </p>
+</div>
+<style>
+  .preorder-banner {
+    padding: 1.4rem 1.8rem;
+    margin-bottom: 1.5rem;
+    border: 1px dashed #ff6a38;
+    border-radius: 5px;
+    background-color: #ffefe9;
+  }
+  .preorder-banner__title {
+    margin: 0 0 0.4rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .preorder-banner__text {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.6;
+  }
+</style>

@@ -205,7 +205,18 @@
       "product_variants": "Varianti di prodotto",
       "taxes_included": "Imposte incluse.",
       "duties_included": "Dazi inclusi.",
-      "duties_and_taxes_included": "Dazi e imposte inclusi."
+      "duties_and_taxes_included": "Dazi e imposte inclusi.",
+      "preorder": {
+        "button": "Pre-ordina – spedizione dal {{ date }}",
+        "banner_title": "Pre-ordine aperto",
+        "banner_text": "La prima spedizione parte {{ weekday }} {{ date }}, subito dopo la raccolta. Pre-ordinando ti riservi una cassetta del primo carico.",
+        "banner_discount": "Per chi pre-ordina c'è il {{ percent }}% di sconto, applicato in automatico nel carrello.",
+        "property_name": "Spedizione",
+        "property_value": "pre-ordine, dal {{ date }}",
+        "date_format": "{{ day }} {{ month }}",
+        "months": "gennaio,febbraio,marzo,aprile,maggio,giugno,luglio,agosto,settembre,ottobre,novembre,dicembre",
+        "weekdays": "lunedì,martedì,mercoledì,giovedì,venerdì,sabato,domenica"
+      }
     },
     "modal": {
       "label": "Galleria contenuti multimediali"

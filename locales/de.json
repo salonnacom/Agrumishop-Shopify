@@ -205,7 +205,18 @@
       "product_variants": "Produktvarianten",
       "taxes_included": "Inkl. Steuern.",
       "duties_included": "Inkl. Zollgebühren.",
-      "duties_and_taxes_included": "Inkl. Zollgebühren und Steuern."
+      "duties_and_taxes_included": "Inkl. Zollgebühren und Steuern.",
+      "preorder": {
+        "button": "Vorbestellen – Versand ab {{ date }}",
+        "banner_title": "Jetzt vorbestellen",
+        "banner_text": "Die erste Lieferung geht am {{ weekday }}, {{ date }} direkt nach der Ernte raus. Mit einer Vorbestellung sichern Sie sich eine Kiste aus der ersten Ladung.",
+        "banner_discount": "Bei Vorbestellung erhalten Sie {{ percent }} % Rabatt, automatisch im Warenkorb abgezogen.",
+        "property_name": "Versand",
+        "property_value": "Vorbestellung, ab {{ date }}",
+        "date_format": "{{ day }}. {{ month }}",
+        "months": "Januar,Februar,März,April,Mai,Juni,Juli,August,September,Oktober,November,Dezember",
+        "weekdays": "Montag,Dienstag,Mittwoch,Donnerstag,Freitag,Samstag,Sonntag"
+      }
     },
     "modal": {
       "label": "Medien-Galerie"

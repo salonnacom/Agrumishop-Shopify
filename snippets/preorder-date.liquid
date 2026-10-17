@@ -1,0 +1,29 @@
+{% comment %}
+  Pre-ordine: stampa la data di prima spedizione (metafield custom.preorder_spedizione)
+  solo se è nel futuro; altrimenti non stampa nulla. Usato con capture.
+  Accepts:
+  - product: {Object}
+  - part: {String} 'date' (default, es. "2 novembre"), 'weekday' (es. "lunedì"), 'iso' (es. "2026-11-02")
+{% endcomment %}
+{%- liquid
+  assign po_date = product.metafields.custom.preorder_spedizione.value
+  if po_date != blank
+    assign po_ts = po_date | date: '%s' | plus: 0
+    assign now_ts = 'now' | date: '%s' | plus: 0
+    if now_ts < po_ts
+      case part
+        when 'iso'
+          echo po_date | date: '%Y-%m-%d'
+        when 'weekday'
+          assign po_weekdays = 'products.product.preorder.weekdays' | t | split: ','
+          assign po_wd = po_date | date: '%u' | minus: 1
+          echo po_weekdays[po_wd]
+        else
+          assign po_months = 'products.product.preorder.months' | t | split: ','
+          assign po_m = po_date | date: '%-m' | minus: 1
+          assign po_d = po_date | date: '%-d'
+          echo 'products.product.preorder.date_format' | t: day: po_d, month: po_months[po_m]
+      endcase
+    endif
+  endif
+-%}

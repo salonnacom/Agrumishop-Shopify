@@ -205,7 +205,18 @@
       "taxes_included": "Taxes included.",
       "duties_included": "Duties included.",
       "duties_and_taxes_included": "Duties and taxes included.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+      "preorder": {
+        "button": "Pre-order – ships from {{ date }}",
+        "banner_title": "Pre-orders are open",
+        "banner_text": "The first shipment leaves on {{ weekday }} {{ date }}, right after picking. Pre-order now to reserve a box from the first load.",
+        "banner_discount": "Pre-orders get {{ percent }}% off, applied automatically in the cart.",
+        "property_name": "Shipping",
+        "property_value": "pre-order, from {{ date }}",
+        "date_format": "{{ day }} {{ month }}",
+        "months": "January,February,March,April,May,June,July,August,September,October,November,December",
+        "weekdays": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday"
+      }
     },
     "modal": {
       "label": "Media gallery"

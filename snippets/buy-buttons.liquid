@@ -22,7 +22,19 @@
       if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
         assign show_dynamic_checkout = true
       endif
+
+      capture po_label
+        render 'preorder-date', product: product
+      endcapture
+      assign po_label = po_label | strip
+      if po_label != blank
+        assign po_button = 'products.product.preorder.button' | t: date: po_label
+      endif
     -%}
+
+    {%- if po_label != blank -%}
+      {%- render 'preorder-banner', product: product, po_label: po_label -%}
+    {%- endif -%}
 
     <product-form
       class="product-form"
@@ -60,6 +72,14 @@
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
 
+        {%- if po_label != blank -%}
+          <input
+            type="hidden"
+            name="properties[{{ 'products.product.preorder.property_name' | t }}]"
+            value="{{ 'products.product.preorder.property_value' | t: date: po_label }}"
+          >
+        {%- endif -%}
+
         <div class="product-form__buttons">
           {%- liquid
             assign check_against_inventory = true
@@ -75,6 +95,7 @@
             type="submit"
             name="add"
             class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+            {% if po_button != blank %}data-add-label="{{ po_button | escape }}"{% endif %}
             {% if product.selected_or_first_available_variant.available == false
               or quantity_rule_soldout
               or product.selected_or_first_available_variant == null
@@ -87,6 +108,8 @@
                 {{ 'products.product.unavailable' | t }}
               {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
+              {%- elsif po_button != blank -%}
+                {{ po_button }}
               {%- else -%}
                 {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}
