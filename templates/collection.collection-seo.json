@@ -76,7 +76,7 @@
           "settings": {
             "heading": "Quando è la stagione delle arance calabresi?",
             "icon": "none",
-            "row_content": "<p>Indicativamente da <strong>fine novembre ad aprile</strong>: le Navel da fine novembre a marzo, le Vaniglia da dicembre ad aprile. Le date esatte dipendono dalla maturazione dei frutti sulla pianta.</p>",
+            "row_content": "<p>Indicativamente da <strong>novembre ad aprile</strong>: le Navel da novembre a marzo, le Vaniglia da dicembre ad aprile. Le date esatte dipendono dalla maturazione dei frutti sulla pianta.</p>",
             "page": ""
           }
         },
@@ -176,8 +176,8 @@
       "settings": {
         "heading": "Prezzi delle arance calabresi",
         "heading_en": "Calabrian orange prices",
-        "note": "<p>Prezzi per cassetta, <strong>spedizione inclusa</strong> in tutta Italia. Le arance sono disponibili da fine novembre ad aprile, secondo la varietà: quando una cassetta è fuori stagione puoi chiedere nella scheda di essere avvisato alla riapertura degli ordini.</p>",
-        "note_en": "<p>Prices per box, <strong>shipping included</strong> anywhere in Italy. Oranges are available from late November to April, depending on the variety: when a box is out of season you can ask to be notified on the product page as soon as orders reopen.</p>",
+        "note": "<p>Prezzi per cassetta, <strong>spedizione inclusa</strong> in tutta Italia. Le arance sono disponibili da novembre ad aprile, secondo la varietà: quando una cassetta è fuori stagione puoi chiedere nella scheda di essere avvisato alla riapertura degli ordini.</p>",
+        "note_en": "<p>Prices per box, <strong>shipping included</strong> anywhere in Italy. Oranges are available from November to April, depending on the variety: when a box is out of season you can ask to be notified on the product page as soon as orders reopen.</p>",
         "color_scheme": "background-1",
         "padding_top": 12,
         "padding_bottom": 36
