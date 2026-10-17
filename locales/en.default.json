@@ -210,7 +210,7 @@
         "button": "Pre-order – ships from {{ date }}",
         "banner_title": "Pre-orders are open",
         "banner_text": "The first shipment leaves on {{ weekday }} {{ date }}, right after picking. Pre-order now to reserve a box from the first load.",
-        "banner_discount": "Pre-orders get {{ percent }}% off, applied automatically in the cart.",
+        "banner_discount": "Until shipping starts, the price is {{ percent }}% off.",
         "property_name": "Shipping",
         "property_value": "pre-order, from {{ date }}",
         "date_format": "{{ day }} {{ month }}",

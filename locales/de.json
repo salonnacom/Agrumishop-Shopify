@@ -210,7 +210,7 @@
         "button": "Vorbestellen – Versand ab {{ date }}",
         "banner_title": "Jetzt vorbestellen",
         "banner_text": "Die erste Lieferung geht am {{ weekday }}, {{ date }} direkt nach der Ernte raus. Mit einer Vorbestellung sichern Sie sich eine Kiste aus der ersten Ladung.",
-        "banner_discount": "Bei Vorbestellung erhalten Sie {{ percent }} % Rabatt, automatisch im Warenkorb abgezogen.",
+        "banner_discount": "Bis zum Versandstart ist der Preis um {{ percent }} % reduziert.",
         "property_name": "Versand",
         "property_value": "Vorbestellung, ab {{ date }}",
         "date_format": "{{ day }}. {{ month }}",
