@@ -16,6 +16,22 @@
           assign image = block.settings[image_key]
         -%}
         {%- if heading != blank -%}
+          {%- comment -%} Immagine verticale = icona-badge illustrata con pillola: il testo va sopra la pillola {%- endcomment -%}
+          {%- if image != blank and image.height > image.width -%}
+            <li class="media-icons-overlay__item media-icons-overlay__item--badge">
+              <img
+                src="{{ image | image_url: width: 240 }}"
+                srcset="{{ image | image_url: width: 120 }} 120w, {{ image | image_url: width: 240 }} 240w, {{ image | image_url: width: 360 }} 360w"
+                sizes="(max-width: 749px) 95px, 120px"
+                alt=""
+                width="{{ image.width }}"
+                height="{{ image.height }}"
+                loading="eager"
+              >
+              <span>{{ heading }}</span>
+            </li>
+            {%- continue -%}
+          {%- endif -%}
           <li class="media-icons-overlay__item">
             {%- if image != blank -%}
               <img src="{{ image | image_url: width: 96 }}" alt="" width="32" height="32" loading="eager">

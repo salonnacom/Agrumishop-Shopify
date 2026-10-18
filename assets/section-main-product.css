@@ -1562,3 +1562,56 @@ a.product__text {
     height: 2.8rem;
   }
 }
+
+/* Variante con icona-badge illustrata (immagine verticale con pillola verde): testo HTML sopra la pillola */
+.media-icons-overlay__item--badge {
+  position: relative;
+  display: block;
+  width: 12rem;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  container-type: inline-size;
+}
+
+.media-icons-overlay__item--badge img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+}
+
+.media-icons-overlay__item--badge span {
+  position: absolute;
+  top: 63%;
+  right: 7%;
+  bottom: 2%;
+  left: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 10.5cqi;
+  font-weight: 700;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+@media screen and (max-width: 749px) {
+  .media-icons-overlay:has(.media-icons-overlay__item--badge) {
+    right: auto;
+  }
+
+  .media-icons-overlay__item--badge {
+    flex: 0 1 9.5rem;
+    width: 9.5rem;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .media-icons-overlay__item--badge img {
+    width: 100%;
+    height: auto;
+  }
+}

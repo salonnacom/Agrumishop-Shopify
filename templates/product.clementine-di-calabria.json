@@ -47,13 +47,13 @@
             "overlay": true,
             "layout": "horizontal",
             "icon_1": "heart",
-            "image_1": "shopify://shop_images/senza-semi.jpg",
+            "image_1": "shopify://shop_images/punto-forza-senza-semi.png",
             "heading_1": "Senza semi",
             "icon_2": "return",
-            "image_2": "shopify://shop_images/buccia-edibile.jpg",
+            "image_2": "shopify://shop_images/punto-forza-nessun-trattamento.png",
             "heading_2": "Nessun trattamento post-raccolta",
             "icon_3": "truck",
-            "image_3": "shopify://shop_images/spedizione-gratuita_910c7b25-3295-4675-a6e0-8cf4ea8762d7.jpg",
+            "image_3": "shopify://shop_images/punto-forza-spedizione-inclusa.png",
             "heading_3": "Spedizione inclusa nel prezzo!"
           }
         },
