@@ -1563,7 +1563,14 @@ a.product__text {
   }
 }
 
-/* Variante con icona-badge illustrata (immagine verticale con pillola verde): testo HTML sopra la pillola */
+/* Variante con icona-badge illustrata (immagine verticale con pillola verde): testo HTML sopra la pillola,
+   badge in colonna in alto a sinistra per non coprire il prodotto */
+.media-icons-overlay:has(.media-icons-overlay__item--badge) {
+  top: 1.2rem;
+  bottom: auto;
+  flex-direction: column;
+}
+
 .media-icons-overlay__item--badge {
   position: relative;
   display: block;
@@ -1600,14 +1607,21 @@ a.product__text {
 
 @media screen and (max-width: 749px) {
   .media-icons-overlay:has(.media-icons-overlay__item--badge) {
+    top: 0.8rem;
     right: auto;
+    bottom: auto;
+    gap: 0.4rem;
   }
 
   .media-icons-overlay__item--badge {
-    flex: 0 1 9.5rem;
-    width: 9.5rem;
+    flex: 0 0 auto;
+    width: 7.6rem;
     padding: 0;
     border-radius: 0;
+  }
+
+  .media-icons-overlay__item--badge span {
+    font-size: 11.5cqi;
   }
 
   .media-icons-overlay__item--badge img {
