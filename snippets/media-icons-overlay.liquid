@@ -3,10 +3,11 @@
   in basso a sinistra sulla prima foto della galleria prodotto.
   Accepts:
   - section: {Object} sezione main-product
+  - below: {Boolean} copia sotto la galleria, mostrata solo su mobile al posto di quella sulla foto (solo badge illustrati)
 {% endcomment %}
 {%- for block in section.blocks -%}
   {%- if block.type == 'icon-with-text' and block.settings.overlay -%}
-    <ul class="media-icons-overlay list-unstyled" aria-label="{{ product.title | escape }}">
+    <ul class="media-icons-overlay list-unstyled{% if below %} media-icons-overlay--below{% endif %}" aria-label="{{ product.title | escape }}">
       {%- for i in (1..4) -%}
         {%- liquid
           assign heading_key = 'heading_' | append: i
@@ -31,7 +32,8 @@
             endif
             assign badge_alt_key = 'products.product.badges.' | append: badge
           -%}
-          <li class="media-icons-overlay__item media-icons-overlay__item--sticker">
+          {%- comment -%} Senza semi in alto a destra sulla foto (desktop) {%- endcomment -%}
+          <li class="media-icons-overlay__item media-icons-overlay__item--sticker{% if badge == 'semi' %} media-icons-overlay__item--right{% endif %}">
             <img
               src="{{ badge_file | asset_url }}"
               alt="{{ badge_alt_key | t | escape }}"

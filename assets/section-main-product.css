@@ -1632,11 +1632,16 @@ a.product__text {
   }
 }
 
-/* Variante badge illustrato con testo nell'immagine (setting "Badge sulla foto"): solo immagine, colonna in alto a sinistra */
+/* Variante badge illustrato con testo nell'immagine (setting "Badge sulla foto"): solo immagine.
+   Desktop: colonna in alto a sinistra sulla foto, Senza semi in alto a destra.
+   Mobile: riga sotto la galleria (copia --below), la versione sulla foto è nascosta. */
 .media-icons-overlay:has(.media-icons-overlay__item--sticker) {
   top: 1.2rem;
+  right: 1.2rem;
   bottom: auto;
   flex-direction: column;
+  align-items: flex-start;
+  max-width: none;
 }
 
 .media-icons-overlay__item--sticker {
@@ -1655,21 +1660,39 @@ a.product__text {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
 }
 
+.media-icons-overlay__item--right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.media-icons-overlay--below {
+  display: none;
+}
+
 @media screen and (max-width: 749px) {
-  .media-icons-overlay:has(.media-icons-overlay__item--sticker) {
-    top: 0.8rem;
-    right: auto;
-    bottom: auto;
-    gap: 0.4rem;
+  .media-icons-overlay:not(.media-icons-overlay--below):has(.media-icons-overlay__item--sticker) {
+    display: none;
   }
 
-  .media-icons-overlay__item--sticker {
-    flex: 0 0 auto;
-    width: 8.4rem;
+  .media-icons-overlay--below:has(.media-icons-overlay__item--sticker) {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.6rem;
+    max-width: none;
+    margin: 0.4rem 1.5rem 0;
   }
 
-  .media-icons-overlay__item--sticker img {
-    width: 100%;
-    height: auto;
+  .media-icons-overlay--below .media-icons-overlay__item--sticker {
+    position: static;
+    flex: 1 1 0;
+    width: auto;
+    max-width: 10rem;
+  }
+
+  .media-icons-overlay--below .media-icons-overlay__item--sticker img {
+    filter: none;
   }
 }
