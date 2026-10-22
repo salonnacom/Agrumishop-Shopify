@@ -44,6 +44,9 @@
           "type": "icon-with-text",
           "settings": {
             "overlay": true,
+            "badge_1": "italiane",
+            "badge_2": "trattamento",
+            "badge_3": "spedizione",
             "layout": "horizontal",
             "icon_1": "truck",
             "image_1": "{{ product.metafields.custom.icona_1_immagine.value }}",
