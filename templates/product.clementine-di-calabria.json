@@ -45,6 +45,9 @@
           "type": "icon-with-text",
           "settings": {
             "overlay": true,
+            "badge_1": "italiane",
+            "badge_2": "trattamento",
+            "badge_3": "spedizione",
             "layout": "horizontal",
             "icon_1": "heart",
             "image_1": "shopify://shop_images/punto-forza-senza-semi.png",

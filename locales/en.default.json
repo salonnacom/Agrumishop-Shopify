@@ -132,6 +132,12 @@
   },
   "products": {
     "product": {
+      "badges": {
+        "italiane": "100% Italian citrus",
+        "trattamento": "No post-harvest treatment",
+        "spedizione": "Shipping included in the price",
+        "15kg": "15 kg box"
+      },
       "add_to_cart": "Add to cart",
       "choose_options": "Scegli",
       "choose_product_options": "Choose options for {{ product_name }}",

@@ -132,6 +132,12 @@
   },
   "products": {
     "product": {
+      "badges": {
+        "italiane": "Agrumi 100% italiani",
+        "trattamento": "Nessun trattamento post raccolta",
+        "spedizione": "Spedizione inclusa nel prezzo",
+        "15kg": "Cassetta da 15 kg"
+      },
       "add_to_cart": "Aggiungi al carrello",
       "description": "Descrizione",
       "on_sale": "In offerta",

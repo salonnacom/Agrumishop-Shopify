@@ -14,7 +14,34 @@
           assign icon_key = 'icon_' | append: i
           assign heading = block.settings[heading_key]
           assign image = block.settings[image_key]
+          assign badge_key = 'badge_' | append: i
+          assign badge = block.settings[badge_key] | default: 'none'
         -%}
+        {%- comment -%} Badge illustrato con testo nell'immagine: file per lingua in assets (badge-<nome>-<it|en|de>.webp) {%- endcomment -%}
+        {%- if badge != 'none' -%}
+          {%- liquid
+            if badge == '15kg'
+              assign badge_file = 'badge-15kg.webp'
+            else
+              assign badge_locale = request.locale.iso_code
+              unless badge_locale == 'en' or badge_locale == 'de'
+                assign badge_locale = 'it'
+              endunless
+              assign badge_file = 'badge-' | append: badge | append: '-' | append: badge_locale | append: '.webp'
+            endif
+            assign badge_alt_key = 'products.product.badges.' | append: badge
+          -%}
+          <li class="media-icons-overlay__item media-icons-overlay__item--sticker">
+            <img
+              src="{{ badge_file | asset_url }}"
+              alt="{{ badge_alt_key | t | escape }}"
+              width="400"
+              height="400"
+              loading="eager"
+            >
+          </li>
+          {%- continue -%}
+        {%- endif -%}
         {%- if heading != blank -%}
           {%- comment -%} Immagine verticale = icona-badge illustrata con pillola: il testo va sopra la pillola {%- endcomment -%}
           {%- if image != blank and image.height > image.width -%}

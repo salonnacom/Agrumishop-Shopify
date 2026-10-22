@@ -132,6 +132,12 @@
   },
   "products": {
     "product": {
+      "badges": {
+        "italiane": "100 % italienische Zitrusfrüchte",
+        "trattamento": "Keine Nacherntebehandlung",
+        "spedizione": "Versand im Preis enthalten",
+        "15kg": "15-kg-Kiste"
+      },
       "add_to_cart": "In den Warenkorb legen",
       "description": "Beschreibung",
       "on_sale": "Sale",
