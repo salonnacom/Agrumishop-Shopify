@@ -1715,4 +1715,46 @@ a.product__text {
     order: -1;
     margin: 0 0 1.5rem;
   }
+
+  /* Da flex item i margini non collassano più: solo margine sopra, più stretto */
+  .product:not(.product--no-media) .product__info-container > * + * {
+    margin: 1.2rem 0 0;
+  }
+
+  .product:not(.product--no-media) .product__info-container .product-form,
+  .product:not(.product--no-media) .product__info-container .product__description {
+    margin: 0;
+  }
+
+  .product:not(.product--no-media) .product__info-container > .product__tax {
+    margin-top: 0.2rem;
+  }
+
+  /* Contenitore rate Shop Pay vuoto e app "Avvisami" nascosta: nessuno spazio */
+  .product:not(.product--no-media) .product__info-container > div:has(> .installment),
+  .product:not(.product--no-media) .product__info-container > .shopify-app-block:not(:has(> :not(style, script, [style*='display: none']))) {
+    margin: 0;
+  }
+
+  .product:not(.product--no-media) .product-form__quantity {
+    margin-bottom: 0;
+  }
+
+  /* Varianti: etichetta sulla stessa riga dei pulsanti */
+  .product:not(.product--no-media) .product-form__input--pill {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 1.2rem;
+    margin-bottom: 0;
+  }
+
+  .product:not(.product--no-media) .product-form__input--pill .form__label {
+    float: left;
+    margin: 0;
+  }
+
+  .product:not(.product--no-media) .product-form__input--pill input[type='radio'] + label {
+    margin: 0.3rem 0;
+  }
 }
