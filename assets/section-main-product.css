@@ -1696,3 +1696,23 @@ a.product__text {
     filter: none;
   }
 }
+
+/* Mobile: titolo prodotto (unico H1) sopra la galleria. Colonna info "sciolta" con display: contents
+   così il blocco titolo diventa fratello della galleria e si può riordinare senza duplicare l'H1. */
+@media screen and (max-width: 749px) {
+  .product:not(.product--no-media) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .product:not(.product--no-media) > .product__info-wrapper,
+  .product:not(.product--no-media) .product__info-container {
+    display: contents;
+  }
+
+  .product:not(.product--no-media) .product__info-container > .product__title {
+    order: -1;
+    margin: 0 0 1.5rem;
+  }
+}
