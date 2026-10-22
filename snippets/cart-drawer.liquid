@@ -10,6 +10,7 @@
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'box-builder.js' | asset_url }}" defer="defer"></script>
 
 <style>
   .drawer {
@@ -293,6 +294,18 @@
                           <quantity-popover>
                             <div class="cart-item__quantity-wrapper quantity-popover-wrapper">
                               <div class="quantity-popover-container{% if has_qty_rules or has_vol_pricing %} quantity-popover-container--hover{% endif %}">
+                                {%- if item.properties._box != blank -%}
+                                {%- comment -%} Riga di una box su misura: quantità bloccata, si rimuove tutta la box {%- endcomment -%}
+                                <span class="cart-item__box-qty">{{ item.quantity }} kg</span>
+                              </div>
+                              <box-remove-button data-box="{{ item.properties._box | escape }}">
+                                <button type="button" class="button button--tertiary cart-remove-button" aria-label="{{ 'products.product.box_builder.remove' | t | escape }}">
+                                  <span class="svg-wrapper">
+                                    {{- 'icon-remove.svg' | inline_asset_content -}}
+                                  </span>
+                                </button>
+                              </box-remove-button>
+                                {%- else -%}
                                 <quantity-input class="quantity cart-quantity">
                                   <button
                                     class="quantity__button"
@@ -375,6 +388,7 @@
                                   </span>
                                 </button>
                               </cart-remove-button>
+                                {%- endif -%}
                             </div>
                             {%- if has_qty_rules or has_vol_pricing -%}
                               <button

@@ -1,0 +1,111 @@
+{% comment %}
+  Box su misura: il cliente compone una cassetta da 15 kg a scatti di 1 kg.
+  Ogni variante del prodotto è un agrume con prezzo al kg; il metafield variante custom.prodotto_origine
+  punta al prodotto vero, da cui si leggono foto, disponibilità e pre-ordine.
+  Le righe aggiunte al carrello condividono la proprietà _box (vedi cart-drawer / main-cart-items).
+  Accepts:
+  - product: {Object}
+  - block: {Object}
+{% endcomment %}
+{%- assign box_max = 15 -%}
+{{ 'component-box-builder.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'box-builder.js' | asset_url }}" defer="defer"></script>
+
+<box-builder
+  class="box-builder"
+  data-max="{{ box_max }}"
+  data-money-format="{{ shop.money_with_currency_format | strip_html | escape }}"
+  data-text-remaining="{{ 'products.product.box_builder.remaining' | t: kg: '[kg]' | escape }}"
+  data-text-full="{{ 'products.product.box_builder.full' | t | escape }}"
+  data-text-preorder="{{ 'products.product.box_builder.preorder_note' | t: date: '[date]' | escape }}"
+  data-text-error="{{ 'products.product.box_builder.error' | t | escape }}"
+  data-property-shipping="{{ 'products.product.box_builder.property_shipping' | t | escape }}"
+  {{ block.shopify_attributes }}
+>
+  <p class="box-builder__intro">{{ 'products.product.box_builder.intro' | t: max: box_max }}</p>
+
+  <ul class="box-builder__list list-unstyled" role="list">
+    {%- for variant in product.variants -%}
+      {%- assign source = variant.metafields.custom.prodotto_origine.value -%}
+      {%- if source == blank -%}{%- continue -%}{%- endif -%}
+      {%- capture po_date -%}{%- render 'preorder-date', product: source -%}{%- endcapture -%}
+      {%- capture po_iso -%}{%- render 'preorder-date', product: source, part: 'iso' -%}{%- endcapture -%}
+      <li
+        class="box-builder__item{% unless source.available %} box-builder__item--unavailable{% endunless %}"
+        data-variant-id="{{ variant.id }}"
+        data-price="{{ variant.price }}"
+        data-preorder-date="{{ po_date | strip | escape }}"
+        data-preorder-iso="{{ po_iso | strip }}"
+      >
+        {%- if source.featured_image -%}
+          <img
+            class="box-builder__image"
+            src="{{ source.featured_image | image_url: width: 160 }}"
+            srcset="{{ source.featured_image | image_url: width: 80 }} 80w, {{ source.featured_image | image_url: width: 160 }} 160w"
+            sizes="64px"
+            width="64"
+            height="64"
+            alt=""
+            loading="lazy"
+          >
+        {%- endif -%}
+        <div class="box-builder__info">
+          <a class="box-builder__name" href="{{ source.url }}">{{ variant.title | escape }}</a>
+          <span class="box-builder__price">{{ variant.price | money }}{{ 'products.product.box_builder.per_kg' | t }}</span>
+          {%- if source.available == false -%}
+            <span class="box-builder__note">{{ 'products.product.box_builder.unavailable' | t }}</span>
+          {%- elsif po_date != blank -%}
+            <span class="box-builder__note box-builder__note--preorder">
+              {{- 'products.product.box_builder.preorder' | t: date: po_date -}}
+            </span>
+          {%- endif -%}
+        </div>
+        {%- if source.available -%}
+          <div class="box-builder__stepper">
+            <button
+              type="button"
+              class="box-builder__step"
+              data-step="-1"
+              aria-label="{{ 'products.product.box_builder.decrease' | t: name: variant.title | escape }}"
+              disabled
+            >
+              <span class="svg-wrapper">{{- 'icon-minus.svg' | inline_asset_content -}}</span>
+            </button>
+            <output class="box-builder__qty" aria-live="polite"><span>0</span> kg</output>
+            <button
+              type="button"
+              class="box-builder__step"
+              data-step="1"
+              aria-label="{{ 'products.product.box_builder.increase' | t: name: variant.title | escape }}"
+            >
+              <span class="svg-wrapper">{{- 'icon-plus.svg' | inline_asset_content -}}</span>
+            </button>
+          </div>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+
+  <div class="box-builder__summary">
+    <div class="box-builder__progress" aria-hidden="true"><span class="box-builder__bar"></span></div>
+    <div class="box-builder__totals">
+      <p class="box-builder__filled">
+        <strong data-box-kg>0</strong> / {{ box_max }} kg
+        <span class="box-builder__remaining" data-box-remaining aria-live="polite">
+          {{- 'products.product.box_builder.remaining' | t: kg: box_max -}}
+        </span>
+      </p>
+      <p class="box-builder__total">
+        <span class="box-builder__total-label">{{ 'products.product.box_builder.total' | t }}</span>
+        <strong data-box-total>{{ 0 | money_with_currency }}</strong>
+        <span class="box-builder__shipping">{{ 'products.product.box_builder.shipping_included' | t }}</span>
+      </p>
+    </div>
+    <p class="box-builder__preorder" data-box-preorder hidden></p>
+    <p class="box-builder__error" data-box-error role="alert" hidden></p>
+    <button type="button" class="button button--full-width button--primary box-builder__submit" data-box-submit disabled>
+      <span>{{ 'products.product.box_builder.add' | t }}</span>
+      <div class="loading__spinner hidden">{%- render 'loading-spinner' -%}</div>
+    </button>
+  </div>
+</box-builder>

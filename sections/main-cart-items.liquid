@@ -24,6 +24,7 @@
 {%- endunless -%}
 
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'box-builder.js' | asset_url }}" defer="defer"></script>
 
 <cart-items
   class="gradient color-{{ section.settings.color_scheme }} isolate{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}"
@@ -245,6 +246,18 @@
                                 {{- 'icon-info.svg' | inline_asset_content -}}
                               </button>
                             {%- endif -%}
+                            {%- if item.properties._box != blank -%}
+                            {%- comment -%} Riga di una box su misura: quantità bloccata, si rimuove tutta la box {%- endcomment -%}
+                            <span class="cart-item__box-qty">{{ item.quantity }} kg</span>
+                          </div>
+                          <box-remove-button data-box="{{ item.properties._box | escape }}">
+                            <button type="button" class="button button--tertiary" aria-label="{{ 'products.product.box_builder.remove' | t | escape }}">
+                              <span class="svg-wrapper">
+                                {{- 'icon-remove.svg' | inline_asset_content -}}
+                              </span>
+                            </button>
+                          </box-remove-button>
+                            {%- else -%}
                             <quantity-input class="quantity cart-quantity">
                               {% assign can_update_quantity = item.instructions.can_update_quantity | default: true %}
                               <button
@@ -320,6 +333,7 @@
                               </span>
                             </a>
                           </cart-remove-button>
+                            {%- endif -%}
                         </div>
                         {%- if has_qty_rules or has_vol_pricing -%}
                           <button

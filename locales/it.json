@@ -132,6 +132,23 @@
   },
   "products": {
     "product": {
+      "box_builder": {
+        "intro": "Scegli gli agrumi che preferisci, 1 kg alla volta, fino a riempire la cassetta da {{ max }} kg.",
+        "per_kg": "/kg",
+        "unavailable": "Non disponibile al momento",
+        "preorder": "Pre-ordine: spedizione dal {{ date }}",
+        "decrease": "Togli 1 kg di {{ name }}",
+        "increase": "Aggiungi 1 kg di {{ name }}",
+        "remaining": "Mancano {{ kg }} kg",
+        "full": "Cassetta completa!",
+        "total": "Totale",
+        "shipping_included": "Spedizione inclusa",
+        "add": "Aggiungi la box al carrello",
+        "preorder_note": "Hai scelto agrumi in pre-ordine: la box verrà spedita dal {{ date }}.",
+        "error": "Non è stato possibile aggiungere la box al carrello. Riprova.",
+        "property_shipping": "Spedizione dal",
+        "remove": "Rimuovi la box su misura"
+      },
       "badges": {
         "italiane": "Agrumi 100% italiani",
         "trattamento": "Nessun trattamento post raccolta",

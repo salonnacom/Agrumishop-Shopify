@@ -300,7 +300,7 @@ cart-drawer-items {
 }
 
 @media screen and (max-width: 749px) {
-  .cart-drawer .cart-item cart-remove-button {
+  .cart-drawer .cart-item :is(cart-remove-button, box-remove-button) {
     margin-left: 0;
   }
 }

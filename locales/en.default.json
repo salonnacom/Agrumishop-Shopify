@@ -132,6 +132,23 @@
   },
   "products": {
     "product": {
+      "box_builder": {
+        "intro": "Choose the citrus you like, 1 kg at a time, until the {{ max }} kg box is full.",
+        "per_kg": "/kg",
+        "unavailable": "Currently unavailable",
+        "preorder": "Pre-order: ships from {{ date }}",
+        "decrease": "Remove 1 kg of {{ name }}",
+        "increase": "Add 1 kg of {{ name }}",
+        "remaining": "{{ kg }} kg to go",
+        "full": "Box complete!",
+        "total": "Total",
+        "shipping_included": "Shipping included",
+        "add": "Add box to cart",
+        "preorder_note": "You picked pre-order citrus: the box will ship from {{ date }}.",
+        "error": "We couldn't add the box to your cart. Please try again.",
+        "property_shipping": "Ships from",
+        "remove": "Remove custom box"
+      },
       "badges": {
         "italiane": "100% Italian citrus",
         "trattamento": "No post-harvest treatment",

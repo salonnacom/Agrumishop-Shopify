@@ -132,6 +132,23 @@
   },
   "products": {
     "product": {
+      "box_builder": {
+        "intro": "Wählen Sie Ihre Lieblingszitrusfrüchte, jeweils 1 kg, bis die {{ max }}-kg-Kiste voll ist.",
+        "per_kg": "/kg",
+        "unavailable": "Derzeit nicht verfügbar",
+        "preorder": "Vorbestellung: Versand ab {{ date }}",
+        "decrease": "1 kg {{ name }} entfernen",
+        "increase": "1 kg {{ name }} hinzufügen",
+        "remaining": "Noch {{ kg }} kg",
+        "full": "Kiste ist voll!",
+        "total": "Gesamt",
+        "shipping_included": "Versand inklusive",
+        "add": "Kiste in den Warenkorb",
+        "preorder_note": "Sie haben Früchte in Vorbestellung gewählt: Die Kiste wird ab {{ date }} versendet.",
+        "error": "Die Kiste konnte nicht in den Warenkorb gelegt werden. Bitte versuchen Sie es erneut.",
+        "property_shipping": "Versand ab",
+        "remove": "Individuelle Kiste entfernen"
+      },
       "badges": {
         "italiane": "100 % italienische Zitrusfrüchte",
         "trattamento": "Keine Nacherntebehandlung",

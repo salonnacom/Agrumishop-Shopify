@@ -210,6 +210,8 @@
                   </p>
                 {%- when 'custom_liquid' -%}
                   {{ block.settings.custom_liquid }}
+                {%- when 'box_builder' -%}
+                  {% render 'box-builder', product: product, block: block %}
                 {%- when 'collapsible_tab' -%}
                   <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                     <details id="Details-{{ block.id }}-{{ section.id }}">
@@ -993,6 +995,17 @@
           "id": "share_label",
           "label": "t:sections.main-product.blocks.share.settings.text.label",
           "default": "t:sections.main-product.blocks.share.settings.text.default"
+        }
+      ]
+    },
+    {
+      "type": "box_builder",
+      "name": "Box su misura",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Configuratore della box da 15 kg: ogni variante del prodotto è un agrume con il prezzo al kg, collegato al prodotto vero tramite il metafield variante \"Prodotto agrume (box su misura)\"."
         }
       ]
     },
