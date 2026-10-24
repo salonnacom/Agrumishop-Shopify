@@ -93,6 +93,12 @@
     .cp__chart { width: 100%; height: auto; display: block; overflow: visible; }
     .cp__chart text { font-size: 11px; fill: var(--cp-muted); }
     .cp__chart .cp__empty { font-size: 14px; font-style: italic; }
+    .cp__apex { margin: 0 -0.8rem 0 -0.4rem; min-height: 24rem; }
+    .cp__apex .apexcharts-tooltip { border-radius: 1rem; box-shadow: 0 0.6rem 2rem rgba(0, 0, 0, 0.12); border: 0; }
+    .cp__tip { padding: 0.8rem 1.2rem; font-size: 1.3rem; line-height: 1.5; }
+    .cp__tip strong { display: block; margin-bottom: 0.2rem; }
+    .cp__tip i { display: inline-block; width: 0.8rem; height: 0.8rem; border-radius: 50%; margin-right: 0.5rem; background: var(--cp-line); }
+    .cp__tip i.cp__tip-bio { background: transparent; border: 1.5px solid rgba(var(--color-foreground), 0.55); }
     .cp__legend { display: flex; gap: 1.6rem; font-size: 1.3rem; color: var(--cp-muted); margin: 0.8rem 0 0; flex-wrap: wrap; }
     .cp__legend span::before { content: ''; display: inline-block; width: 1.6rem; height: 0; border-top: 2px solid var(--cp-line); vertical-align: middle; margin-right: 0.5rem; }
     .cp__legend .cp__legend-band::before { height: 0.8rem; border: 0; background: var(--cp-line); opacity: 0.18; }
@@ -299,6 +305,7 @@
             document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
           });
           if (focus) tab.focus();
+          upgrade();
         }
         var fromHash = tabs.filter(function (t) { return location.hash && t.id === 'cp-tab-{{ section.id }}-' + location.hash.slice(1); })[0];
         if (fromHash) { select(fromHash); root.scrollIntoView(); }
@@ -407,6 +414,76 @@
             el('title', {}, dot).textContent = day(p.d) + ': ' + num(p.avg) + ' €/kg (' + num(p.min) + '–' + num(p.max) + ')';
           });
         });
+
+        // Grafico interattivo (ApexCharts) solo sulla pagina: libreria caricata in differita, disegnato quando la scheda è visibile.
+        // Se la libreria non arriva resta l'SVG qui sopra.
+        function upgrade() {
+          if (!window.ApexCharts) return;
+          root.querySelectorAll('[data-cp-chart]').forEach(function (svg) {
+            if (svg.hasAttribute('data-cp-apex') || !svg.getClientRects().length) return;
+            var c = data.citrus.filter(function (x) { return x.key === svg.getAttribute('data-cp-chart'); })[0];
+            if (!c) return;
+            svg.setAttribute('data-cp-apex', '');
+            var inSeason = function (p) { var v = t(p.d); return v >= start && v < end; };
+            var conv = c.conv.filter(inSeason), bio = c.bio.filter(inSeason);
+            var cs = getComputedStyle(svg), fg = (cs.getPropertyValue('--cp-line') || '').trim() || '#c25e00';
+            var muted = (cs.getPropertyValue('--cp-muted') || '').trim() || '#777';
+            var ink = cs.color, bioColor = ink.replace('rgb(', 'rgba(').replace(')', ', 0.55)');
+            var vals = [];
+            conv.forEach(function (p) { vals.push(p.min, p.max); });
+            bio.forEach(function (p) { vals.push(p.avg); });
+            var lo = 0, hi = 4, step = 1;
+            if (vals.length) {
+              lo = Math.min.apply(null, vals); hi = Math.max.apply(null, vals);
+              var pad = Math.max((hi - lo) * 0.2, 0.3);
+              lo = Math.max(0, lo - pad); hi = hi + pad;
+              step = [0.25, 0.5, 1, 2, 5].filter(function (s) { return (hi - lo) / s <= 5; })[0] || 5;
+              lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
+            }
+            var series = [
+              { name: 'min–max', type: 'rangeArea', data: conv.map(function (p) { return { x: t(p.d), y: [p.min, p.max] }; }) },
+              { name: 'media', type: 'line', data: conv.map(function (p) { return { x: t(p.d), y: p.avg }; }) }
+            ];
+            if (bio.length) series.push({ name: 'bio', type: 'line', data: bio.map(function (p) { return { x: t(p.d), y: p.avg }; }) });
+            var box = document.createElement('div');
+            box.className = 'cp__apex';
+            svg.parentNode.insertBefore(box, svg);
+            svg.hidden = true;
+            new ApexCharts(box, {
+              chart: { type: 'rangeArea', height: root.clientWidth < 520 ? 260 : 320, fontFamily: getComputedStyle(root).fontFamily, foreColor: muted,
+                toolbar: { show: false }, zoom: { enabled: false }, animations: { enabled: true, easing: 'easeout', speed: 700 } },
+              series: series,
+              colors: [fg, fg, bioColor],
+              fill: { type: ['gradient', 'solid', 'solid'], opacity: [0.22, 1, 1], gradient: { shadeIntensity: 0, opacityFrom: 0.28, opacityTo: 0.08, stops: [0, 100] } },
+              stroke: { curve: 'smooth', width: [0, 3, 2], dashArray: [0, 0, 5] },
+              markers: { size: [0, conv.length > 1 ? 4 : 7, 4], strokeWidth: 2, strokeColors: cs.backgroundColor === 'rgba(0, 0, 0, 0)' ? '#fff' : cs.backgroundColor, hover: { sizeOffset: 2 } },
+              dataLabels: { enabled: false },
+              legend: { show: false },
+              noData: { text: svg.getAttribute('data-cp-empty'), style: { color: muted, fontSize: '14px' } },
+              grid: { borderColor: ink.replace('rgb(', 'rgba(').replace(')', ', 0.1)'), strokeDashArray: 4, padding: { left: 8, right: 12 } },
+              xaxis: { type: 'datetime', min: start, max: end - 864e5, tickAmount: 8,
+                labels: { formatter: function (v) { return monthFmt.format(new Date(v)).replace('.', ''); }, hideOverlappingLabels: true },
+                axisBorder: { show: false }, axisTicks: { show: false }, tooltip: { enabled: false },
+                crosshairs: { stroke: { color: fg, dashArray: 3 } } },
+              yaxis: { min: lo, max: hi, tickAmount: Math.round((hi - lo) / step), labels: { formatter: function (v) { return num(v) + ' €'; } } },
+              tooltip: { shared: true, intersect: false, custom: function (o) {
+                var x = o.w.globals.seriesX[o.seriesIndex][o.dataPointIndex];
+                var p = conv.filter(function (q) { return t(q.d) === x; })[0], b = bio.filter(function (q) { return t(q.d) === x; })[0];
+                var d = (p || b).d.split('-'), html = '<div class="cp__tip"><strong>' + d[2] + '/' + d[1] + '/' + d[0] + '</strong>';
+                if (p) html += '<i></i>' + num(p.avg) + ' €/kg <span style="color:' + muted + '">(' + num(p.min) + '–' + num(p.max) + ')</span><br>';
+                if (b) html += '<i class="cp__tip-bio"></i>bio ' + num(b.avg) + ' €/kg';
+                return html + '</div>';
+              } }
+            }).render();
+          });
+        }
+        if (root.querySelector('[data-cp-chart]')) {
+          var lib = document.createElement('script');
+          lib.src = 'https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.54.1/apexcharts.min.js';
+          lib.async = true;
+          lib.onload = upgrade;
+          document.head.appendChild(lib);
+        }
       })();
     </script>
   {%- unless compact -%}
