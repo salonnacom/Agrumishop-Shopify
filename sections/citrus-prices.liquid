@@ -465,7 +465,7 @@
                 toolbar: { show: false }, zoom: { enabled: false }, animations: { enabled: true, easing: 'easeout', speed: 700 } },
               series: series,
               colors: [fg, fg, bioColor],
-              fill: { type: ['gradient', 'solid', 'solid'], opacity: [0.22, 1, 1], gradient: { shadeIntensity: 0, opacityFrom: 0.28, opacityTo: 0.08, stops: [0, 100] } },
+              fill: { type: ['gradient', 'solid', 'solid'], opacity: [0.3, 1, 1], gradient: { shadeIntensity: 0, opacityFrom: 0.42, opacityTo: 0.16, stops: [0, 100] } },
               stroke: { curve: 'smooth', width: [0, 3, 2], dashArray: [0, 0, 5] },
               markers: { size: edge[0] ? 0 : [0, 4, 4], discrete: edge[0] ? [1, 2].filter(function (k) { return k < series.length; }).map(function (k) { return { seriesIndex: k, dataPointIndex: 1, size: k === 1 ? 7 : 5, fillColor: k === 1 ? fg : bioColor, strokeColor: '#fff' }; }) : [], strokeWidth: 2, strokeColors: cs.backgroundColor === 'rgba(0, 0, 0, 0)' ? '#fff' : cs.backgroundColor, hover: { sizeOffset: 2 } },
               dataLabels: { enabled: false },
