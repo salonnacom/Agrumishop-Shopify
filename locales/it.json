@@ -227,6 +227,7 @@
         "price_at_each_html": "a {{ price }}/ciascuno"
       },
       "product_variants": "Varianti di prodotto",
+      "reviews_count": "{{ count }} recensioni",
       "taxes_included": "Imposte incluse.",
       "duties_included": "Dazi inclusi.",
       "duties_and_taxes_included": "Dazi e imposte inclusi.",
