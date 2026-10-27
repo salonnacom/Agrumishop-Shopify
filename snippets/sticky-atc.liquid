@@ -1,5 +1,5 @@
 {% comment %}
-  Barra fissa in basso su mobile con il pulsante di acquisto.
+  Barra fissa in basso (mobile e desktop) con il pulsante di acquisto.
   Compare quando il pulsante vero non è visibile e lo "clicca" al posto del cliente,
   così variante, quantità e pre-ordine restano quelli del modulo prodotto.
   Accepts:
@@ -41,31 +41,26 @@
 </sticky-atc>
 <style>
   .sticky-atc {
-    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom));
+    background: rgb(var(--color-background));
+    box-shadow: 0 -0.2rem 1rem rgba(0, 0, 0, 0.12);
+    transform: translateY(110%);
+    transition: transform 0.25s ease;
   }
-  @media screen and (max-width: 749px) {
-    .sticky-atc {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom));
-      background: rgb(var(--color-background));
-      box-shadow: 0 -0.2rem 1rem rgba(0, 0, 0, 0.12);
-      transform: translateY(110%);
-      transition: transform 0.25s ease;
-    }
-    .sticky-atc.is-visible {
-      transform: translateY(0);
-    }
-    body.sticky-atc-visible {
-      padding-bottom: 8rem;
-      --shopify-chat-activator-offset: 96px;
-    }
+  .sticky-atc.is-visible {
+    transform: translateY(0);
+  }
+  body.sticky-atc-visible {
+    padding-bottom: 8rem;
+    --shopify-chat-activator-offset: 96px;
   }
   .sticky-atc__info {
     display: flex;
@@ -109,6 +104,31 @@
     font-size: 1.4rem;
     line-height: 1.2;
     white-space: normal;
+  }
+  @media screen and (min-width: 750px) {
+    /* Su desktop il contenuto resta allineato alla larghezza della pagina. */
+    .sticky-atc {
+      gap: 2rem;
+      padding: 1.2rem max(5rem, calc((100% - var(--page-width)) / 2 + 5rem));
+    }
+    body.sticky-atc-visible {
+      padding-bottom: 9rem;
+      --shopify-chat-activator-offset: 104px;
+    }
+    .sticky-atc__image {
+      width: 5.6rem;
+      height: 5.6rem;
+    }
+    .sticky-atc__title,
+    .sticky-atc__meta {
+      font-size: 1.5rem;
+    }
+    .sticky-atc__button.button {
+      max-width: none;
+      min-width: 28rem;
+      padding: 0 3rem;
+      font-size: 1.5rem;
+    }
   }
 </style>
 <script>
@@ -159,8 +179,7 @@
         }
 
         toggle(show) {
-          const mobile = window.matchMedia('(max-width: 749px)').matches;
-          const visible = show && mobile;
+          const visible = show;
           this.classList.toggle('is-visible', visible);
           document.body.classList.toggle('sticky-atc-visible', visible);
           this.button.tabIndex = visible ? 0 : -1;
