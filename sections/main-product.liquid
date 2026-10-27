@@ -531,9 +531,11 @@
                         </span>
                       </p>
                       <p class="rating-count caption">
-                        <a href="#shopify-section-{{ section.id | replace: '__main', '__169813185067f32813' }}" class="link">
-                          {{- 'products.product.reviews_count' | t: count: product.metafields.reviews.rating_count -}}
-                        </a>
+                        <span aria-hidden="true">({{ product.metafields.reviews.rating_count }})</span>
+                        <span class="visually-hidden">
+                          {{- product.metafields.reviews.rating_count }}
+                          {{ 'accessibility.total_reviews' | t -}}
+                        </span>
                       </p>
                     </div>
                   {%- endif -%}

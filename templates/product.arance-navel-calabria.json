@@ -116,15 +116,15 @@
             "share_label": "Condividi"
           }
         },
-        "rating": {
-          "type": "rating",
+        "e50373a7-2ec3-4181-b87d-827848bcd0d4": {
+          "type": "shopify://apps/ag-product-reviews/blocks/app-summary-block/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
           "settings": {}
         }
       },
       "block_order": [
         "vendor",
         "title",
-        "rating",
+        "e50373a7-2ec3-4181-b87d-827848bcd0d4",
         "6ed807ba-0731-4ac3-b82e-1720e845f5a2",
         "price",
         "variant_picker",
