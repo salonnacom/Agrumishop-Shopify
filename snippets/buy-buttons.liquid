@@ -32,10 +32,6 @@
       endif
     -%}
 
-    {%- if po_label != blank -%}
-      {%- render 'preorder-banner', product: product, po_label: po_label -%}
-    {%- endif -%}
-
     <product-form
       class="product-form"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
@@ -122,6 +118,10 @@
         </div>
       {%- endform -%}
     </product-form>
+
+    {%- if po_label != blank -%}
+      {%- render 'preorder-banner', product: product, po_label: po_label -%}
+    {%- endif -%}
   {%- else -%}
     <div class="product-form">
       <div class="product-form__buttons form">
