@@ -1,0 +1,193 @@
+{% comment %}
+  Barra fissa in basso su mobile con il pulsante di acquisto.
+  Compare quando il pulsante vero non è visibile e lo "clicca" al posto del cliente,
+  così variante, quantità e pre-ordine restano quelli del modulo prodotto.
+  Accepts:
+  - product: {Object}
+  - section_id: {String} id della sezione main-product
+{% endcomment %}
+{%- liquid
+  assign sticky_variant = product.selected_or_first_available_variant
+  assign sticky_image = sticky_variant.featured_media | default: product.featured_media
+-%}
+<sticky-atc class="sticky-atc" data-section="{{ section_id }}">
+  <div class="sticky-atc__info">
+    {%- if sticky_image != blank -%}
+      <img
+        class="sticky-atc__image"
+        src="{{ sticky_image | image_url: width: 120 }}"
+        alt=""
+        width="48"
+        height="48"
+        loading="lazy"
+      >
+    {%- endif -%}
+    <div class="sticky-atc__text">
+      <p class="sticky-atc__title">{{ product.title | escape }}</p>
+      <p class="sticky-atc__meta">
+        {%- unless product.has_only_default_variant -%}
+          <span data-sticky-variant>{{ sticky_variant.title | escape }}</span> ·
+        {% endunless -%}
+        <span data-sticky-price>{{ sticky_variant.price | money }}</span>
+        <s data-sticky-compare>
+          {%- if sticky_variant.compare_at_price > sticky_variant.price -%}
+            {{ sticky_variant.compare_at_price | money }}
+          {%- endif -%}
+        </s>
+      </p>
+    </div>
+  </div>
+  <button type="button" class="sticky-atc__button button button--primary" tabindex="-1"></button>
+</sticky-atc>
+<style>
+  .sticky-atc {
+    display: none;
+  }
+  @media screen and (max-width: 749px) {
+    .sticky-atc {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom));
+      background: rgb(var(--color-background));
+      box-shadow: 0 -0.2rem 1rem rgba(0, 0, 0, 0.12);
+      transform: translateY(110%);
+      transition: transform 0.25s ease;
+    }
+    .sticky-atc.is-visible {
+      transform: translateY(0);
+    }
+    body.sticky-atc-visible {
+      padding-bottom: 8rem;
+      --shopify-chat-activator-offset: 96px;
+    }
+  }
+  .sticky-atc__info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+  .sticky-atc__image {
+    width: 4.8rem;
+    height: 4.8rem;
+    object-fit: cover;
+    border-radius: 0.4rem;
+    flex: 0 0 auto;
+  }
+  .sticky-atc__text {
+    min-width: 0;
+  }
+  .sticky-atc__title,
+  .sticky-atc__meta {
+    margin: 0;
+    font-size: 1.3rem;
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sticky-atc__title {
+    font-weight: 700;
+  }
+  .sticky-atc__meta s {
+    margin-left: 0.3rem;
+    opacity: 0.6;
+  }
+  .sticky-atc__button.button {
+    flex: 0 0 auto;
+    min-width: 0;
+    min-height: 4.4rem;
+    max-width: 55%;
+    padding: 0 1.4rem;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    white-space: normal;
+  }
+</style>
+<script>
+  if (!customElements.get('sticky-atc')) {
+    customElements.define(
+      'sticky-atc',
+      class StickyAtc extends HTMLElement {
+        connectedCallback() {
+          if (this.initialized || this.closest('quick-add-modal, product-modal')) return;
+          this.initialized = true;
+          // pubsub.js è caricato con defer: aspetto che sia disponibile.
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.init());
+          } else {
+            this.init();
+          }
+        }
+
+        init() {
+          // Fuori dalla colonna prodotto, così position: fixed non dipende dai contenitori.
+          document.body.appendChild(this);
+          this.sectionId = this.dataset.section;
+          this.realButton = document.getElementById(`ProductSubmitButton-${this.sectionId}`);
+          this.button = this.querySelector('.sticky-atc__button');
+          if (!this.realButton || !this.button) return;
+
+          this.button.addEventListener('click', () => this.realButton.click());
+          this.syncButton();
+          this.syncVariant(null);
+          new MutationObserver(() => this.syncButton()).observe(this.realButton, {
+            attributes: true,
+            childList: true,
+            subtree: true,
+            characterData: true,
+          });
+
+          if (typeof subscribe === 'function' && typeof PUB_SUB_EVENTS !== 'undefined') {
+            subscribe(PUB_SUB_EVENTS.variantChange, (event) => {
+              if (event.data.sectionId !== this.sectionId) return;
+              this.syncVariant(event.data.variant);
+            });
+          }
+
+          // Il pulsante conta come visibile solo se sta sopra la barra.
+          new IntersectionObserver(([entry]) => this.toggle(!entry.isIntersecting), {
+            rootMargin: '0px 0px -90px 0px',
+          }).observe(this.realButton);
+        }
+
+        toggle(show) {
+          const mobile = window.matchMedia('(max-width: 749px)').matches;
+          const visible = show && mobile;
+          this.classList.toggle('is-visible', visible);
+          document.body.classList.toggle('sticky-atc-visible', visible);
+          this.button.tabIndex = visible ? 0 : -1;
+        }
+
+        syncButton() {
+          const label = this.realButton.querySelector('span');
+          this.button.textContent = (label ? label.textContent : this.realButton.textContent).trim();
+          this.button.disabled = this.realButton.disabled;
+        }
+
+        syncVariant(variant) {
+          const variantEl = this.querySelector('[data-sticky-variant]');
+          if (variantEl && variant) variantEl.textContent = variant.title;
+
+          const price = document.querySelector(`#price-${this.sectionId} .price`);
+          if (!price) return;
+          const onSale = price.classList.contains('price--on-sale');
+          const current = price.querySelector(
+            onSale ? '.price__sale .price-item--sale' : '.price__regular .price-item--regular'
+          );
+          const compare = price.querySelector('.price__sale s.price-item--regular');
+          this.querySelector('[data-sticky-price]').textContent = current ? current.textContent.trim() : '';
+          this.querySelector('[data-sticky-compare]').textContent =
+            onSale && compare ? compare.textContent.trim() : '';
+        }
+      }
+    );
+  }
+</script>
