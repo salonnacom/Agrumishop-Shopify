@@ -258,6 +258,17 @@ a.product__text {
   display: none;
 }
 
+.product__title + .product__facts {
+  margin-top: -0.8rem;
+}
+
+.product__facts p {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: rgba(var(--color-foreground), 0.8);
+}
+
 .product__title + .product__text.caption-with-letter-spacing {
   margin-top: -1.5rem;
 }
