@@ -665,7 +665,7 @@
   "shopify": {
     "checkout": {
       "contact": {
-        "address2_label": "Codice Fiscale o P.IVA"
+        "address2_label": "Indirizzo"
       },
       "field_errors": {
         "address_address2_blank": "Campo obbligatorio"
