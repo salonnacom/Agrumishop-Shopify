@@ -3673,11 +3673,23 @@ details-disclosure > details {
 }
 
 .review-summary {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.6rem;
   margin: 15px 0;
+  padding: 1.2rem 1.6rem;
+  border: 1px solid rgba(var(--color-foreground), 0.08);
+  border-radius: 1.2rem;
+  background: rgba(var(--color-foreground), 0.03);
+  color: rgba(var(--color-foreground), 0.75);
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.review-summary:hover {
+  border-color: rgba(var(--color-foreground), 0.15);
+  background: rgba(var(--color-foreground), 0.05);
 }
 
 .review-summary .review-stars {
@@ -3690,17 +3702,20 @@ details-disclosure > details {
   height: 24px;
 }
 
-.review-summary__link {
+.review-summary__text {
   font-size: 16px;
   line-height: 1.4;
-  color: rgba(var(--color-foreground), 0.75);
+  text-decoration: underline;
   text-underline-offset: 0.3rem;
+}
+
+.review-summary strong,
+.review-stars-row strong {
+  color: rgb(var(--color-foreground));
+  font-weight: 700;
 }
 
 .AirReviews-Embed-BlockWrapper {
   scroll-margin-top: 10rem;
 }
 
-.review-summary__link:hover {
-  color: rgb(var(--color-foreground));
-}

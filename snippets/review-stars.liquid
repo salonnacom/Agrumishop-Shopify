@@ -7,7 +7,7 @@
   Accepts:
   - product: {Object} Prodotto
   - layout: {String} 'stars' (card: stelle + "4,7 · 27 recensioni", su mobile "4,7 (27)")
-    oppure 'summary' (scheda: stelle grandi, sotto "4,8 · 44 recensioni" che scorre all'elenco Air Reviews)
+    oppure 'summary' (scheda: box con stelle grandi e "4,8 · 44 recensioni", tutto cliccabile verso l'elenco Air Reviews)
 
   Usage:
   {% render 'review-stars', product: card_product %}
@@ -58,12 +58,12 @@
   {%- endcapture -%}
 
   {%- if layout == 'summary' -%}
-    <div class="review-summary">
+    <a href="#recensioni" class="review-summary" data-review-link>
       {{ stars }}
-      <a href="#recensioni" class="review-summary__link" data-review-link>
-        {{- review_avg_label }} · {{ review_count }} {{ label_reviews -}}
-      </a>
-    </div>
+      <span class="review-summary__text">
+        <strong>{{ review_avg_label }}</strong> · <strong>{{ review_count }}</strong> {{ label_reviews -}}
+      </span>
+    </a>
     <script>
       if (!window.reviewLinkBound) {
         window.reviewLinkBound = true;
@@ -80,8 +80,9 @@
     <div class="review-stars-row">
       {{ stars }}
       <span class="review-stars-row__text" aria-hidden="true">
-        {{- review_avg_label }}<span class="review-stars-row__long"> · {{ review_count }} {{ label_reviews }}</span>
-        <span class="review-stars-row__short"> ({{ review_count }})</span>
+        <strong>{{ review_avg_label }}</strong>
+        <span class="review-stars-row__long">· <strong>{{ review_count }}</strong> {{ label_reviews }}</span>
+        <span class="review-stars-row__short">(<strong>{{ review_count }}</strong>)</span>
       </span>
     </div>
   {%- endif -%}
