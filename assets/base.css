@@ -3653,44 +3653,54 @@ details-disclosure > details {
   color: rgb(var(--color-foreground));
 }
 
-.review-stars-row__count {
+.review-stars-row__text {
   margin-left: 7px;
+}
+
+/* Desktop: "4,7 · 27 recensioni"; mobile: "4,7 (27)" */
+.review-stars-row__short {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .review-stars-row__long {
+    display: none;
+  }
+
+  .review-stars-row__short {
+    display: inline;
+  }
 }
 
 .review-summary {
   display: flex;
-  margin: 15px 0;
-  font-size: 16px;
-  line-height: 28px;
-  color: rgba(var(--color-foreground), 0.75);
-}
-
-.review-summary__col {
-  display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 15px 0;
 }
 
-.review-summary__col--count {
-  position: relative;
-  margin-left: 10px;
-  padding-left: 10px;
+.review-summary .review-stars {
+  gap: 6px;
 }
 
-.review-summary__col--count::after {
-  content: '';
-  position: absolute;
-  top: 14.5px;
-  left: 0;
-  width: 1px;
-  height: 29px;
-  background: rgba(var(--color-foreground), 0.15);
+.review-summary .review-stars__star,
+.review-summary .review-stars__icon {
+  width: 24px;
+  height: 24px;
 }
 
-.review-summary__count {
-  padding-bottom: 5px;
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 17px;
+.review-summary__link {
+  font-size: 16px;
+  line-height: 1.4;
+  color: rgba(var(--color-foreground), 0.75);
+  text-underline-offset: 0.3rem;
+}
+
+.AirReviews-Embed-BlockWrapper {
+  scroll-margin-top: 10rem;
+}
+
+.review-summary__link:hover {
+  color: rgb(var(--color-foreground));
 }

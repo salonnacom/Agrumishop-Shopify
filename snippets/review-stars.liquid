@@ -6,7 +6,8 @@
 
   Accepts:
   - product: {Object} Prodotto
-  - layout: {String} 'stars' (card: stelle + "(27)") oppure 'summary' (scheda: "Valutazione (4.8)" | "Recensioni 44")
+  - layout: {String} 'stars' (card: stelle + "4,7 · 27 recensioni", su mobile "4,7 (27)")
+    oppure 'summary' (scheda: stelle grandi, sotto "4,8 · 44 recensioni" che scorre all'elenco Air Reviews)
 
   Usage:
   {% render 'review-stars', product: card_product %}
@@ -18,19 +19,23 @@
   assign review_avg_label = product.metafields.air_reviews_product.review_avg.value | default: product.metafields.reviews.rating.value.rating
   case request.locale.iso_code
     when 'de'
-      assign label_rating = 'Bewertung'
+      assign label_review = 'Bewertung'
       assign label_reviews = 'Bewertungen'
     when 'en'
-      assign label_rating = 'Rating'
-      assign label_reviews = 'Reviews'
+      assign label_review = 'review'
+      assign label_reviews = 'reviews'
     else
-      assign label_rating = 'Valutazione'
-      assign label_reviews = 'Recensioni'
+      assign label_review = 'recensione'
+      assign label_reviews = 'recensioni'
+      assign review_avg_label = review_avg_label | replace: '.', ','
   endcase
+  if review_count == 1
+    assign label_reviews = label_review
+  endif
 -%}
 {%- if review_count > 0 -%}
   {%- capture stars -%}
-    <span class="review-stars" role="img" aria-label="{{ review_avg_label }} / 5 · {{ review_count }} {{ label_reviews | downcase }}">
+    <span class="review-stars" role="img" aria-label="{{ review_avg_label }} / 5 · {{ review_count }} {{ label_reviews }}">
       {%- for i in (1..5) -%}
         {%- liquid
           assign fill = review_avg | minus: forloop.index0 | times: 100 | round
@@ -54,19 +59,30 @@
 
   {%- if layout == 'summary' -%}
     <div class="review-summary">
-      <div class="review-summary__col">
-        <span>{{ label_rating }} ({{ review_avg_label }})</span>
-        {{ stars }}
-      </div>
-      <div class="review-summary__col review-summary__col--count">
-        <span>{{ label_reviews }}</span>
-        <span class="review-summary__count">{{ review_count }}</span>
-      </div>
+      {{ stars }}
+      <a href="#recensioni" class="review-summary__link" data-review-link>
+        {{- review_avg_label }} · {{ review_count }} {{ label_reviews -}}
+      </a>
     </div>
+    <script>
+      if (!window.reviewLinkBound) {
+        window.reviewLinkBound = true;
+        document.addEventListener('click', (event) => {
+          const link = event.target.closest('[data-review-link]');
+          const list = document.querySelector('.AirReviews-Embed-BlockWrapper');
+          if (!link || !list) return;
+          event.preventDefault();
+          list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+    </script>
   {%- else -%}
     <div class="review-stars-row">
       {{ stars }}
-      <span class="review-stars-row__count" aria-hidden="true">({{ review_count }})</span>
+      <span class="review-stars-row__text" aria-hidden="true">
+        {{- review_avg_label }}<span class="review-stars-row__long"> · {{ review_count }} {{ label_reviews }}</span>
+        <span class="review-stars-row__short"> ({{ review_count }})</span>
+      </span>
     </div>
   {%- endif -%}
 {%- endif -%}
