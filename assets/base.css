@@ -3610,3 +3610,87 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* Stelle recensioni (snippets/review-stars.liquid): stessa grafica di Air Reviews, disegnate dal tema */
+.review-stars {
+  display: inline-flex;
+  gap: 4px;
+  vertical-align: middle;
+}
+
+.review-stars__star {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.review-stars__icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  color: #ffc107;
+}
+
+.review-stars__icon--empty {
+  color: #bfbfbf;
+}
+
+.review-stars__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.review-stars-row {
+  display: flex;
+  align-items: center;
+  margin-top: 0.7rem;
+  font-size: 16px;
+  line-height: 22.4px;
+  color: rgb(var(--color-foreground));
+}
+
+.review-stars-row__count {
+  margin-left: 7px;
+}
+
+.review-summary {
+  display: flex;
+  margin: 15px 0;
+  font-size: 16px;
+  line-height: 28px;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.review-summary__col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.review-summary__col--count {
+  position: relative;
+  margin-left: 10px;
+  padding-left: 10px;
+}
+
+.review-summary__col--count::after {
+  content: '';
+  position: absolute;
+  top: 14.5px;
+  left: 0;
+  width: 1px;
+  height: 29px;
+  background: rgba(var(--color-foreground), 0.15);
+}
+
+.review-summary__count {
+  padding-bottom: 5px;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 17px;
+}

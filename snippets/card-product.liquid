@@ -170,7 +170,7 @@
 
               
 
-    <div class="AirReviews-Widget AirReviews-Widget--Stars" style="margin-top:0.7rem" data-review-avg="{{ card_product.metafields.air_reviews_product.review_avg }}" data-review-count="{{ card_product.metafields.air_reviews_product.review_count }}"></div>
+              {%- render 'review-stars', product: card_product -%}
 
 <span class="caption-large light">{{ block.settings.description | escape }}</span>
 

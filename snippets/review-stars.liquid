@@ -1,0 +1,72 @@
+{% comment %}
+  Stelle recensioni con la stessa grafica di Air Reviews, ma disegnate dal tema:
+  l'app non deve più renderizzare un widget per ogni card (INP mobile).
+  Media e numero li scrive Air Reviews nei metafield del prodotto.
+  La forma della stella (#review-star-shape) è definita una volta sola in layout/theme.liquid.
+
+  Accepts:
+  - product: {Object} Prodotto
+  - layout: {String} 'stars' (card: stelle + "(27)") oppure 'summary' (scheda: "Valutazione (4.8)" | "Recensioni 44")
+
+  Usage:
+  {% render 'review-stars', product: card_product %}
+  {% render 'review-stars', product: product, layout: 'summary' %}
+{% endcomment %}
+{%- liquid
+  assign review_avg = product.metafields.air_reviews_product.review_avg.value | default: product.metafields.reviews.rating.value.rating | default: 0 | plus: 0
+  assign review_count = product.metafields.air_reviews_product.review_count.value | default: product.metafields.reviews.rating_count.value | default: 0 | plus: 0
+  assign review_avg_label = product.metafields.air_reviews_product.review_avg.value | default: product.metafields.reviews.rating.value.rating
+  case request.locale.iso_code
+    when 'de'
+      assign label_rating = 'Bewertung'
+      assign label_reviews = 'Bewertungen'
+    when 'en'
+      assign label_rating = 'Rating'
+      assign label_reviews = 'Reviews'
+    else
+      assign label_rating = 'Valutazione'
+      assign label_reviews = 'Recensioni'
+  endcase
+-%}
+{%- if review_count > 0 -%}
+  {%- capture stars -%}
+    <span class="review-stars" role="img" aria-label="{{ review_avg_label }} / 5 · {{ review_count }} {{ label_reviews | downcase }}">
+      {%- for i in (1..5) -%}
+        {%- liquid
+          assign fill = review_avg | minus: forloop.index0 | times: 100 | round
+          if fill > 100
+            assign fill = 100
+          elsif fill < 0
+            assign fill = 0
+          endif
+        -%}
+        <span class="review-stars__star" aria-hidden="true">
+          <svg class="review-stars__icon review-stars__icon--empty" viewBox="0 0 16 16" width="16" height="16" focusable="false"><use href="#review-star-shape"/></svg>
+          {%- if fill > 0 -%}
+            <span class="review-stars__fill" style="width: {{ fill }}%;">
+              <svg class="review-stars__icon" viewBox="0 0 16 16" width="16" height="16" focusable="false"><use href="#review-star-shape"/></svg>
+            </span>
+          {%- endif -%}
+        </span>
+      {%- endfor -%}
+    </span>
+  {%- endcapture -%}
+
+  {%- if layout == 'summary' -%}
+    <div class="review-summary">
+      <div class="review-summary__col">
+        <span>{{ label_rating }} ({{ review_avg_label }})</span>
+        {{ stars }}
+      </div>
+      <div class="review-summary__col review-summary__col--count">
+        <span>{{ label_reviews }}</span>
+        <span class="review-summary__count">{{ review_count }}</span>
+      </div>
+    </div>
+  {%- else -%}
+    <div class="review-stars-row">
+      {{ stars }}
+      <span class="review-stars-row__count" aria-hidden="true">({{ review_count }})</span>
+    </div>
+  {%- endif -%}
+{%- endif -%}
