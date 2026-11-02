@@ -475,7 +475,7 @@
       "trend_link": "Verlauf ansehen",
       "product_link": "Online kaufen",
       "cta": "Preise ansehen",
-      "dataset_description": "Wöchentlicher Durchschnittspreis für italienische Orangen, Clementinen, Zitronen und Mandarinen, die online von Erzeugern und Fachhändlern verkauft werden, in Euro pro kg inklusive Versand. Erhebung von AgrumiShop über ein festes Panel von Shops.",
+      "dataset_description": "Wöchentlicher Durchschnittspreis für italienische Orangen, Clementinen, Zitronen und rosa Grapefruits, die online von Erzeugern und Fachhändlern verkauft werden, in Euro pro kg inklusive Versand. Erhebung von AgrumiShop über ein festes Panel von Shops.",
       "variety_line": "{{ name }}: {{ price }}/kg (von {{ min }} bis {{ max }})",
       "varieties": {
         "tarocco": "Tarocco",
@@ -485,13 +485,13 @@
         "arance": "Orangen",
         "clementine": "Clementinen",
         "limoni": "Zitronen",
-        "mandarini": "Mandarinen"
+        "pompelmi": "Rosa Grapefruits"
       },
       "season": {
         "arance": "Saison: November bis April.",
         "clementine": "Saison: Ende Oktober bis Januar.",
         "limoni": "Saison: Oktober bis April.",
-        "mandarini": "Saison: November bis Februar."
+        "pompelmi": "Saison: November bis April."
       },
       "brief_title": "Durchschnittlicher Onlinepreis italienischer Zitrusfrüchte am {{ date }}, pro kg inklusive Versand:",
       "brief_line": "{{ name }}: durchschnittlich {{ price }}/kg (von {{ min }} bis {{ max }} pro kg)",

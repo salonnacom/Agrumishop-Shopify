@@ -475,7 +475,7 @@
       "trend_link": "See the trend",
       "product_link": "Buy online",
       "cta": "See prices",
-      "dataset_description": "Weekly average consumer price of Italian oranges, clementines, lemons and mandarins sold online by growers and specialist shops, in euro per kg including shipping. AgrumiShop survey of a fixed panel of shops.",
+      "dataset_description": "Weekly average consumer price of Italian oranges, clementines, lemons and pink grapefruits sold online by growers and specialist shops, in euro per kg including shipping. AgrumiShop survey of a fixed panel of shops.",
       "variety_line": "{{ name }}: {{ price }}/kg (from {{ min }} to {{ max }})",
       "varieties": {
         "tarocco": "Tarocco",
@@ -485,13 +485,13 @@
         "arance": "Oranges",
         "clementine": "Clementines",
         "limoni": "Lemons",
-        "mandarini": "Mandarins"
+        "pompelmi": "Pink grapefruits"
       },
       "season": {
         "arance": "Season: November to April.",
         "clementine": "Season: late October to January.",
         "limoni": "Season: October to April.",
-        "mandarini": "Season: November to February."
+        "pompelmi": "Season: November to April."
       },
       "brief_title": "Average online price of Italian citrus fruit as of {{ date }}, per kg including shipping:",
       "brief_line": "{{ name }}: {{ price }}/kg on average (from {{ min }} to {{ max }} per kg)",
