@@ -22,7 +22,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "Arance, clementine, limoni e pompelmi raccolti a mano solo quando arriva il tuo ordine, direttamente dal produttore. Spedizione inclusa nel prezzo.",
+            "text": "Arance, clementine, limoni e pompelmi freschi, raccolti a mano e spediti direttamente dal produttore. Spedizione inclusa nel prezzo.",
             "text_style": "body"
           }
         },
@@ -98,7 +98,7 @@
         "template--18229965488405__ba081ae9-5cb0-4539-bce4-54e58521f7ce-168527415873a9df14-1": {
           "type": "text",
           "settings": {
-            "text": "<p>AgrumiShop.it è un progetto dell’Azienda Agricola Salonna (Corigliano-Rossano), creato per dare a tutti la possibilità di acquistare online <a href=\"/collections/agrumi-di-calabria\" title=\"I nostri agrumi\">agrumi</a> genuini direttamente dal produttore, abbattendo i costi: <a href=\"/collections/arance-di-calabria\" title=\"Arance di Calabria\">arance di Calabria</a> come le nostre <a href=\"/products/arance-navel-calabria\" title=\"Arance Navel (Navelina) di Calabria\">arance Navel</a>, <a href=\"/products/limoni-di-calabria\" title=\"Limoni di Calabria\">limoni</a> e <a href=\"/collections/pompelmi\" title=\"Pompelmi\">pompelmi</a> coltivati nella Piana di Sibari, e <a href=\"/products/clementine-senza-semi\" title=\"Clementine senza semi\">clementine senza semi</a> raccolte al momento dell'ordine.<br/>Gli agrumi vengono raccolti solo nel momento in cui arriva la richiesta d’ordine, e vengono spediti il lunedì e il martedì tramite corriere professionale, con la massima cura dell’imballo: la consegna avviene di solito in 48–72 ore.</p>",
+            "text": "<p>AgrumiShop.it è un progetto dell’Azienda Agricola Salonna (Corigliano-Rossano), creato per dare a tutti la possibilità di acquistare online <a href=\"/collections/agrumi-di-calabria\" title=\"I nostri agrumi\">agrumi</a> genuini direttamente dal produttore, abbattendo i costi: <a href=\"/collections/arance-di-calabria\" title=\"Arance di Calabria\">arance di Calabria</a> come le nostre <a href=\"/products/arance-navel-calabria\" title=\"Arance Navel (Navelina) di Calabria\">arance Navel</a>, <a href=\"/products/limoni-di-calabria\" title=\"Limoni di Calabria\">limoni</a> e <a href=\"/collections/pompelmi\" title=\"Pompelmi\">pompelmi</a> coltivati nella Piana di Sibari, e <a href=\"/products/clementine-senza-semi\" title=\"Clementine senza semi\">clementine senza semi</a> raccolte a piena maturazione.<br/>Gli agrumi vengono raccolti a mano nel fine settimana e spediti freschi il lunedì e il martedì tramite corriere professionale, con la massima cura dell’imballo: la consegna avviene di solito in 48–72 ore.</p>",
             "text_style": "body"
           }
         }
@@ -339,7 +339,7 @@
         "template--18229965488405__e6296300-5f71-4d25-8212-95ede9208d20-168527415873a9df14-1": {
           "type": "text",
           "settings": {
-            "text": "<p>Al momento della ricezione di ogni ordine raccogliamo gli agrumi richiesti, in modo da poter offrire un prodotto sempre fresco e fragrante, dai nostri alberi da frutto alle vostre tavole.<br/>La raccolta avviene dalla tarda mattinata fino al primo pomeriggio per evitare che il frutto sia inumidito dalle brine notturne.<br/>Viene raccolto in degli appositi panieri per poi essere travasati nelle cassettine di cartone rigido che utilizziamo per la spedizione.</p><p>Ogni agrume ha la sua stagione, e il nostro <a href=\"/blogs/news/calendario-agrumi-calabria\" title=\"Calendario degli agrumi di Calabria\">calendario degli agrumi di Calabria</a> mostra i periodi di raccolta mese per mese.</p>",
+            "text": "<p>Raccogliamo gli agrumi a mano nel fine settimana e li spediamo il lunedì e il martedì, in modo da offrire un prodotto sempre fresco e fragrante, dai nostri alberi da frutto alle vostre tavole.<br/>La raccolta avviene dalla tarda mattinata fino al primo pomeriggio per evitare che il frutto sia inumidito dalle brine notturne.<br/>Viene raccolto in degli appositi panieri per poi essere travasati nelle cassettine di cartone rigido che utilizziamo per la spedizione.</p><p>Ogni agrume ha la sua stagione, e il nostro <a href=\"/blogs/news/calendario-agrumi-calabria\" title=\"Calendario degli agrumi di Calabria\">calendario degli agrumi di Calabria</a> mostra i periodi di raccolta mese per mese.</p>",
             "text_style": "body"
           }
         }
@@ -491,7 +491,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Le nostre clementine sono dolci, succose e <strong>quasi sempre senza semi</strong>: le raccogliamo a mano da fine ottobre a gennaio, solo quando arriva il tuo ordine.</p><p>Vuoi sapere perché non hanno semi e quali varietà esistono? Nella nostra <a href=\"/blogs/news/clementine\" title=\"Clementine: cosa sono, perché sono senza semi, varietà e stagione\">guida alle clementine</a> trovi varietà e stagione, mentre la <a href=\"/blogs/news/differenze-tra-mandarini-e-clementine\" title=\"Differenza tra clementine e mandarini\">differenza tra clementine e mandarini</a> ha un articolo tutto suo.</p>",
+            "text": "<p>Le nostre clementine sono dolci, succose e <strong>quasi sempre senza semi</strong>: le raccogliamo a mano da fine ottobre a gennaio a piena maturazione.</p><p>Vuoi sapere perché non hanno semi e quali varietà esistono? Nella nostra <a href=\"/blogs/news/clementine\" title=\"Clementine: cosa sono, perché sono senza semi, varietà e stagione\">guida alle clementine</a> trovi varietà e stagione, mentre la <a href=\"/blogs/news/differenze-tra-mandarini-e-clementine\" title=\"Differenza tra clementine e mandarini\">differenza tra clementine e mandarini</a> ha un articolo tutto suo.</p>",
             "text_style": "body"
           }
         },
