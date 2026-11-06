@@ -1,0 +1,13 @@
+{%- comment -%}
+  Avviso temporaneo solo sulle pagine tedesche (/de): mercato UE disattivato il 06/11/2026
+  in attesa della registrazione LUCID/rappresentante. Per toglierlo: rimuovere il render in layout/theme.liquid.
+{%- endcomment -%}
+{%- if request.locale.iso_code == 'de' -%}
+  <div class="de-shipping-notice color-inverse gradient" role="status">
+    <p>Lieferungen nach Deutschland sind vorübergehend pausiert – bald sind wir wieder für Sie da.</p>
+  </div>
+  <style>
+    .de-shipping-notice { padding: 1rem 2rem; text-align: center; }
+    .de-shipping-notice p { margin: 0; font-size: 1.5rem; line-height: 1.4; letter-spacing: .04rem; }
+  </style>
+{%- endif -%}
