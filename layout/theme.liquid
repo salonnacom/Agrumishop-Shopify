@@ -324,7 +324,18 @@
     {%- if request.page_type == 'page' and page.handle == 'pietro-salonna' -%}
       <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","url":{{ request.origin | append: page.url | json }},"mainEntity":{% render 'author-person-schema' %}}</script>
     {%- endif -%}
-  </head>
+    <script id='merchantWidgetScript'
+            src="https://www.gstatic.com/shopping/merchant/merchantwidget.js"
+            defer>
+    </script>
+    <script type="text/javascript">
+      merchantWidgetScript.addEventListener('load', function () {
+        merchantwidget.start({
+         position: 'RIGHT_BOTTOM'
+       });
+      });
+    </script>
+</head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     {%- comment -%} Forma della stella recensioni (snippets/review-stars.liquid), grafica Air Reviews. {%- endcomment -%}
