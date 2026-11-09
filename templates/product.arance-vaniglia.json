@@ -124,6 +124,7 @@
       "block_order": [
         "vendor",
         "title",
+        "6edcd286-5267-4771-b48e-dfe209aaaaaa",
         "rating_air",
         "6ed807ba-0731-4ac3-b82e-1720e845f5a2",
         "description",
@@ -133,7 +134,6 @@
         "quantity_selector",
         "custom_liquid_tC4tRr",
         "buy_buttons",
-        "6edcd286-5267-4771-b48e-dfe209aaaaaa",
         "fa91bde8-4ee8-49bd-8bc7-5648cbf326fb",
         "custom_liquid_ewEAHm",
         "share"
