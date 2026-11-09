@@ -3681,7 +3681,7 @@ details-disclosure > details {
   padding: 0;
   color: rgba(var(--color-foreground), 0.75);
   text-decoration: none;
-  }
+}
 
 .review-summary:hover .review-summary__text {
   text-decoration: underline;
