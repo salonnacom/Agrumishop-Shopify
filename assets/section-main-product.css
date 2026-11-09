@@ -1722,9 +1722,28 @@ a.product__text {
     display: contents;
   }
 
-  .product:not(.product--no-media) .product__info-container > .product__title {
+  /* Sopra la galleria: titolo, riga descrittiva (peso · varietà · provenienza) e riepilogo recensioni */
+  .product:not(.product--no-media) .product__info-container > .product__title,
+  .product:not(.product--no-media) .product__info-container > .product__facts,
+  .product:not(.product--no-media) .product__info-container > .review-summary {
     order: -1;
-    margin: 0 0 1.5rem;
+  }
+
+  .product:not(.product--no-media) .product__info-container > .product__title {
+    margin: 0;
+  }
+
+  .product:not(.product--no-media) .product__info-container > .product__facts {
+    margin: 0.4rem 0 0;
+  }
+
+  .product:not(.product--no-media) .product__info-container > .review-summary {
+    align-self: flex-start;
+    margin: 0.8rem 0 0;
+  }
+
+  .product:not(.product--no-media) > .product__media-wrapper {
+    margin-top: 1.5rem;
   }
 
   /* Da flex item i margini non collassano più: solo margine sopra, più stretto */
