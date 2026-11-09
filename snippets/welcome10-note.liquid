@@ -1,0 +1,42 @@
+{%- comment -%}
+  Riquadro "primo ordine: codice WELCOME10" (dal 09/11/2026), sotto il pulsante in scheda prodotto e sopra "Procedi" nel carrello.
+  Nascosto a chi ha già ordinato (cliente loggato con ordini) e quando WELCOME10 è già applicato al carrello.
+  Il codice è cliccabile e si copia negli appunti. Per toglierlo: rimuovere i render in main-product, main-cart-footer, cart-drawer.
+{%- endcomment -%}
+{%- liquid
+  assign show = true
+  if customer and customer.orders_count > 0
+    assign show = false
+  endif
+  for app in cart.cart_level_discount_applications
+    assign t = app.title | upcase
+    if t == 'WELCOME10'
+      assign show = false
+    endif
+  endfor
+  case request.locale.iso_code
+    when 'de'
+      assign lead = 'Ihre erste Bestellung?'
+      assign tail = '10 % Rabatt mit dem Code'
+      assign copied = 'Kopiert!'
+    when 'en'
+      assign lead = 'Your first order?'
+      assign tail = 'Get 10% off with code'
+      assign copied = 'Copied!'
+    else
+      assign lead = 'È il tuo primo ordine?'
+      assign tail = 'Hai il 10% di sconto con il codice'
+      assign copied = 'Copiato!'
+  endcase
+-%}
+{%- if show -%}
+  <p class="welcome10-note{% if context == 'cart' %} welcome10-note--cart{% endif %}">
+    <strong>{{ lead }}</strong> {{ tail }}
+    <button type="button" class="welcome10-note__code" data-copied="{{ copied }}" onclick="(function(b){var c='WELCOME10';(navigator.clipboard?navigator.clipboard.writeText(c):Promise.reject()).then(function(){var o=b.textContent;b.textContent=b.dataset.copied;setTimeout(function(){b.textContent=o},1500)}).catch(function(){})})(this)">WELCOME10</button>
+  </p>
+    <style>
+      .welcome10-note { margin: 1.2rem 0 0; padding: .9rem 1.4rem; border: 1px dashed rgba(var(--color-foreground), .35); border-radius: 1.2rem; font-size: 1.5rem; line-height: 1.5; text-align: center; }
+      .welcome10-note--cart { margin: 0 0 1.2rem; }
+      .welcome10-note__code { display: inline-block; margin-left: .3rem; padding: .1rem .8rem; border: 0; border-radius: .6rem; background: rgba(var(--color-foreground), .08); color: inherit; font: inherit; font-weight: 700; letter-spacing: .08rem; cursor: pointer; }
+    </style>
+{%- endif -%}
