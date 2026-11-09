@@ -3677,19 +3677,14 @@ details-disclosure > details {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.4rem 1rem;
-  margin: 10px 0;
-  padding: 0.8rem 1.4rem;
-  border: 1px solid rgba(var(--color-foreground), 0.08);
-  border-radius: 1.2rem;
-  background: rgba(var(--color-foreground), 0.03);
+  margin: 6px 0;
+  padding: 0;
   color: rgba(var(--color-foreground), 0.75);
   text-decoration: none;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-}
+  }
 
-.review-summary:hover {
-  border-color: rgba(var(--color-foreground), 0.15);
-  background: rgba(var(--color-foreground), 0.05);
+.review-summary:hover .review-summary__text {
+  text-decoration: underline;
 }
 
 .review-summary .review-stars {
