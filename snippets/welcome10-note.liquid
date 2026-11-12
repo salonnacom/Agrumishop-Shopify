@@ -1,7 +1,9 @@
 {%- comment -%}
   Riquadro "primo ordine: codice WELCOME10" (dal 09/11/2026), sotto il pulsante in scheda prodotto e sopra "Procedi" nel carrello.
   Nascosto a chi ha già ordinato (cliente loggato con ordini) e quando WELCOME10 è già applicato al carrello.
-  Il codice è cliccabile e si copia negli appunti. Per toglierlo: rimuovere i render in main-product, main-cart-footer, cart-drawer.
+  In scheda prodotto il codice si copia negli appunti; nel carrello (dal 12/11/2026) il pulsante "Applica" lo aggiunge
+  direttamente al carrello (/cart/update.js discount) e ricarica totali. Nascosto anche se nel carrello c'è già un altro codice
+  (WELCOME10 non è cumulabile). Per toglierlo: rimuovere i render in main-product, main-cart-footer, cart-drawer.
 {%- endcomment -%}
 {%- liquid
   assign show = true
@@ -9,8 +11,12 @@
     assign show = false
   endif
   for app in cart.cart_level_discount_applications
-    assign t = app.title | upcase
-    if t == 'WELCOME10'
+    if app.type == 'discount_code'
+      assign show = false
+    endif
+  endfor
+  for dc in cart.discount_codes
+    if dc.applicable
       assign show = false
     endif
   endfor
@@ -19,25 +25,73 @@
       assign lead = 'Ihre erste Bestellung?'
       assign tail = '10 % Rabatt mit dem Code'
       assign copied = 'Kopiert!'
+      assign apply = 'Rabatt anwenden'
+      assign applying = 'Wird angewendet …'
+      assign cart_tail = '10 % Rabatt mit dem Code <strong>WELCOME10</strong>'
     when 'en'
       assign lead = 'Your first order?'
       assign tail = 'Get 10% off with code'
       assign copied = 'Copied!'
+      assign apply = 'Apply discount'
+      assign applying = 'Applying…'
+      assign cart_tail = 'Get 10% off with code <strong>WELCOME10</strong>'
     else
       assign lead = 'È il tuo primo ordine?'
       assign tail = 'Hai il 10% di sconto con il codice'
       assign copied = 'Copiato!'
+      assign apply = 'Applica lo sconto'
+      assign applying = 'Applico…'
+      assign cart_tail = 'Hai il 10% di sconto con il codice <strong>WELCOME10</strong>'
   endcase
 -%}
 {%- if show -%}
-  <p class="welcome10-note{% if context == 'cart' %} welcome10-note--cart{% endif %}">
+  {%- if context == 'cart' -%}
+    <div class="welcome10-note welcome10-note--cart">
+      <strong class="welcome10-note__lead">{{ lead }}</strong>
+      {{ cart_tail }}
+      <button type="button" class="welcome10-note__apply" data-applying="{{ applying }}" onclick="welcome10Apply(this)">{{ apply }}</button>
+    </div>
+    <script>
+      window.welcome10Apply = window.welcome10Apply || function (b) {
+        if (b.disabled) return;
+        var label = b.textContent;
+        b.disabled = true;
+        b.textContent = b.dataset.applying;
+        fetch((window.routes && routes.cart_update_url ? routes.cart_update_url : '/cart/update') + '.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ discount: 'WELCOME10' })
+        })
+          .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+          .then(function () {
+            if (!b.closest('cart-drawer')) return window.location.reload();
+            return fetch(((window.routes && routes.cart_url) || '/cart') + '?section_id=cart-drawer')
+              .then(function (r) { return r.text(); })
+              .then(function (text) {
+                var html = new DOMParser().parseFromString(text, 'text/html');
+                ['cart-drawer-items', '.cart-drawer__footer'].forEach(function (sel) {
+                  var t = document.querySelector(sel), s = html.querySelector(sel);
+                  if (t && s) t.replaceWith(s);
+                });
+                var note = b.closest('.welcome10-note'), fresh = html.querySelector('.welcome10-note');
+                if (fresh) note.replaceWith(fresh); else note.remove();
+              });
+          })
+          .catch(function () { b.disabled = false; b.textContent = label; });
+      };
+    </script>
+  {%- else -%}
+    <p class="welcome10-note{% if context == 'cart' %} welcome10-note--cart{% endif %}">
     <strong class="welcome10-note__lead">{{ lead }}</strong>
     {{ tail }}
     <button type="button" class="welcome10-note__code" data-copied="{{ copied }}" onclick="(function(b){var c='WELCOME10';(navigator.clipboard?navigator.clipboard.writeText(c):Promise.reject()).then(function(){var o=b.textContent;b.textContent=b.dataset.copied;setTimeout(function(){b.textContent=o},1500)}).catch(function(){})})(this)">WELCOME10</button>
   </p>
+  {%- endif -%}
     <style>
       .welcome10-note { margin: 1.2rem 0 0; padding: 1rem 1.4rem; border: 1px solid #f0a23a; border-radius: 1.2rem; background: #fff4e3; color: #5a3a10; font-size: 1.5rem; line-height: 1.5; text-align: center; }
       .welcome10-note--cart { margin: 0 0 1.2rem; }
+      .welcome10-note__apply { display: block; width: 100%; margin-top: .8rem; padding: .9rem 1.2rem; border: 0; border-radius: .8rem; background: #e8871e; color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+      .welcome10-note__apply:disabled { opacity: .7; cursor: wait; }
       .welcome10-note__lead { display: block; margin-bottom: .2rem; font-size: 1.7rem; color: #b8600b; }
       .welcome10-note__code { display: inline-block; margin-left: .3rem; padding: .1rem .9rem; border: 0; border-radius: .6rem; background: #e8871e; color: #fff; font: inherit; font-weight: 700; letter-spacing: .08rem; cursor: pointer; }
     </style>
