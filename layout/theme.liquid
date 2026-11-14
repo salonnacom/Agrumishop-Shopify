@@ -15,15 +15,45 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
-    <title>
+    {%- comment -%}
+      Titolo: il nome del negozio si aggiunge solo ai titoli corti (Bing segnala i titoli oltre 70 caratteri, 14/11/2026).
+      Descrizione: se la pagina non ne ha una (policy, Tutti i prodotti, carrello) si usa un testo di riserva.
+    {%- endcomment -%}
+    {%- capture seo_title -%}
       {{ page_title }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
       {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
-    </title>
+    {%- endcapture -%}
+    {%- liquid
+      assign seo_title = seo_title | strip
+      assign seo_title_len = seo_title | replace: '&ndash;', '-' | size
+      unless seo_title contains shop.name or seo_title_len > 54
+        assign seo_title = seo_title | append: ' &ndash; ' | append: shop.name
+      endunless
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
+      assign seo_description = page_description
+      if seo_description == blank and request.locale.iso_code == 'it'
+        case request.path
+          when '/policies/shipping-policy'
+            assign seo_description = 'Come spediamo i nostri agrumi di Calabria: partenza il lunedì e il martedì con BRT, SDA o UPS, consegna in 48–72 ore in Italia, spedizione inclusa.'
+          when '/policies/refund-policy'
+            assign seo_description = 'Cosa fare se la cassetta arriva danneggiata: scrivici con una foto e troviamo insieme la soluzione, con sostituzione o rimborso.'
+          when '/policies/legal-notice'
+            assign seo_description = "Dati aziendali e informazioni legali di AgrumiShop.it, il negozio online dell'Azienda Agricola Salonna di Corigliano-Rossano."
+          when '/policies/terms-of-service'
+            assign seo_description = 'Condizioni di vendita di AgrumiShop.it: ordini, prezzi, pagamenti e consegna degli agrumi di Calabria spediti dal produttore.'
+          when '/collections/all'
+            assign seo_description = 'Tutti gli agrumi di Calabria di AgrumiShop.it: arance, clementine, limoni e pompelmi in cassette da 8 e 15 kg, spedizione inclusa.'
+        endcase
+      endif
+      if seo_description == blank
+        assign seo_description = shop.description
+      endif
+    -%}
+    <title>{{ seo_title }}</title>
+
+    {% if seo_description != blank %}
+      <meta name="description" content="{{ seo_description | escape }}">
     {% endif %}
 
     {% render 'meta-tags' %}
