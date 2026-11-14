@@ -16,7 +16,7 @@
       <img
         class="sticky-atc__image"
         src="{{ sticky_image | image_url: width: 120 }}"
-        alt=""
+        alt="{{ product.title | escape }}"
         width="48"
         height="48"
         loading="lazy"

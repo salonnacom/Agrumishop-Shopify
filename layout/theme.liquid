@@ -20,7 +20,7 @@
       Descrizione: se la pagina non ne ha una (policy, Tutti i prodotti, carrello) si usa un testo di riserva.
     {%- endcomment -%}
     {%- capture seo_title -%}
-      {{ page_title }}
+      {{ page_title | strip }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
       {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
     {%- endcapture -%}
