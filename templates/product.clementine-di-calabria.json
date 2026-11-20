@@ -61,13 +61,6 @@
             "heading_3": "Spedizione inclusa nel prezzo!"
           }
         },
-        "custom_liquid_LRYTfj": {
-          "type": "custom_liquid",
-          "disabled": true,
-          "settings": {
-            "custom_liquid": "<div class=\"banner-fresco\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0609/6066/9743/files/hot-sale.svg?v=1729241185\" width=\"48\" alt=\"Spedizione refrigerata\">\n      <p>\n        <strong style=\"display: block;font-size: 22px;padding-top: 0px; line-height: 140%; margin-bottom: 5px;\">PRE-ORDINA ORA CON 10% SCONTO</strong>\nLa stagione delle clementine è alle porte e inizieremo la raccolta la settimana dell'11 Novembre con prima spedizione luendi 18 Novembre in tutta Italia e all'estero. <br>\n<strong>Pre-ordina ora e assicurati il 10% di sconto.</strong><br>\n Ricorda che la promozione sarà valida fino all'inizio della raccolta.\n      </p>\n    </div>\n\n    <style type=\"text/css\">\n      .banner-fresco {\n        display: flex;\n    padding: 0px 20px 20px;\n    border: 1px dashed #ff6a38;\n    border-radius: 5px;\n    background-color: #ffefe9;\n    align-items: flex-start;\nmargin-bottom: 30px;\n      }\n\n      .banner-fresco img {\n        margin-right: 10px;\npadding-top: 20px;\n      }\n\n      .banner-fresco p {\n        font-size: 15px;\n        line-height: 160%;\nmargin-bottom: 0px !important;\npadding-bottom: 0px;\n      }\n    </style>"
-          }
-        },
         "6edcd286-5267-4771-b48e-dfe209aaaaaa": {
           "type": "text",
           "settings": {
@@ -144,7 +137,6 @@
         "rating_air",
         "6edcd286-5267-4771-b48e-dfe209aaaaaa",
         "6ed807ba-0731-4ac3-b82e-1720e845f5a2",
-        "custom_liquid_LRYTfj",
         "price",
         "variant_picker",
         "quantity_selector",
@@ -284,7 +276,7 @@
           "settings": {
             "heading": "Le clementine sono davvero senza semi?",
             "icon": "none",
-            "row_content": "<p>Sì, quasi sempre. La clementina è un frutto <strong>apireno</strong>: quando i fiori non vengono impollinati dal polline di altre varietà di agrumi, i frutti crescono senza semi. Può capitare di trovarne uno o due, se nelle vicinanze fioriscono altri agrumi e le api trasportano il polline, ma è l'eccezione. Lo spieghiamo nella nostra <a href=\"/blogs/news/clementine\" title=\"Clementine: cosa sono, perché sono senza semi, varietà e stagione\">guida alle clementine</a>, insieme a varietà e stagione.</p>",
+            "row_content": "<p>Sì, le nostre clementine sono senza semi. La clementina è un frutto <strong>apireno</strong>: quando i fiori non vengono impollinati dal polline di altre varietà di agrumi, i frutti crescono senza semi. Solo raramente, se vicino fioriscono altri agrumi, può capitare di trovarne uno. Lo spieghiamo nella nostra <a href=\"/blogs/news/clementine\" title=\"Clementine: cosa sono, perché sono senza semi, varietà e stagione\">guida alle clementine</a>, insieme a varietà e stagione.</p>",
             "page": ""
           }
         },
@@ -293,7 +285,7 @@
           "settings": {
             "heading": "Che differenza c'è tra clementine e mandarini?",
             "icon": "none",
-            "row_content": "<p>La differenza principale è nei semi: la clementina ne è quasi sempre priva, il mandarino ne contiene molti. La clementina è più tonda, ha la buccia liscia e lucida e un sapore più dolce; il mandarino è più schiacciato ai poli, con la buccia più rugosa e un profumo più intenso, leggermente acidulo. Tutte le differenze tra <a href=\"/blogs/news/differenze-tra-mandarini-e-clementine\">clementine e mandarini</a> sono nella nostra guida.</p>",
+            "row_content": "<p>La differenza principale è nei semi: la clementina ne è priva, il mandarino ne contiene molti. La clementina è più tonda, ha la buccia liscia e lucida e un sapore più dolce; il mandarino è più schiacciato ai poli, con la buccia più rugosa e un profumo più intenso, leggermente acidulo. Tutte le differenze tra <a href=\"/blogs/news/differenze-tra-mandarini-e-clementine\">clementine e mandarini</a> sono nella nostra guida.</p>",
             "page": ""
           }
         },
@@ -311,7 +303,7 @@
           "settings": {
             "heading": "Come si chiamano i mandarini senza semi?",
             "icon": "none",
-            "row_content": "<p>Quelli che spesso vengono chiamati \"mandarini senza semi\" sono in realtà <strong>clementine</strong>: a prima vista si somigliano, ma è la clementina ad essere quasi sempre senza semi, mentre il mandarino vero e proprio ne ha parecchi.</p>",
+            "row_content": "<p>Quelli che spesso vengono chiamati \"mandarini senza semi\" sono in realtà <strong>clementine</strong>: a prima vista si somigliano, ma è la clementina ad essere senza semi, mentre il mandarino vero e proprio ne ha parecchi.</p>",
             "page": ""
           }
         },
