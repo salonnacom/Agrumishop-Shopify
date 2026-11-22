@@ -2,6 +2,22 @@
   {%- for block in section.blocks -%}
     {% render block %}
   {%- endfor -%}
+  {%- comment -%}
+    Nota sulla verifica delle recensioni (Codice del Consumo / Omnibus): sotto l'elenco Air Reviews nelle schede prodotto.
+    Regola applicata: si pubblicano solo recensioni con account verificato o riconducibili a un ordine reale.
+  {%- endcomment -%}
+  {%- if template.name == 'product' and section.blocks.size > 0 -%}
+    <p class="reviews-verification-note">
+      {%- case request.locale.iso_code -%}
+        {%- when 'de' -%}Wir veröffentlichen nur Bewertungen von Kundinnen und Kunden, die in unserem Shop gekauft haben.
+        {%- when 'en' -%}We only publish reviews from customers who have purchased from our shop.
+        {%- else -%}Pubblichiamo solo recensioni di clienti che hanno acquistato sul nostro sito.
+      {%- endcase -%}
+    </p>
+    <style>
+      .reviews-verification-note { margin: 0.8rem 0 0; font-size: 1.3rem; line-height: 1.5; color: rgba(var(--color-foreground), 0.65); }
+    </style>
+  {%- endif -%}
 </div>
 
 {% schema %}
