@@ -1,7 +1,7 @@
 {%- comment -%}
   Prezzi di mercato degli agrumi: media settimanale dei prezzi online (al kg, spedizione inclusa) letta dal metafield shop custom.prezzi_agrumi,
   aggiornato dallo script .claude/prezzi/collect.py. Stile "full" per la pagina dedicata (schede per agrume con riepilogo, grafico della stagione
-  ottobre–maggio, tabella dati e schema Dataset), "compact" per la home (riquadri + pulsante verso la pagina).
+  ottobre–marzo, tabella dati e schema Dataset), "compact" per la home (riquadri + pulsante verso la pagina).
   Tutti i pannelli restano nell'HTML; lo script mostra solo quello della scheda attiva.
 {%- endcomment -%}
 {%- liquid
@@ -319,7 +319,7 @@
           });
         });
 
-        // Grafico della stagione ottobre–maggio: asse X a mesi, fascia min–max, media con punti, bio tratteggiato.
+        // Grafico della stagione ottobre–marzo: asse X a mesi, fascia min–max, media con punti, bio tratteggiato.
         var lang = document.documentElement.lang || 'it';
         function el(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; }
         function t(d) { var p = d.split('-'); return Date.UTC(+p[0], +p[1] - 1, +p[2]); }
@@ -327,7 +327,7 @@
         function day(d) { var p = d.split('-'); return p[2] + '/' + p[1]; }
         var ref = (data.updated || new Date().toISOString().slice(0, 10)).split('-');
         var y0 = +ref[1] >= 8 ? +ref[0] : +ref[0] - 1;
-        var start = Date.UTC(y0, 9, 1), end = Date.UTC(y0 + 1, 5, 1);
+        var start = Date.UTC(y0, 9, 1), end = Date.UTC(y0 + 1, 3, 1);
         var monthFmt = new Intl.DateTimeFormat(lang, { month: 'short', timeZone: 'UTC' });
 
         // Mini grafico (home): stessa stagione, senza assi, solo fascia, linea e ultimo punto evidenziato.
@@ -344,7 +344,7 @@
           var fg = (getComputedStyle(svg).getPropertyValue('--cp-line') || '').trim() || '#c25e00';
           el('line', { x1: P, x2: W - P, y1: H - B, y2: H - B, stroke: 'currentColor', 'stroke-opacity': 0.15 }, svg);
           el('text', { x: P, y: H - 3, 'text-anchor': 'start' }, svg).textContent = monthFmt.format(new Date(start)).replace('.', '');
-          el('text', { x: W - P, y: H - 3, 'text-anchor': 'end' }, svg).textContent = monthFmt.format(new Date(Date.UTC(y0 + 1, 4, 1))).replace('.', '');
+          el('text', { x: W - P, y: H - 3, 'text-anchor': 'end' }, svg).textContent = monthFmt.format(new Date(Date.UTC(y0 + 1, 2, 1))).replace('.', '');
           if (pts.length > 1) {
             var band = pts.map(function (p) { return x(p.d) + ',' + y(p.max); }).concat(pts.slice().reverse().map(function (p) { return x(p.d) + ',' + y(p.min); }));
             el('polygon', { points: band.join(' '), fill: fg, 'fill-opacity': 0.15 }, svg);
@@ -385,7 +385,7 @@
             el('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), stroke: 'currentColor', 'stroke-opacity': i === 0 ? 0.25 : 0.1 }, svg);
             el('text', { x: L - 8, y: y(v) + 4, 'text-anchor': 'end' }, svg).textContent = num(v) + ' €';
           }
-          for (var m = 0; m < 8; m++) {
+          for (var m = 0; m < 6; m++) {
             var ms = Date.UTC(y0, 9 + m, 1), me = Date.UTC(y0, 10 + m, 1);
             var mx = L + (W - L - R) * (ms - start) / (end - start);
             if (m > 0) el('line', { x1: mx, x2: mx, y1: T, y2: H - B, stroke: 'currentColor', 'stroke-opacity': 0.06 }, svg);
@@ -472,9 +472,9 @@
               legend: { show: false },
               noData: { text: svg.getAttribute('data-cp-empty'), style: { color: muted, fontSize: '14px' } },
               grid: { borderColor: ink.replace('rgb(', 'rgba(').replace(')', ', 0.1)'), strokeDashArray: 4, padding: { left: 8, right: 12 } },
-              // Asse in mesi dall'inizio stagione (0 = 1° ottobre, 8 = 1° giugno): una tacca esatta per mese.
-              xaxis: { type: 'numeric', min: 0, max: 8, tickAmount: 8,
-                labels: { formatter: function (v) { var k = Math.round(v); return k >= 8 ? '' : monthFmt.format(new Date(Date.UTC(y0, 9 + k, 1))).replace('.', ''); }, hideOverlappingLabels: false },
+              // Asse in mesi dall'inizio stagione (0 = 1° ottobre, 6 = 1° aprile): una tacca esatta per mese.
+              xaxis: { type: 'numeric', min: 0, max: 6, tickAmount: 6,
+                labels: { formatter: function (v) { var k = Math.round(v); return k >= 6 ? '' : monthFmt.format(new Date(Date.UTC(y0, 9 + k, 1))).replace('.', ''); }, hideOverlappingLabels: false },
                 axisBorder: { show: false }, axisTicks: { show: false }, tooltip: { enabled: false },
                 crosshairs: { stroke: { color: fg, dashArray: 3 } } },
               yaxis: { min: lo, max: hi, tickAmount: Math.round((hi - lo) / step), labels: { formatter: function (v) { return num(v) + ' €'; } } },
