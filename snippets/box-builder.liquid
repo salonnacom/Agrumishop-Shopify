@@ -51,7 +51,12 @@
         {%- endif -%}
         <div class="box-builder__info">
           <a class="box-builder__name" href="{{ source.url }}">{{ variant.title | escape }}</a>
-          <span class="box-builder__price">{{ variant.price | money }}{{ 'products.product.box_builder.per_kg' | t }}</span>
+          <span class="box-builder__price">
+            {%- if variant.compare_at_price > variant.price -%}
+              <s class="box-builder__price-compare">{{ variant.compare_at_price | money }}</s>{{ ' ' }}
+            {%- endif -%}
+            {{- variant.price | money }}{{ 'products.product.box_builder.per_kg' | t -}}
+          </span>
           {%- if source.available == false -%}
             <span class="box-builder__note">{{ 'products.product.box_builder.unavailable' | t }}</span>
           {%- elsif po_date != blank -%}

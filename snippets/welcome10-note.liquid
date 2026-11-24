@@ -7,6 +7,13 @@
 {%- endcomment -%}
 {%- liquid
   assign show = true
+  comment
+    Black Friday 2026: WELCOME10 in pausa fino al 30/11 (riquadro nascosto). Dal 01/12 riappare da solo: riattivare il codice WELCOME10.
+  endcomment
+  assign today_num = 'now' | date: '%Y%m%d' | plus: 0
+  if today_num < 20261201
+    assign show = false
+  endif
   if customer and customer.orders_count > 0
     assign show = false
   endif
