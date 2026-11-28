@@ -140,6 +140,11 @@
                   class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
                 >
                   {{- 'products.product.on_sale' | t -}}
+                  {%- comment -%} 28/11/2026: percentuale di sconto sulla variante mostrata {%- endcomment -%}
+                {%- assign sale_v = card_product.selected_or_first_available_variant -%}
+                {%- if sale_v.compare_at_price > sale_v.price -%}
+                  {{ ' ' }}–{{ sale_v.compare_at_price | minus: sale_v.price | times: 100.0 | divided_by: sale_v.compare_at_price | round }}%
+                {%- endif -%}
                 </span>
               {%- endif -%}
             </div>
@@ -568,6 +573,11 @@
                 class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
               >
                 {{- 'products.product.on_sale' | t -}}
+                {%- comment -%} 28/11/2026: percentuale di sconto sulla variante mostrata {%- endcomment -%}
+                {%- assign sale_v = card_product.selected_or_first_available_variant -%}
+                {%- if sale_v.compare_at_price > sale_v.price -%}
+                  {{ ' ' }}–{{ sale_v.compare_at_price | minus: sale_v.price | times: 100.0 | divided_by: sale_v.compare_at_price | round }}%
+                {%- endif -%}
               </span>
             {%- endif -%}
           </div>
