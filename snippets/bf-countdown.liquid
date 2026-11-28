@@ -1,0 +1,75 @@
+{%- comment -%}
+  Black Friday 2026 (dal 28/11/2026): conto alla rovescia sotto il pulsante in scheda prodotto fino alla fine reale
+  dell'offerta, domenica 30/11/2026 alle 23:59 (ora italiana). Compare solo se il prodotto è davvero scontato
+  (prezzo barrato) e sparisce da solo alla scadenza, sia lato server (dal 01/12) sia nel browser (pagine in cache).
+  Da togliere il 01/12 insieme al ripristino prezzi: rimuovere il render in sections/main-product.liquid e questo file.
+{%- endcomment -%}
+{%- liquid
+  assign today_num = 'now' | date: '%Y%m%d' | plus: 0
+  assign show = false
+  if today_num < 20261201 and product.compare_at_price > product.price
+    assign show = true
+  endif
+  case request.locale.iso_code
+    when 'de'
+      assign lead = 'Black Friday: –15 % nur noch'
+      assign d_label = 'T'
+      assign h_label = 'Std'
+      assign m_label = 'Min'
+      assign s_label = 'Sek'
+      assign last = 'Endet am Sonntag, 30. November, um 23:59 Uhr'
+    when 'en'
+      assign lead = 'Black Friday: 15% off ends in'
+      assign d_label = 'd'
+      assign h_label = 'h'
+      assign m_label = 'm'
+      assign s_label = 's'
+      assign last = 'Ends Sunday 30 November at 23:59 (Italian time)'
+    else
+      assign lead = 'Black Friday: –15% ancora per'
+      assign d_label = 'g'
+      assign h_label = 'h'
+      assign m_label = 'm'
+      assign s_label = 's'
+      assign last = 'Termina domenica 30 novembre alle 23:59'
+  endcase
+-%}
+{%- if show -%}
+  <div class="bf-countdown" data-end="2026-11-30T23:59:59+01:00" hidden>
+    <span class="bf-countdown__lead">{{ lead }}</span>
+    <span class="bf-countdown__time" aria-live="off">
+      <span><b data-u="d">0</b>{{ d_label }}</span>
+      <span><b data-u="h">00</b>{{ h_label }}</span>
+      <span><b data-u="m">00</b>{{ m_label }}</span>
+      <span><b data-u="s">00</b>{{ s_label }}</span>
+    </span>
+    <span class="bf-countdown__note">{{ last }}</span>
+  </div>
+  <script>
+    (function () {
+      var box = document.currentScript.previousElementSibling;
+      var end = Date.parse(box.dataset.end);
+      var u = {};
+      box.querySelectorAll('[data-u]').forEach(function (el) { u[el.dataset.u] = el; });
+      function pad(n) { return (n < 10 ? '0' : '') + n; }
+      function tick() {
+        var left = Math.floor((end - Date.now()) / 1000);
+        if (left <= 0) { box.remove(); clearInterval(timer); return; }
+        u.d.textContent = Math.floor(left / 86400);
+        u.h.textContent = pad(Math.floor(left % 86400 / 3600));
+        u.m.textContent = pad(Math.floor(left % 3600 / 60));
+        u.s.textContent = pad(left % 60);
+        box.hidden = false;
+      }
+      var timer = setInterval(tick, 1000);
+      tick();
+    })();
+  </script>
+  <style>
+    .bf-countdown { margin: 1.2rem 0 0; padding: 1rem 1.4rem; border: 1px solid #f0a23a; border-radius: 1.2rem; background: #fff4e3; color: #5a3a10; text-align: center; line-height: 1.4; }
+    .bf-countdown__lead { display: block; font-size: 1.6rem; font-weight: 700; color: #b8600b; }
+    .bf-countdown__time { display: flex; justify-content: center; gap: .8rem; margin: .5rem 0 .3rem; font-size: 1.4rem; }
+    .bf-countdown__time b { display: inline-block; min-width: 2.6rem; margin-right: .15rem; padding: .2rem .5rem; border-radius: .6rem; background: #e8871e; color: #fff; font-size: 1.9rem; font-variant-numeric: tabular-nums; }
+    .bf-countdown__note { display: block; font-size: 1.3rem; opacity: .85; }
+  </style>
+{%- endif -%}
